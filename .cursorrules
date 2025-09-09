@@ -1,0 +1,13 @@
+# Cursor AI Rules for Semantic Search Project
+
+## Virtual Environment Rule
+- ALWAYS activate the virtual environment before running any Python code or installing packages
+- Use: `source venv/bin/activate` before executing Python scripts or pip commands
+- Ensure all Python operations are performed within the activated virtual environment
+
+## Code Implementation Rule
+- Implement tasks in a MINIMALIST fashion
+- Write code that meets only the basic requirements
+- Do NOT add additional capabilities or features beyond what is explicitly requested
+- Keep code simple, focused, and essential-only
+- Avoid over-engineering or adding unnecessary complexity
