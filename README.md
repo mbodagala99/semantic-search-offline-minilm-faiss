@@ -1,2 +1,2 @@
 # semantic-search-offline-minilm-faiss
-Semantic search proof-of-concept leveraging FAISS and Sentence Transformers (all-MiniLM-L6-v2) for efficient text retrieval and similarity search
+Offline semantic search using FAISS and Sentence Transformers (all-MiniLM-L6-v2) for accurate, private, and efficient similarity search on small datasets—no external APIs or servers required.
