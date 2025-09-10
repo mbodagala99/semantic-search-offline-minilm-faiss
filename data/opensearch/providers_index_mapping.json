@@ -1,0 +1,571 @@
+{
+  "_meta": {
+    "index_name": "healthcare_providers_index",
+    "description": "Healthcare Provider Directory Index - Comprehensive Provider Information and Network Management",
+    "embedding_configuration": {
+      "primary_search_fields": [
+        "provider_id",
+        "npi",
+        "provider_name",
+        "first_name",
+        "last_name",
+        "specialties",
+        "primary_taxonomy",
+        "contact_information.address.city",
+        "contact_information.address.state",
+        "credentials",
+        "organization_name"
+      ],
+      "semantic_search_fields": [
+        "provider_name",
+        "first_name",
+        "last_name",
+        "specialties",
+        "contact_information.address.city",
+        "contact_information.address.state",
+        "credentials",
+        "organization_name"
+      ],
+      "embedding_retrieval": {
+        "include_index_name": true,
+        "index_name_field": "source_index",
+        "text_combination_strategy": "concatenate_relevant_fields",
+        "field_priority": [
+          "provider_name",
+          "first_name + last_name",
+          "specialties",
+          "contact_information.address.city + contact_information.address.state",
+          "credentials",
+          "organization_name"
+        ]
+      }
+    },
+    "purpose": "This index serves as the comprehensive repository for healthcare provider information, supporting provider network management, credentialing, quality assessment, and patient care coordination. It enables detailed analysis of provider demographics, specialties, credentials, affiliations, and performance metrics. The index supports semantic search capabilities for provider discovery, network adequacy analysis, credentialing verification, and quality reporting. It facilitates real-time querying of provider availability, specialty coverage, geographic distribution, and performance indicators. This data structure enables healthcare administrators to manage provider networks, ensure credentialing compliance, analyze provider performance, and generate comprehensive provider reports for network optimization and quality improvement initiatives.",
+    "use_cases": [
+      "Provider network management and optimization",
+      "Credentialing and compliance verification",
+      "Provider directory and patient matching",
+      "Quality metrics and performance analysis",
+      "Geographic coverage and network adequacy",
+      "Specialty distribution and capacity planning",
+      "Provider enrollment and onboarding",
+      "Regulatory compliance and reporting"
+    ],
+    "reports_generated": [
+      "Provider network adequacy reports",
+      "Credentialing status and compliance reports",
+      "Provider performance and quality metrics",
+      "Geographic coverage and accessibility analysis",
+      "Specialty distribution and capacity reports",
+      "Provider enrollment and status reports",
+      "Quality improvement and benchmarking reports",
+      "Regulatory compliance and audit reports"
+    ]
+  },
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 1
+  },
+  "mappings": {
+    "properties": {
+      "provider_id": {
+        "type": "keyword",
+        "description": "Internal provider identifier used by the healthcare organization. Unique identifier for provider tracking and system integration.",
+        "possible_values": ["Internal provider codes", "Examples: PROV-001, DOC-12345, ORG-789"],
+        "purpose": "Internal provider identification and system integration"
+      },
+      "npi": {
+        "type": "keyword",
+        "description": "National Provider Identifier - unique 10-digit identifier for healthcare providers in the United States. Standard identifier used across all healthcare systems and required for billing and credentialing.",
+        "possible_values": ["10-digit numbers", "Examples: 1234567890, 9876543210"],
+        "purpose": "Standard provider identification across healthcare systems"
+      },
+      "tax_id": {
+        "type": "keyword",
+        "description": "Provider's Tax Identification Number (TIN) or Employer Identification Number (EIN). Used for tax reporting, billing, and financial transactions.",
+        "possible_values": ["Tax ID numbers", "Examples: 12-3456789, 98-7654321"],
+        "purpose": "Tax reporting and billing identification"
+      },
+      "provider_name": {
+        "type": "text",
+        "description": "Full business name of the provider organization or practice. Used for provider identification and directory listings.",
+        "possible_values": ["Provider names", "Examples: ABC Medical Group, Dr. John Smith Practice, XYZ Health Center"],
+        "purpose": "Provider identification and directory management"
+      },
+      "provider_type": {
+        "type": "keyword",
+        "description": "Classification of the provider type based on the nature of healthcare services provided.",
+        "possible_values": ["PHYSICIAN", "NURSE_PRACTITIONER", "PHYSICIAN_ASSISTANT", "DENTIST", "PHARMACIST", "THERAPIST", "FACILITY", "LABORATORY"],
+        "purpose": "Provider type classification and service categorization"
+      },
+      "entity_type": {
+        "type": "keyword",
+        "description": "Legal entity type of the provider organization, indicating whether it's an individual or organizational provider.",
+        "possible_values": ["INDIVIDUAL", "ORGANIZATION", "GROUP_PRACTICE", "HOSPITAL", "CLINIC", "LABORATORY"],
+        "purpose": "Entity classification for legal and billing purposes"
+      },
+      "organization_name": {
+        "type": "text",
+        "description": "Name of the parent organization or healthcare system that the provider is affiliated with.",
+        "possible_values": ["Organization names", "Examples: Mayo Clinic, Kaiser Permanente, Cleveland Clinic"],
+        "purpose": "Organizational affiliation tracking and network analysis"
+      },
+      "first_name": {
+        "type": "text",
+        "description": "Provider's first name. Used for individual provider identification and patient matching.",
+        "possible_values": ["First names", "Examples: John, Mary, Robert, Sarah"],
+        "purpose": "Individual provider identification and patient matching"
+      },
+      "last_name": {
+        "type": "text",
+        "description": "Provider's last name or surname. Critical for individual provider identification and family grouping.",
+        "possible_values": ["Last names", "Examples: Smith, Johnson, Williams, Brown"],
+        "purpose": "Individual provider identification and family grouping"
+      },
+      "middle_name": {
+        "type": "text",
+        "description": "Provider's middle name or middle initial. Used for complete provider identification and record disambiguation.",
+        "possible_values": ["Middle names", "Examples: Michael, A, Elizabeth, James"],
+        "purpose": "Enhanced provider identification and record matching"
+      },
+      "credentials": {
+        "type": "keyword",
+        "description": "Professional credentials and degrees held by the provider. Includes medical degrees, certifications, and professional designations.",
+        "possible_values": ["Credentials", "Examples: MD, DO, RN, NP, PA, DDS, PharmD"],
+        "purpose": "Professional qualification verification and credentialing"
+      },
+      "gender": {
+        "type": "keyword",
+        "description": "Provider's gender designation. Used for demographic analysis and certain patient preference matching.",
+        "possible_values": ["M", "F", "O", "U"],
+        "purpose": "Demographic analysis and patient preference matching"
+      },
+      "specialties": {
+        "type": "keyword",
+        "description": "Medical specialties and areas of expertise for the provider. Used for specialty-based provider matching and network analysis.",
+        "possible_values": ["Specialties", "Examples: CARDIOLOGY, DERMATOLOGY, PEDIATRICS, INTERNAL_MEDICINE, SURGERY"],
+        "purpose": "Specialty-based provider matching and network analysis"
+      },
+      "taxonomy_codes": {
+        "type": "keyword",
+        "description": "Healthcare Provider Taxonomy codes that classify providers by their specialization and practice area. Standardized codes used across healthcare systems.",
+        "possible_values": ["Taxonomy codes", "Examples: 207Q00000X, 207R00000X, 208000000X"],
+        "purpose": "Standardized provider classification and specialty identification"
+      },
+      "primary_taxonomy": {
+        "type": "keyword",
+        "description": "Primary healthcare provider taxonomy code representing the provider's main area of practice or specialization.",
+        "possible_values": ["Primary taxonomy codes", "Examples: 207Q00000X, 207R00000X"],
+        "purpose": "Primary specialty identification and classification"
+      },
+      "contact_information": {
+        "type": "object",
+        "description": "Primary contact information for the provider including address, phone, email, and website details. Used for provider communication and directory listings.",
+        "properties": {
+          "address": {
+            "type": "object",
+            "description": "Primary business address for the provider. Used for geographic analysis and service area determination.",
+            "properties": {
+              "street": {
+                "type": "text",
+                "description": "Street address including building number and street name for the provider's primary location.",
+                "possible_values": ["Street addresses", "Examples: 123 Medical Plaza, 456 Health Center Dr"],
+                "purpose": "Geographic analysis and service area mapping"
+              },
+              "city": {
+                "type": "keyword",
+                "description": "City where the provider's primary location is situated.",
+                "possible_values": ["City names", "Examples: Boston, Miami, Seattle, Chicago"],
+                "purpose": "Geographic analysis and regional reporting"
+              },
+              "state": {
+                "type": "keyword",
+                "description": "State where the provider's primary location is situated.",
+                "possible_values": ["State codes", "Examples: MA, FL, WA, IL"],
+                "purpose": "State-level analysis and regulatory reporting"
+              },
+              "zip_code": {
+                "type": "keyword",
+                "description": "ZIP code for the provider's primary location.",
+                "possible_values": ["ZIP codes", "Examples: 02101, 33101, 98101, 60601"],
+                "purpose": "Detailed geographic analysis and service area mapping"
+              },
+              "country": {
+                "type": "keyword",
+                "description": "Country where the provider is located.",
+                "possible_values": ["Country codes", "Examples: US, CA, MX"],
+                "purpose": "International provider identification and geographic analysis"
+              }
+            }
+          },
+          "phone_number": {
+            "type": "keyword",
+            "description": "Primary phone number for contacting the provider. Used for patient communication and appointment scheduling.",
+            "possible_values": ["Phone numbers", "Examples: (555) 123-4567, +1-555-123-4567"],
+            "purpose": "Provider communication and patient contact"
+          },
+          "fax_number": {
+            "type": "keyword",
+            "description": "Fax number for the provider. Used for document transmission and secure communication.",
+            "possible_values": ["Fax numbers", "Examples: (555) 123-4568, +1-555-123-4568"],
+            "purpose": "Document transmission and secure communication"
+          },
+          "email": {
+            "type": "keyword",
+            "description": "Primary email address for the provider. Used for electronic communication and notifications.",
+            "possible_values": ["Email addresses", "Examples: provider@clinic.com, info@medicalgroup.org"],
+            "purpose": "Electronic communication and notification delivery"
+          },
+          "website": {
+            "type": "keyword",
+            "description": "Provider's website URL. Used for patient information and online services.",
+            "possible_values": ["Website URLs", "Examples: https://www.clinic.com, https://medicalgroup.org"],
+            "purpose": "Online presence and patient information access"
+          }
+        }
+      },
+      "practice_locations": {
+        "type": "nested",
+        "description": "Additional practice locations where the provider offers services. Contains location details, contact information, and primary location designation for multi-location providers.",
+        "properties": {
+          "location_id": {
+            "type": "keyword",
+            "description": "Unique identifier for each practice location. Used for location tracking and management.",
+            "possible_values": ["Location IDs", "Examples: LOC-001, 12345"],
+            "purpose": "Location identification and tracking"
+          },
+          "location_name": {
+            "type": "text",
+            "description": "Name or description of the practice location. Used for location identification and patient communication.",
+            "possible_values": ["Location names", "Examples: Main Office, Satellite Clinic, Urgent Care Center"],
+            "purpose": "Location identification and patient communication"
+          },
+          "address": {
+            "type": "object",
+            "description": "Complete address information for the practice location. Used for geographic analysis and patient navigation.",
+            "properties": {
+              "street": {
+                "type": "text",
+                "description": "Street address for the practice location.",
+                "possible_values": ["Street addresses", "Examples: 789 Healthcare Blvd, 321 Medical Way"],
+                "purpose": "Geographic analysis and patient navigation"
+              },
+              "city": {
+                "type": "keyword",
+                "description": "City where the practice location is situated.",
+                "possible_values": ["City names", "Examples: Boston, Miami, Seattle"],
+                "purpose": "Geographic analysis and regional reporting"
+              },
+              "state": {
+                "type": "keyword",
+                "description": "State where the practice location is situated.",
+                "possible_values": ["State codes", "Examples: MA, FL, WA"],
+                "purpose": "State-level analysis and regulatory reporting"
+              },
+              "zip_code": {
+                "type": "keyword",
+                "description": "ZIP code for the practice location.",
+                "possible_values": ["ZIP codes", "Examples: 02101, 33101, 98101"],
+                "purpose": "Detailed geographic analysis and service area mapping"
+              }
+            }
+          },
+          "phone_number": {
+            "type": "keyword",
+            "description": "Phone number specific to this practice location. Used for location-specific patient contact.",
+            "possible_values": ["Phone numbers", "Examples: (555) 987-6543, +1-555-987-6543"],
+            "purpose": "Location-specific patient contact and communication"
+          },
+          "is_primary": {
+            "type": "boolean",
+            "description": "Indicates whether this is the provider's primary practice location.",
+            "possible_values": ["true", "false"],
+            "purpose": "Primary location identification and hierarchy management"
+          }
+        }
+      },
+      "licenses": {
+        "type": "nested",
+        "description": "Professional licenses held by the provider including medical licenses, state licenses, and other professional certifications. Used for credentialing verification and compliance monitoring.",
+        "properties": {
+          "license_number": {
+            "type": "keyword",
+            "description": "Unique license number assigned by the licensing authority. Used for license verification and tracking.",
+            "possible_values": ["License numbers", "Examples: MD123456, RN789012, PA345678"],
+            "purpose": "License identification and verification"
+          },
+          "license_type": {
+            "type": "keyword",
+            "description": "Type of professional license held by the provider.",
+            "possible_values": ["MEDICAL", "NURSING", "PHYSICIAN_ASSISTANT", "DENTAL", "PHARMACY", "THERAPY"],
+            "purpose": "License type classification and verification"
+          },
+          "state": {
+            "type": "keyword",
+            "description": "State or jurisdiction that issued the license.",
+            "possible_values": ["State codes", "Examples: CA, NY, TX, FL"],
+            "purpose": "State-specific license tracking and compliance"
+          },
+          "issue_date": {
+            "type": "date",
+            "format": "yyyy-MM-dd",
+            "description": "Date when the license was originally issued by the licensing authority.",
+            "possible_values": ["Date format: YYYY-MM-DD", "Examples: 2010-06-15, 2015-03-22"],
+            "purpose": "License history tracking and experience calculation"
+          },
+          "expiry_date": {
+            "type": "date",
+            "format": "yyyy-MM-dd",
+            "description": "Date when the license expires and requires renewal.",
+            "possible_values": ["Date format: YYYY-MM-DD", "Examples: 2025-06-15, 2026-03-22"],
+            "purpose": "License renewal tracking and compliance monitoring"
+          },
+          "status": {
+            "type": "keyword",
+            "description": "Current status of the license indicating whether it's active, expired, suspended, or revoked.",
+            "possible_values": ["ACTIVE", "EXPIRED", "SUSPENDED", "REVOKED", "PENDING"],
+            "purpose": "License status monitoring and compliance verification"
+          }
+        }
+      },
+      "certifications": {
+        "type": "nested",
+        "description": "Professional certifications and board certifications held by the provider. Includes specialty certifications, continuing education credits, and professional development achievements.",
+        "properties": {
+          "certification_name": {
+            "type": "text",
+            "description": "Name of the professional certification or board certification held by the provider.",
+            "possible_values": ["Certification names", "Examples: Board Certified in Internal Medicine, Certified Diabetes Educator"],
+            "purpose": "Professional qualification identification and verification"
+          },
+          "certifying_organization": {
+            "type": "text",
+            "description": "Name of the organization that issued the certification or board certification.",
+            "possible_values": ["Organizations", "Examples: American Board of Internal Medicine, American Diabetes Association"],
+            "purpose": "Certification authority identification and verification"
+          },
+          "certification_date": {
+            "type": "date",
+            "format": "yyyy-MM-dd",
+            "description": "Date when the certification was originally obtained.",
+            "possible_values": ["Date format: YYYY-MM-DD", "Examples: 2012-08-15, 2018-11-30"],
+            "purpose": "Certification history tracking and experience calculation"
+          },
+          "expiry_date": {
+            "type": "date",
+            "format": "yyyy-MM-dd",
+            "description": "Date when the certification expires and requires renewal or recertification.",
+            "possible_values": ["Date format: YYYY-MM-DD", "Examples: 2025-08-15, 2028-11-30"],
+            "purpose": "Certification renewal tracking and compliance monitoring"
+          },
+          "certification_number": {
+            "type": "keyword",
+            "description": "Unique certification number assigned by the certifying organization.",
+            "possible_values": ["Certification numbers", "Examples: ABIM123456, CDE789012"],
+            "purpose": "Certification identification and verification"
+          }
+        }
+      },
+      "affiliations": {
+        "type": "object",
+        "description": "Organizational affiliations and partnerships for the provider. Includes hospitals, group practices, health systems, and medical groups for network analysis and referral management.",
+        "properties": {
+          "hospitals": {
+            "type": "keyword",
+            "description": "Hospitals where the provider has admitting privileges or affiliations.",
+            "possible_values": ["Hospital names", "Examples: General Hospital, Medical Center, Regional Health"],
+            "purpose": "Hospital affiliation tracking and referral management"
+          },
+          "group_practices": {
+            "type": "keyword",
+            "description": "Group practices or medical groups that the provider is affiliated with.",
+            "possible_values": ["Group practice names", "Examples: ABC Medical Group, XYZ Family Practice"],
+            "purpose": "Group practice affiliation tracking and network analysis"
+          },
+          "health_systems": {
+            "type": "keyword",
+            "description": "Health systems or healthcare networks that the provider is part of.",
+            "possible_values": ["Health system names", "Examples: Mayo Clinic Health System, Kaiser Permanente"],
+            "purpose": "Health system affiliation tracking and network analysis"
+          },
+          "medical_groups": {
+            "type": "keyword",
+            "description": "Medical groups or physician organizations that the provider belongs to.",
+            "possible_values": ["Medical group names", "Examples: Independent Physicians Group, Specialty Medical Associates"],
+            "purpose": "Medical group affiliation tracking and network analysis"
+          }
+        }
+      },
+      "education": {
+        "type": "object",
+        "description": "Educational background and training information for the provider. Includes medical school, residency, and fellowship training for credentialing and qualification verification.",
+        "properties": {
+          "medical_school": {
+            "type": "text",
+            "description": "Name of the medical school where the provider received their medical degree.",
+            "possible_values": ["Medical school names", "Examples: Harvard Medical School, Johns Hopkins School of Medicine"],
+            "purpose": "Educational background verification and credentialing"
+          },
+          "graduation_year": {
+            "type": "integer",
+            "description": "Year when the provider graduated from medical school.",
+            "possible_values": ["Graduation years", "Examples: 2005, 2010, 2015"],
+            "purpose": "Experience calculation and credentialing verification"
+          },
+          "residency_program": {
+            "type": "text",
+            "description": "Name of the residency program where the provider completed their residency training.",
+            "possible_values": ["Residency programs", "Examples: Internal Medicine Residency, Family Medicine Program"],
+            "purpose": "Training background verification and specialty identification"
+          },
+          "fellowship_program": {
+            "type": "text",
+            "description": "Name of the fellowship program where the provider completed additional specialty training.",
+            "possible_values": ["Fellowship programs", "Examples: Cardiology Fellowship, Oncology Fellowship"],
+            "purpose": "Specialty training verification and advanced qualification identification"
+          }
+        }
+      },
+      "professional_info": {
+        "type": "object",
+        "description": "Professional practice information including experience, languages, patient acceptance status, and practice details for provider matching and patient communication.",
+        "properties": {
+          "years_of_experience": {
+            "type": "integer",
+            "description": "Total number of years of professional experience for the provider.",
+            "possible_values": ["Years of experience", "Examples: 5, 15, 25"],
+            "purpose": "Experience-based provider matching and qualification assessment"
+          },
+          "languages_spoken": {
+            "type": "keyword",
+            "description": "Languages that the provider can communicate in with patients.",
+            "possible_values": ["Languages", "Examples: English, Spanish, French, Mandarin"],
+            "purpose": "Language-based patient matching and communication planning"
+          },
+          "accepting_new_patients": {
+            "type": "boolean",
+            "description": "Indicates whether the provider is currently accepting new patients.",
+            "possible_values": ["true", "false"],
+            "purpose": "Patient availability tracking and appointment scheduling"
+          },
+          "practice_website": {
+            "type": "keyword",
+            "description": "Website URL for the provider's practice or organization.",
+            "possible_values": ["Website URLs", "Examples: https://www.provider.com, https://practice.org"],
+            "purpose": "Online presence and patient information access"
+          }
+        }
+      },
+      "billing_info": {
+        "type": "object",
+        "description": "Billing and financial information for the provider including billing identifiers and addresses. Used for payment processing and financial transactions.",
+        "properties": {
+          "billing_npi": {
+            "type": "keyword",
+            "description": "National Provider Identifier used specifically for billing purposes. May differ from the primary NPI.",
+            "possible_values": ["10-digit numbers", "Examples: 1234567890, 9876543210"],
+            "purpose": "Billing identification and payment processing"
+          },
+          "billing_tax_id": {
+            "type": "keyword",
+            "description": "Tax Identification Number used for billing and financial transactions.",
+            "possible_values": ["Tax ID numbers", "Examples: 12-3456789, 98-7654321"],
+            "purpose": "Billing identification and tax reporting"
+          },
+          "billing_address": {
+            "type": "object",
+            "description": "Address used for billing and payment processing. May differ from the practice address.",
+            "properties": {
+              "street": {
+                "type": "text",
+                "description": "Street address for billing purposes.",
+                "possible_values": ["Street addresses", "Examples: 123 Billing Plaza, 456 Finance Center Dr"],
+                "purpose": "Billing address identification and payment processing"
+              },
+              "city": {
+                "type": "keyword",
+                "description": "City for the billing address.",
+                "possible_values": ["City names", "Examples: Boston, Miami, Seattle"],
+                "purpose": "Billing location identification"
+              },
+              "state": {
+                "type": "keyword",
+                "description": "State for the billing address.",
+                "possible_values": ["State codes", "Examples: MA, FL, WA"],
+                "purpose": "Billing location identification"
+              },
+              "zip_code": {
+                "type": "keyword",
+                "description": "ZIP code for the billing address.",
+                "possible_values": ["ZIP codes", "Examples: 02101, 33101, 98101"],
+                "purpose": "Billing location identification"
+              }
+            }
+          }
+        }
+      },
+      "enrollment_info": {
+        "type": "object",
+        "description": "Insurance plan enrollment information for the provider. Indicates which insurance plans the provider participates in for network management and patient matching.",
+        "properties": {
+          "medicare_enrolled": {
+            "type": "boolean",
+            "description": "Indicates whether the provider is enrolled in Medicare.",
+            "possible_values": ["true", "false"],
+            "purpose": "Medicare network participation tracking"
+          },
+          "medicaid_enrolled": {
+            "type": "boolean",
+            "description": "Indicates whether the provider is enrolled in Medicaid.",
+            "possible_values": ["true", "false"],
+            "purpose": "Medicaid network participation tracking"
+          },
+          "commercial_plans": {
+            "type": "keyword",
+            "description": "Commercial insurance plans that the provider participates in.",
+            "possible_values": ["Insurance plan names", "Examples: Blue Cross Blue Shield, Aetna, UnitedHealthcare"],
+            "purpose": "Commercial network participation tracking"
+          },
+          "enrollment_date": {
+            "type": "date",
+            "format": "yyyy-MM-dd",
+            "description": "Date when the provider was enrolled in the insurance network.",
+            "possible_values": ["Date format: YYYY-MM-DD", "Examples: 2020-01-15, 2022-06-30"],
+            "purpose": "Enrollment history tracking and network management"
+          }
+        }
+      },
+      "quality_metrics": {
+        "type": "object",
+        "description": "Quality and performance metrics for the provider including patient satisfaction, quality ratings, and clinical outcomes. Used for quality assessment and performance improvement.",
+        "properties": {
+          "patient_satisfaction_score": {
+            "type": "float",
+            "description": "Patient satisfaction score based on surveys and feedback. Typically on a scale of 1-5 or 1-10.",
+            "possible_values": ["Satisfaction scores", "Examples: 4.5, 3.8, 4.9"],
+            "purpose": "Patient satisfaction tracking and quality improvement"
+          },
+          "quality_rating": {
+            "type": "float",
+            "description": "Overall quality rating for the provider based on clinical outcomes and performance measures.",
+            "possible_values": ["Quality ratings", "Examples: 4.2, 3.9, 4.7"],
+            "purpose": "Quality assessment and performance benchmarking"
+          },
+          "readmission_rate": {
+            "type": "float",
+            "description": "Rate of patient readmissions within 30 days of discharge. Expressed as a percentage.",
+            "possible_values": ["Readmission rates", "Examples: 5.2, 8.1, 3.7"],
+            "purpose": "Clinical outcome tracking and quality improvement"
+          },
+          "last_updated": {
+            "type": "date",
+            "format": "yyyy-MM-dd",
+            "description": "Date when the quality metrics were last updated or calculated.",
+            "possible_values": ["Date format: YYYY-MM-DD", "Examples: 2024-01-15, 2024-03-30"],
+            "purpose": "Quality data freshness tracking and update monitoring"
+          }
+        }
+      }
+    }
+  }
+}

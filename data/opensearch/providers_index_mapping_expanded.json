@@ -1,0 +1,736 @@
+{
+  "_meta": {
+    "index_name": "healthcare_providers_index",
+    "organization_name": "ENSOrg",
+    "description": "Healthcare Provider Directory Index - Comprehensive Provider Information and Network Management",
+    "embedding_configuration": {
+      "primary_search_fields": [
+        "provider_id",
+        "npi",
+        "provider_name",
+        "first_name",
+        "last_name",
+        "specialties",
+        "primary_taxonomy",
+        "contact_information.address.city",
+        "contact_information.address.state",
+        "credentials",
+        "organization_name"
+      ],
+      "semantic_search_fields": [
+        "provider_name",
+        "first_name",
+        "last_name",
+        "specialties",
+        "contact_information.address.city",
+        "contact_information.address.state",
+        "credentials",
+        "organization_name"
+      ],
+      "embedding_retrieval": {
+        "include_index_name": true,
+        "index_name_field": "source_index",
+        "text_combination_strategy": "concatenate_relevant_fields",
+        "field_priority": [
+          "provider_name",
+          "first_name + last_name",
+          "specialties",
+          "contact_information.address.city + contact_information.address.state",
+          "credentials",
+          "organization_name"
+        ]
+      }
+    },
+    "purpose": "This index serves as the comprehensive repository for healthcare provider information, supporting provider network management, credentialing, quality assessment, and patient care coordination across healthcare organizations. It enables detailed analysis of provider demographics, specialties, credentials, affiliations, performance metrics, and network adequacy. The index supports advanced semantic search capabilities for provider discovery, network optimization, credentialing verification, quality reporting, and patient matching. It facilitates real-time querying of provider availability, specialty coverage, geographic distribution, performance indicators, and credentialing status. This comprehensive data structure enables healthcare administrators, network managers, credentialing specialists, and quality assurance teams to manage provider networks effectively, ensure credentialing compliance, analyze provider performance, optimize network adequacy, and generate detailed provider reports for network optimization, quality improvement initiatives, and strategic decision-making. The index supports complex analytical queries including geographic analysis of provider distribution, specialty analysis of network coverage, performance analysis of provider outcomes, credentialing analysis of compliance status, and predictive modeling for network planning and provider recruitment.",
+    "use_cases": [
+      {
+        "category": "Provider Network Management and Optimization",
+        "description": "Comprehensive management of healthcare provider networks, including network adequacy analysis, provider recruitment, network optimization, and strategic planning. This includes monitoring network coverage, identifying gaps, and optimizing provider distribution for maximum patient access and quality outcomes.",
+        "scenarios": [
+          "Analyze provider network coverage by geographic region and specialty",
+          "Identify network gaps and underserved areas requiring provider recruitment",
+          "Monitor provider network adequacy ratios and access standards",
+          "Track provider network performance metrics and quality indicators",
+          "Analyze provider network utilization patterns and capacity constraints",
+          "Optimize provider network distribution for maximum patient access",
+          "Monitor provider network compliance with regulatory requirements",
+          "Plan provider network expansion and strategic growth initiatives"
+        ],
+        "natural_language_prompts": [
+          "Show me provider network coverage gaps in rural areas",
+          "Find specialties with insufficient provider coverage in our network",
+          "Generate a report of network adequacy by geographic region",
+          "Show me providers with capacity constraints and long wait times",
+          "Find opportunities to optimize provider network distribution",
+          "Show me network performance metrics compared to industry benchmarks",
+          "Generate a report of provider network compliance status",
+          "Find areas where we need to recruit additional providers"
+        ]
+      },
+      {
+        "category": "Credentialing and Compliance Verification",
+        "description": "Comprehensive credentialing management, including license verification, certification tracking, compliance monitoring, and regulatory adherence. This includes ensuring all providers meet credentialing requirements and maintain current certifications.",
+        "scenarios": [
+          "Track provider credentialing status and renewal requirements",
+          "Monitor license expiration dates and renewal deadlines",
+          "Verify provider certifications and board certifications",
+          "Track continuing education requirements and compliance",
+          "Monitor provider compliance with regulatory requirements",
+          "Track provider disciplinary actions and sanctions",
+          "Verify provider malpractice insurance coverage",
+          "Monitor provider peer review and quality assessments"
+        ],
+        "natural_language_prompts": [
+          "Show me providers with expiring licenses in the next 30 days",
+          "Find providers with expired credentials that need renewal",
+          "Generate a report of credentialing compliance status",
+          "Show me providers with disciplinary actions or sanctions",
+          "Find providers with missing or expired certifications",
+          "Show me providers with malpractice insurance issues",
+          "Generate a report of continuing education compliance",
+          "Find providers requiring peer review or quality assessment"
+        ]
+      },
+      {
+        "category": "Provider Directory and Patient Matching",
+        "description": "Comprehensive provider directory management and patient-provider matching capabilities, including provider search, availability tracking, and patient preference matching. This includes maintaining accurate provider information for patient access and care coordination.",
+        "scenarios": [
+          "Maintain comprehensive provider directory with accurate information",
+          "Track provider availability and appointment scheduling capacity",
+          "Match patients with appropriate providers based on specialty and location",
+          "Provide provider search capabilities for patients and care coordinators",
+          "Track provider language capabilities and cultural competencies",
+          "Monitor provider patient acceptance status and capacity",
+          "Track provider office hours and availability patterns",
+          "Provide provider contact information and communication preferences"
+        ],
+        "natural_language_prompts": [
+          "Find cardiologists accepting new patients in downtown area",
+          "Show me providers who speak Spanish in the north region",
+          "Generate a list of pediatricians with evening hours",
+          "Find providers specializing in diabetes care near patient location",
+          "Show me providers with same-day appointment availability",
+          "Find providers accepting Medicare patients in rural areas",
+          "Show me providers with telemedicine capabilities",
+          "Generate a list of providers with wheelchair accessibility"
+        ]
+      },
+      {
+        "category": "Quality Metrics and Performance Analysis",
+        "description": "Comprehensive analysis of provider quality metrics, performance indicators, and clinical outcomes. This includes tracking patient satisfaction, clinical outcomes, and quality improvement initiatives.",
+        "scenarios": [
+          "Track provider quality metrics and performance indicators",
+          "Monitor patient satisfaction scores and feedback",
+          "Analyze clinical outcomes and patient safety indicators",
+          "Track provider readmission rates and care quality",
+          "Monitor provider adherence to clinical guidelines and protocols",
+          "Analyze provider efficiency and productivity metrics",
+          "Track provider cost-effectiveness and resource utilization",
+          "Monitor provider participation in quality improvement programs"
+        ],
+        "natural_language_prompts": [
+          "Show me providers with the highest patient satisfaction scores",
+          "Find providers with below-average quality metrics",
+          "Generate a report of clinical outcomes by provider specialty",
+          "Show me providers with high readmission rates",
+          "Find providers with cost-effectiveness issues",
+          "Show me providers excelling in quality improvement programs",
+          "Generate a report of patient safety indicators by provider",
+          "Find providers with efficiency and productivity concerns"
+        ]
+      },
+      {
+        "category": "Geographic Coverage and Network Adequacy",
+        "description": "Comprehensive analysis of geographic provider coverage, network adequacy, and access to care. This includes monitoring provider distribution, access standards, and geographic service areas.",
+        "scenarios": [
+          "Analyze provider geographic distribution and coverage areas",
+          "Monitor network adequacy ratios by geographic region",
+          "Track provider service areas and coverage boundaries",
+          "Analyze patient access to care by geographic location",
+          "Monitor provider availability in underserved areas",
+          "Track provider network expansion and growth patterns",
+          "Analyze provider market share and competitive positioning",
+          "Monitor provider network compliance with access standards"
+        ],
+        "natural_language_prompts": [
+          "Show me provider coverage gaps in rural counties",
+          "Find areas with insufficient provider-to-patient ratios",
+          "Generate a report of network adequacy by ZIP code",
+          "Show me providers serving underserved populations",
+          "Find geographic areas requiring network expansion",
+          "Show me provider market share by geographic region",
+          "Generate a report of patient access to care by location",
+          "Find providers with overlapping service areas"
+        ]
+      },
+      {
+        "category": "Specialty Distribution and Capacity Planning",
+        "description": "Comprehensive analysis of provider specialty distribution, capacity planning, and specialty-specific network management. This includes monitoring specialty coverage, capacity constraints, and specialty recruitment needs.",
+        "scenarios": [
+          "Analyze provider specialty distribution and coverage",
+          "Monitor specialty capacity and utilization rates",
+          "Track specialty-specific provider recruitment needs",
+          "Analyze specialty referral patterns and relationships",
+          "Monitor specialty provider availability and wait times",
+          "Track specialty provider performance and outcomes",
+          "Analyze specialty market demand and supply",
+          "Plan specialty network expansion and development"
+        ],
+        "natural_language_prompts": [
+          "Show me specialty distribution across our network",
+          "Find specialties with capacity constraints and long wait times",
+          "Generate a report of specialty provider recruitment needs",
+          "Show me specialty referral patterns and relationships",
+          "Find specialties with insufficient provider coverage",
+          "Show me specialty provider performance metrics",
+          "Generate a report of specialty market demand and supply",
+          "Find opportunities for specialty network expansion"
+        ]
+      },
+      {
+        "category": "Provider Enrollment and Onboarding",
+        "description": "Comprehensive provider enrollment and onboarding management, including application processing, credentialing workflows, and provider integration. This includes managing the complete provider lifecycle from application to active participation.",
+        "scenarios": [
+          "Track provider enrollment applications and processing status",
+          "Monitor provider onboarding workflows and timelines",
+          "Track provider credentialing and verification processes",
+          "Monitor provider training and orientation requirements",
+          "Track provider system access and technology onboarding",
+          "Monitor provider contract negotiations and agreements",
+          "Track provider integration and go-live processes",
+          "Monitor provider performance during initial participation period"
+        ],
+        "natural_language_prompts": [
+          "Show me provider enrollment applications pending review",
+          "Find providers in the onboarding process with delays",
+          "Generate a report of provider enrollment status and timelines",
+          "Show me providers requiring additional training or orientation",
+          "Find providers with incomplete credentialing documentation",
+          "Show me providers ready for system access and go-live",
+          "Generate a report of provider contract negotiation status",
+          "Find providers requiring additional support during onboarding"
+        ]
+      },
+      {
+        "category": "Regulatory Compliance and Reporting",
+        "description": "Comprehensive regulatory compliance monitoring and reporting for provider networks, including regulatory requirements, audit preparation, and compliance reporting. This includes ensuring compliance with healthcare regulations and reporting requirements.",
+        "scenarios": [
+          "Monitor provider compliance with regulatory requirements",
+          "Track provider reporting requirements and deadlines",
+          "Monitor provider participation in quality reporting programs",
+          "Track provider compliance with billing and coding regulations",
+          "Monitor provider compliance with privacy and security regulations",
+          "Track provider compliance with accessibility requirements",
+          "Monitor provider compliance with cultural competency standards",
+          "Track provider compliance with continuing education requirements"
+        ],
+        "natural_language_prompts": [
+          "Show me providers with regulatory compliance issues",
+          "Find providers with missing regulatory reporting submissions",
+          "Generate a report of provider compliance status by regulation",
+          "Show me providers with privacy and security compliance issues",
+          "Find providers with accessibility compliance concerns",
+          "Show me providers with cultural competency training gaps",
+          "Generate a report of provider continuing education compliance",
+          "Find providers requiring regulatory compliance remediation"
+        ]
+      }
+    ],
+    "reports_generated": [
+      {
+        "report_type": "Provider Network Adequacy Reports",
+        "description": "Comprehensive reports analyzing provider network adequacy, coverage, and access to care across different geographic regions and specialties. These reports help ensure adequate provider coverage and identify areas requiring network expansion or provider recruitment.",
+        "report_categories": [
+          {
+            "category": "Geographic Coverage Analysis",
+            "description": "Analysis of provider geographic distribution and coverage areas to ensure adequate access to care across all service areas.",
+            "sample_prompts": [
+              "Show me provider coverage by county and ZIP code",
+              "Find geographic areas with insufficient provider coverage",
+              "Generate a network adequacy report by geographic region",
+              "Show me provider-to-patient ratios by location",
+              "Find underserved areas requiring provider recruitment"
+            ],
+            "filters": [
+              "Geographic region: state, county, city, ZIP code, radius",
+              "Provider type: primary care, specialty, hospital, facility",
+              "Coverage ratio: provider-to-patient ratios, access standards",
+              "Population density: urban, suburban, rural, frontier",
+              "Access standards: drive time, distance, appointment availability"
+            ]
+          },
+          {
+            "category": "Specialty Coverage Analysis",
+            "description": "Analysis of provider specialty distribution and coverage to ensure adequate specialty care access across the network.",
+            "sample_prompts": [
+              "Show me specialty provider distribution across our network",
+              "Find specialties with insufficient provider coverage",
+              "Generate a specialty coverage adequacy report",
+              "Show me specialty provider-to-patient ratios",
+              "Find specialties requiring additional provider recruitment"
+            ],
+            "filters": [
+              "Specialty: cardiology, dermatology, pediatrics, etc.",
+              "Provider level: primary care, specialist, subspecialist",
+              "Coverage ratio: specialty-specific adequacy standards",
+              "Geographic region: state, county, city, service area",
+              "Access metrics: wait times, appointment availability"
+            ]
+          },
+          {
+            "category": "Network Performance Metrics",
+            "description": "Analysis of network performance metrics including access, quality, and efficiency indicators.",
+            "sample_prompts": [
+              "Show me network performance metrics by region",
+              "Find network performance gaps and improvement opportunities",
+              "Generate a network performance benchmarking report",
+              "Show me network efficiency and utilization metrics",
+              "Find network performance trends and patterns"
+            ],
+            "filters": [
+              "Performance metrics: access, quality, efficiency, satisfaction",
+              "Benchmark comparison: industry standards, peer networks",
+              "Time period: monthly, quarterly, annual, trend analysis",
+              "Geographic region: state, county, city, service area",
+              "Performance thresholds: above/below specific standards"
+            ]
+          }
+        ]
+      },
+      {
+        "report_type": "Credentialing Status and Compliance Reports",
+        "description": "Comprehensive reports on provider credentialing status, compliance monitoring, and regulatory adherence. These reports help ensure all providers meet credentialing requirements and maintain current certifications.",
+        "report_categories": [
+          {
+            "category": "Credentialing Status Tracking",
+            "description": "Tracking of provider credentialing status, renewal requirements, and compliance monitoring.",
+            "sample_prompts": [
+              "Show me providers with expiring credentials in the next 30 days",
+              "Find providers with expired credentials requiring immediate attention",
+              "Generate a credentialing status report by provider type",
+              "Show me providers with incomplete credentialing documentation",
+              "Find providers requiring credentialing renewal or updates"
+            ],
+            "filters": [
+              "Credentialing status: current, expiring, expired, pending",
+              "Credential type: license, certification, board certification",
+              "Expiration timeline: 30 days, 60 days, 90 days, overdue",
+              "Provider type: individual, group, facility, organization",
+              "Compliance status: compliant, non-compliant, pending review"
+            ]
+          },
+          {
+            "category": "Regulatory Compliance Monitoring",
+            "description": "Monitoring of provider compliance with healthcare regulations, standards, and requirements.",
+            "sample_prompts": [
+              "Show me providers with regulatory compliance issues",
+              "Find providers with missing regulatory documentation",
+              "Generate a regulatory compliance status report",
+              "Show me providers with disciplinary actions or sanctions",
+              "Find providers requiring compliance remediation"
+            ],
+            "filters": [
+              "Regulation type: state, federal, professional, accreditation",
+              "Compliance status: compliant, non-compliant, pending, under review",
+              "Violation type: billing, quality, safety, privacy, accessibility",
+              "Severity level: critical, major, minor, informational",
+              "Resolution status: resolved, pending, in progress, overdue"
+            ]
+          },
+          {
+            "category": "Quality Assurance and Peer Review",
+            "description": "Analysis of provider quality assurance activities, peer review processes, and quality improvement initiatives.",
+            "sample_prompts": [
+              "Show me providers requiring peer review or quality assessment",
+              "Find providers with quality improvement opportunities",
+              "Generate a quality assurance status report",
+              "Show me providers with quality metrics below standards",
+              "Find providers excelling in quality improvement programs"
+            ],
+            "filters": [
+              "Quality metrics: outcomes, satisfaction, safety, efficiency",
+              "Review status: completed, pending, in progress, overdue",
+              "Quality level: excellent, good, average, below average, poor",
+              "Improvement status: improving, stable, declining, needs attention",
+              "Program participation: quality improvement, peer review, training"
+            ]
+          }
+        ]
+      },
+      {
+        "report_type": "Provider Performance and Quality Metrics",
+        "description": "Comprehensive analysis of provider performance metrics, quality indicators, and clinical outcomes. These reports help identify top performers and areas for improvement.",
+        "report_categories": [
+          {
+            "category": "Clinical Outcomes Analysis",
+            "description": "Analysis of provider clinical outcomes, patient safety indicators, and quality of care metrics.",
+            "sample_prompts": [
+              "Show me providers with the best clinical outcomes",
+              "Find providers with patient safety concerns",
+              "Generate a clinical outcomes report by specialty",
+              "Show me providers with readmission rate issues",
+              "Find providers with quality improvement opportunities"
+            ],
+            "filters": [
+              "Outcome metrics: mortality, readmission, infection, complication rates",
+              "Quality indicators: HEDIS, CMS quality measures, patient safety",
+              "Performance level: top quartile, average, below average, bottom quartile",
+              "Specialty: specific medical specialties and subspecialties",
+              "Time period: monthly, quarterly, annual, trend analysis"
+            ]
+          },
+          {
+            "category": "Patient Satisfaction Analysis",
+            "description": "Analysis of patient satisfaction scores, feedback, and experience metrics for providers.",
+            "sample_prompts": [
+              "Show me providers with the highest patient satisfaction scores",
+              "Find providers with patient satisfaction concerns",
+              "Generate a patient satisfaction report by provider type",
+              "Show me patient feedback trends and patterns",
+              "Find providers with communication or service issues"
+            ],
+            "filters": [
+              "Satisfaction metrics: overall rating, communication, care quality, access",
+              "Satisfaction level: excellent, good, average, below average, poor",
+              "Feedback source: surveys, reviews, complaints, compliments",
+              "Provider type: primary care, specialty, hospital, facility",
+              "Time period: monthly, quarterly, annual, trend analysis"
+            ]
+          },
+          {
+            "category": "Efficiency and Productivity Analysis",
+            "description": "Analysis of provider efficiency, productivity, and resource utilization metrics.",
+            "sample_prompts": [
+              "Show me the most efficient and productive providers",
+              "Find providers with efficiency or productivity concerns",
+              "Generate an efficiency analysis report by specialty",
+              "Show me provider utilization patterns and trends",
+              "Find providers with resource utilization issues"
+            ],
+            "filters": [
+              "Efficiency metrics: patient volume, visit duration, resource use",
+              "Productivity level: high, average, low, concerning",
+              "Utilization type: appointment capacity, procedure volume, resource allocation",
+              "Specialty: specific medical specialties and service types",
+              "Time period: monthly, quarterly, annual, trend analysis"
+            ]
+          }
+        ]
+      },
+      {
+        "report_type": "Geographic Coverage and Accessibility Analysis",
+        "description": "Comprehensive analysis of provider geographic coverage, accessibility, and service area analysis. These reports help ensure adequate geographic coverage and patient access to care.",
+        "report_categories": [
+          {
+            "category": "Service Area Analysis",
+            "description": "Analysis of provider service areas, coverage boundaries, and geographic reach.",
+            "sample_prompts": [
+              "Show me provider service areas and coverage boundaries",
+              "Find overlapping or gap areas in provider coverage",
+              "Generate a service area analysis report by provider type",
+              "Show me provider geographic reach and accessibility",
+              "Find areas with limited provider access or coverage"
+            ],
+            "filters": [
+              "Service area: radius, drive time, distance, coverage boundaries",
+              "Provider type: primary care, specialty, hospital, facility",
+              "Accessibility: drive time, public transportation, walkability",
+              "Population density: urban, suburban, rural, frontier",
+              "Coverage type: in-network, out-of-network, preferred"
+            ]
+          },
+          {
+            "category": "Accessibility and Transportation Analysis",
+            "description": "Analysis of provider accessibility, transportation options, and patient access barriers.",
+            "sample_prompts": [
+              "Show me providers with accessibility features and accommodations",
+              "Find providers with transportation or access barriers",
+              "Generate an accessibility analysis report by location",
+              "Show me providers with public transportation access",
+              "Find providers with parking or accessibility issues"
+            ],
+            "filters": [
+              "Accessibility features: wheelchair, parking, public transport, walkability",
+              "Transportation: drive time, public transit, walking distance",
+              "Barriers: physical, transportation, language, cultural",
+              "Location type: urban, suburban, rural, medical campus",
+              "Access level: excellent, good, fair, poor, inaccessible"
+            ]
+          },
+          {
+            "category": "Market Share and Competitive Analysis",
+            "description": "Analysis of provider market share, competitive positioning, and market dynamics.",
+            "sample_prompts": [
+              "Show me provider market share by geographic region",
+              "Find competitive gaps and market opportunities",
+              "Generate a market share analysis report by specialty",
+              "Show me provider competitive positioning and strengths",
+              "Find market areas with limited competition or choice"
+            ],
+            "filters": [
+              "Market metrics: market share, patient volume, competitive position",
+              "Geographic region: state, county, city, service area",
+              "Specialty: specific medical specialties and service types",
+              "Competition level: high, moderate, low, monopoly",
+              "Market dynamics: growth, decline, stable, emerging"
+            ]
+          }
+        ]
+      },
+      {
+        "report_type": "Specialty Distribution and Capacity Reports",
+        "description": "Comprehensive analysis of provider specialty distribution, capacity planning, and specialty-specific network management. These reports help optimize specialty coverage and capacity planning.",
+        "report_categories": [
+          {
+            "category": "Specialty Distribution Analysis",
+            "description": "Analysis of provider specialty distribution, coverage, and network balance.",
+            "sample_prompts": [
+              "Show me specialty provider distribution across our network",
+              "Find specialties with imbalanced or inadequate distribution",
+              "Generate a specialty distribution report by geographic region",
+              "Show me specialty provider concentration and clustering",
+              "Find specialties requiring distribution optimization"
+            ],
+            "filters": [
+              "Specialty: primary care, medical specialties, surgical specialties",
+              "Distribution metrics: concentration, clustering, balance, coverage",
+              "Geographic region: state, county, city, service area",
+              "Provider level: primary care, specialist, subspecialist",
+              "Balance indicators: over-concentrated, balanced, under-served"
+            ]
+          },
+          {
+            "category": "Capacity Planning and Utilization",
+            "description": "Analysis of provider capacity, utilization rates, and capacity planning needs.",
+            "sample_prompts": [
+              "Show me provider capacity utilization rates by specialty",
+              "Find specialties with capacity constraints or overutilization",
+              "Generate a capacity planning report for network expansion",
+              "Show me provider capacity trends and forecasting",
+              "Find specialties requiring additional capacity or providers"
+            ],
+            "filters": [
+              "Capacity metrics: utilization rate, appointment availability, wait times",
+              "Capacity level: underutilized, optimal, overutilized, constrained",
+              "Specialty: specific medical specialties and service types",
+              "Time period: current, projected, seasonal, trend analysis",
+              "Capacity type: appointment slots, procedure capacity, resource allocation"
+            ]
+          },
+          {
+            "category": "Specialty Recruitment and Development",
+            "description": "Analysis of specialty recruitment needs, development opportunities, and strategic planning.",
+            "sample_prompts": [
+              "Show me specialty recruitment needs and priorities",
+              "Find specialties requiring immediate recruitment attention",
+              "Generate a specialty development strategy report",
+              "Show me specialty market demand and supply analysis",
+              "Find opportunities for specialty network expansion"
+            ],
+            "filters": [
+              "Recruitment priority: critical, high, medium, low, future",
+              "Specialty demand: high demand, moderate, low, emerging",
+              "Market analysis: supply, demand, competition, growth potential",
+              "Geographic region: state, county, city, service area",
+              "Development type: recruitment, training, partnership, acquisition"
+            ]
+          }
+        ]
+      },
+      {
+        "report_type": "Provider Enrollment and Status Reports",
+        "description": "Comprehensive tracking of provider enrollment, onboarding, and participation status. These reports help manage the provider lifecycle and ensure smooth provider integration.",
+        "report_categories": [
+          {
+            "category": "Enrollment Pipeline Management",
+            "description": "Tracking of provider enrollment applications, processing status, and pipeline management.",
+            "sample_prompts": [
+              "Show me provider enrollment applications by status",
+              "Find enrollment applications requiring immediate attention",
+              "Generate an enrollment pipeline report with timelines",
+              "Show me enrollment processing efficiency and bottlenecks",
+              "Find enrollment applications with delays or issues"
+            ],
+            "filters": [
+              "Enrollment status: application, review, credentialing, onboarding, active",
+              "Processing stage: initial review, credentialing, contracting, go-live",
+              "Timeline: on-time, delayed, overdue, expedited",
+              "Provider type: individual, group, facility, organization",
+              "Priority level: high, medium, low, urgent"
+            ]
+          },
+          {
+            "category": "Onboarding and Integration Tracking",
+            "description": "Tracking of provider onboarding processes, integration activities, and go-live management.",
+            "sample_prompts": [
+              "Show me providers in the onboarding process with status",
+              "Find onboarding processes with delays or issues",
+              "Generate an onboarding progress report by provider",
+              "Show me providers ready for system access and training",
+              "Find providers requiring additional onboarding support"
+            ],
+            "filters": [
+              "Onboarding stage: orientation, training, system access, go-live, post-launch",
+              "Integration status: pending, in progress, completed, delayed",
+              "Support needs: training, technical, administrative, clinical",
+              "Provider type: individual, group, facility, organization",
+              "Timeline: on-schedule, delayed, at-risk, completed"
+            ]
+          },
+          {
+            "category": "Provider Status and Participation",
+            "description": "Tracking of provider participation status, activity levels, and engagement metrics.",
+            "sample_prompts": [
+              "Show me provider participation status and activity levels",
+              "Find providers with low participation or engagement",
+              "Generate a provider status report by participation level",
+              "Show me providers with inactive or suspended status",
+              "Find providers requiring status review or reactivation"
+            ],
+            "filters": [
+              "Participation status: active, inactive, suspended, terminated, pending",
+              "Activity level: high, moderate, low, inactive, concerning",
+              "Engagement metrics: patient volume, system usage, communication",
+              "Provider type: individual, group, facility, organization",
+              "Status reason: voluntary, administrative, compliance, performance"
+            ]
+          }
+        ]
+      },
+      {
+        "report_type": "Quality Improvement and Benchmarking Reports",
+        "description": "Comprehensive analysis of provider quality improvement initiatives, benchmarking, and performance comparison. These reports help drive quality improvement and best practice adoption.",
+        "report_categories": [
+          {
+            "category": "Quality Improvement Program Analysis",
+            "description": "Analysis of provider participation in quality improvement programs and initiatives.",
+            "sample_prompts": [
+              "Show me providers participating in quality improvement programs",
+              "Find providers with quality improvement opportunities",
+              "Generate a quality improvement program participation report",
+              "Show me providers excelling in quality improvement initiatives",
+              "Find providers requiring quality improvement support"
+            ],
+            "filters": [
+              "Program type: quality improvement, patient safety, efficiency, satisfaction",
+              "Participation level: active, moderate, minimal, non-participant",
+              "Improvement status: improving, stable, declining, needs attention",
+              "Provider type: individual, group, facility, organization",
+              "Program focus: clinical outcomes, patient experience, efficiency, safety"
+            ]
+          },
+          {
+            "category": "Benchmarking and Performance Comparison",
+            "description": "Analysis of provider performance benchmarking against industry standards and peer comparisons.",
+            "sample_prompts": [
+              "Show me provider performance compared to industry benchmarks",
+              "Find providers performing above or below peer averages",
+              "Generate a benchmarking report by specialty and region",
+              "Show me providers with performance improvement opportunities",
+              "Find top-performing providers for best practice identification"
+            ],
+            "filters": [
+              "Benchmark type: industry standards, peer comparison, historical, target",
+              "Performance level: top quartile, above average, average, below average",
+              "Metrics: quality, efficiency, satisfaction, outcomes, cost",
+              "Comparison group: specialty peers, regional peers, network peers",
+              "Time period: current, trend, year-over-year, quarterly"
+            ]
+          },
+          {
+            "category": "Best Practice Identification and Sharing",
+            "description": "Identification of best practices, top performers, and knowledge sharing opportunities.",
+            "sample_prompts": [
+              "Show me top-performing providers for best practice identification",
+              "Find providers with innovative practices or approaches",
+              "Generate a best practice sharing report by specialty",
+              "Show me providers with successful quality improvement stories",
+              "Find opportunities for peer learning and knowledge sharing"
+            ],
+            "filters": [
+              "Performance level: top performer, high performer, average, below average",
+              "Practice type: clinical, operational, patient experience, efficiency",
+              "Innovation level: innovative, standard, traditional, outdated",
+              "Specialty: specific medical specialties and service types",
+              "Sharing potential: high, moderate, low, confidential"
+            ]
+          }
+        ]
+      },
+      {
+        "report_type": "Regulatory Compliance and Audit Reports",
+        "description": "Comprehensive reporting on provider regulatory compliance, audit preparation, and regulatory adherence. These reports help ensure compliance with healthcare regulations and support audit activities.",
+        "report_categories": [
+          {
+            "category": "Regulatory Compliance Status",
+            "description": "Comprehensive reporting on provider compliance with healthcare regulations and standards.",
+            "sample_prompts": [
+              "Show me provider compliance status with healthcare regulations",
+              "Find providers with regulatory compliance issues or violations",
+              "Generate a regulatory compliance report by regulation type",
+              "Show me providers with compliance improvement opportunities",
+              "Find providers requiring compliance remediation or support"
+            ],
+            "filters": [
+              "Regulation type: state, federal, professional, accreditation, payer",
+              "Compliance status: compliant, non-compliant, pending, under review",
+              "Violation severity: critical, major, minor, informational",
+              "Provider type: individual, group, facility, organization",
+              "Resolution status: resolved, pending, in progress, overdue"
+            ]
+          },
+          {
+            "category": "Audit Preparation and Support",
+            "description": "Reports and documentation to support internal and external audits of provider networks.",
+            "sample_prompts": [
+              "Show me provider documentation for audit preparation",
+              "Find providers with incomplete audit documentation",
+              "Generate an audit readiness report by provider and regulation",
+              "Show me providers with audit findings requiring follow-up",
+              "Find providers requiring audit support or remediation"
+            ],
+            "filters": [
+              "Audit type: internal, external, regulatory, payer, accreditation",
+              "Documentation status: complete, incomplete, missing, pending",
+              "Audit status: preparation, in progress, completed, follow-up",
+              "Finding severity: critical, major, minor, informational",
+              "Provider type: individual, group, facility, organization"
+            ]
+          },
+          {
+            "category": "Compliance Monitoring and Tracking",
+            "description": "Ongoing monitoring and tracking of provider compliance activities and status.",
+            "sample_prompts": [
+              "Show me ongoing compliance monitoring activities and status",
+              "Find providers with compliance monitoring alerts or issues",
+              "Generate a compliance monitoring dashboard and summary",
+              "Show me compliance trends and patterns across the network",
+              "Find providers requiring increased compliance monitoring"
+            ],
+            "filters": [
+              "Monitoring type: continuous, periodic, event-driven, risk-based",
+              "Alert level: critical, warning, informational, resolved",
+              "Compliance area: billing, quality, safety, privacy, accessibility",
+              "Provider risk level: high, medium, low, new, established",
+              "Monitoring frequency: daily, weekly, monthly, quarterly"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 1
+  },
+  "mappings": {
+    "properties": {
+      "provider_id": {
+        "type": "keyword",
+        "description": "Internal provider identifier used by the healthcare organization. Unique identifier for provider tracking and system integration.",
+        "possible_values": ["Internal provider codes", "Examples: PROV-001, DOC-12345, ORG-789"],
+        "purpose": "Internal provider identification and system integration"
+      }
+    }
+  }
+}

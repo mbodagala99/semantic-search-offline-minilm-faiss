@@ -1,0 +1,733 @@
+{
+  "_meta": {
+    "index_name": "healthcare_claims_index",
+    "organization_name": "ENSOrg",
+    "description": "Healthcare Claims Index - Comprehensive EDI 835 Processing and Analysis",
+    "embedding_configuration": {
+      "primary_search_fields": [
+        "claim_id",
+        "patient.first_name",
+        "patient.last_name", 
+        "provider.name",
+        "payer.name",
+        "claim_type",
+        "claim_status",
+        "service_lines.procedure_description",
+        "adjustments.adjustment_reason",
+        "edi_835_info.transaction_id"
+      ],
+      "semantic_search_fields": [
+        "patient.first_name",
+        "patient.last_name",
+        "provider.name", 
+        "payer.name",
+        "service_lines.procedure_description",
+        "adjustments.adjustment_reason"
+      ],
+      "embedding_retrieval": {
+        "include_index_name": true,
+        "index_name_field": "source_index",
+        "text_combination_strategy": "concatenate_relevant_fields",
+        "field_priority": [
+          "claim_id",
+          "patient.first_name + patient.last_name",
+          "provider.name",
+          "service_lines.procedure_description",
+          "claim_status",
+          "payer.name"
+        ]
+      }
+    },
+    "purpose": "This index serves as the central repository for healthcare claims data processed from EDI 835 (Health Care Claim Payment/Advice) files, providing a comprehensive foundation for healthcare financial management, operational analytics, and strategic decision-making. The index enables deep analysis of claim processing workflows, payment patterns, provider performance metrics, financial reconciliation processes, and service utilization trends across healthcare organizations. It supports advanced semantic search capabilities for complex claims investigation, sophisticated fraud detection algorithms, comprehensive provider network analysis, detailed financial reporting, and regulatory compliance monitoring. The data structure facilitates real-time querying of claim status transitions, payment history analysis, adjustment pattern recognition, service utilization forecasting, and provider billing behavior assessment. This comprehensive index enables healthcare administrators, financial analysts, and operational managers to track complete claim lifecycles from initial submission through final payment, identify processing bottlenecks and inefficiencies, analyze provider billing patterns and contract performance, detect anomalies and potential fraud indicators, optimize payment workflows, and generate detailed financial reports for stakeholders, regulatory bodies, and internal decision-making processes. The index supports complex analytical queries including temporal analysis of claim processing trends, geographic analysis of service utilization, demographic analysis of patient populations, financial analysis of payment patterns, and predictive modeling for claims forecasting and risk assessment.",
+    "use_cases": [
+      {
+        "category": "Claims Processing and Payment Reconciliation",
+        "description": "Comprehensive management of claim processing workflows, payment reconciliation, and financial tracking across multiple payers and providers. This includes real-time monitoring of claim status transitions, payment processing timelines, and financial reconciliation between billed amounts, allowed amounts, and actual payments.",
+        "scenarios": [
+          "Track all claims submitted in the last 30 days and their current processing status",
+          "Identify claims with payment delays exceeding 45 days from submission date",
+          "Reconcile payments received against EDI 835 remittance advice files",
+          "Monitor claim processing efficiency by payer and provider type",
+          "Analyze payment processing times by claim type and service category",
+          "Generate daily payment reconciliation reports for accounting departments",
+          "Track outstanding claims and aging analysis for accounts receivable management",
+          "Identify claims requiring manual intervention or additional documentation"
+        ],
+        "natural_language_prompts": [
+          "Show me all claims that were submitted last month but haven't been paid yet",
+          "Find claims with payment delays longer than 60 days",
+          "Generate a report of all payments received this week",
+          "What claims are still pending after 30 days of submission?",
+          "Show me the payment reconciliation status for all claims processed yesterday",
+          "Find all claims that were denied and need to be resubmitted",
+          "Generate a summary of outstanding payments by provider",
+          "Show me claims that were partially paid and need follow-up"
+        ]
+      },
+      {
+        "category": "Provider Network Analysis and Credentialing",
+        "description": "Comprehensive analysis of provider network performance, credentialing status, billing patterns, and network adequacy. This includes monitoring provider enrollment status, analyzing billing accuracy, tracking provider performance metrics, and ensuring network compliance with regulatory requirements.",
+        "scenarios": [
+          "Analyze provider billing patterns and identify outliers or anomalies",
+          "Track provider enrollment status and credentialing compliance",
+          "Monitor provider network adequacy by specialty and geographic region",
+          "Analyze provider performance metrics including payment acceptance rates",
+          "Identify providers with high denial rates or adjustment patterns",
+          "Track provider contract performance and fee schedule compliance",
+          "Monitor provider quality metrics and patient satisfaction scores",
+          "Analyze provider utilization patterns and capacity planning"
+        ],
+        "natural_language_prompts": [
+          "Show me all providers with denial rates above 15% in the last quarter",
+          "Find providers whose billing amounts consistently exceed allowed amounts",
+          "Generate a report of provider network coverage by specialty and location",
+          "Show me providers with expired credentials that need renewal",
+          "Find providers with unusual billing patterns that might indicate fraud",
+          "Generate a summary of provider performance metrics for credentialing review",
+          "Show me providers with high patient satisfaction scores",
+          "Find providers who are not accepting new patients"
+        ]
+      },
+      {
+        "category": "Fraud Detection and Investigation",
+        "description": "Advanced fraud detection and investigation capabilities using pattern recognition, anomaly detection, and behavioral analysis. This includes identifying suspicious billing patterns, detecting potential fraud indicators, and supporting investigative workflows for healthcare fraud prevention.",
+        "scenarios": [
+          "Identify providers with unusual billing patterns or excessive charges",
+          "Detect potential duplicate claims or duplicate billing scenarios",
+          "Analyze claims for medically unnecessary services or upcoding",
+          "Identify patients with suspicious utilization patterns",
+          "Detect potential identity theft or patient information misuse",
+          "Analyze claims for potential kickback schemes or referral patterns",
+          "Identify providers with high adjustment rates or frequent denials",
+          "Monitor claims for potential billing code manipulation or fraud"
+        ],
+        "natural_language_prompts": [
+          "Find providers who bill significantly more than their peers for similar services",
+          "Show me claims that might be duplicates or suspicious billing patterns",
+          "Identify patients with unusually high healthcare utilization",
+          "Find providers with frequent billing code changes or modifications",
+          "Show me claims for services that might be medically unnecessary",
+          "Generate a report of potential fraud indicators for investigation",
+          "Find providers with suspicious referral patterns or kickback indicators",
+          "Show me claims that were adjusted multiple times or have unusual patterns"
+        ]
+      },
+      {
+        "category": "Financial Reporting and Analytics",
+        "description": "Comprehensive financial reporting and analytics for healthcare organizations, including revenue cycle management, financial performance analysis, and strategic financial planning. This includes detailed financial reporting, cost analysis, and revenue optimization strategies.",
+        "scenarios": [
+          "Generate comprehensive financial reports for executive leadership",
+          "Analyze revenue cycle performance and identify improvement opportunities",
+          "Track financial performance by payer, provider, and service type",
+          "Monitor cash flow and accounts receivable aging",
+          "Analyze cost trends and identify cost-saving opportunities",
+          "Generate financial forecasts based on historical claim data",
+          "Track financial performance against budget and targets",
+          "Analyze profitability by service line and provider"
+        ],
+        "natural_language_prompts": [
+          "Generate a monthly financial summary report for the board of directors",
+          "Show me revenue trends for the last 12 months by payer type",
+          "Find the most profitable service lines and providers",
+          "Generate a cash flow analysis for the next quarter",
+          "Show me financial performance compared to budget targets",
+          "Find cost-saving opportunities in our claims processing",
+          "Generate a profitability analysis by geographic region",
+          "Show me the financial impact of recent policy changes"
+        ]
+      },
+      {
+        "category": "Service Utilization Analysis",
+        "description": "Comprehensive analysis of healthcare service utilization patterns, including patient demographics, service trends, and utilization forecasting. This includes analyzing service utilization by patient population, geographic region, and time period.",
+        "scenarios": [
+          "Analyze service utilization trends by patient demographics",
+          "Track utilization patterns by geographic region and service type",
+          "Monitor seasonal variations in healthcare service utilization",
+          "Analyze utilization patterns by payer type and coverage level",
+          "Track utilization trends for specific medical conditions or procedures",
+          "Analyze utilization patterns by provider specialty and location",
+          "Monitor utilization trends for preventive vs. acute care services",
+          "Analyze utilization patterns for chronic disease management"
+        ],
+        "natural_language_prompts": [
+          "Show me utilization trends for cardiology services in the last year",
+          "Find the most common procedures performed in each geographic region",
+          "Generate a report of seasonal utilization patterns for emergency services",
+          "Show me utilization trends by patient age group and gender",
+          "Find utilization patterns for chronic disease management programs",
+          "Generate a report of preventive care utilization vs. acute care",
+          "Show me utilization trends by insurance coverage type",
+          "Find utilization patterns for telemedicine vs. in-person visits"
+        ]
+      },
+      {
+        "category": "Patient Care Coordination",
+        "description": "Comprehensive patient care coordination and management, including patient journey tracking, care team coordination, and patient outcome analysis. This includes tracking patient care across multiple providers and services.",
+        "scenarios": [
+          "Track patient care journeys across multiple providers and services",
+          "Monitor patient outcomes and care quality metrics",
+          "Analyze patient satisfaction and experience scores",
+          "Track patient adherence to treatment plans and follow-up care",
+          "Monitor patient readmission rates and care transitions",
+          "Analyze patient care coordination between primary and specialty providers",
+          "Track patient care costs and resource utilization",
+          "Monitor patient care quality and safety indicators"
+        ],
+        "natural_language_prompts": [
+          "Show me the complete care journey for patients with diabetes",
+          "Find patients who missed follow-up appointments or care",
+          "Generate a report of patient satisfaction scores by provider",
+          "Show me patients with high readmission rates who need care coordination",
+          "Find patients with complex care needs requiring multiple specialists",
+          "Generate a report of patient outcomes for specific treatment protocols",
+          "Show me patients who need care transition support",
+          "Find patients with medication adherence issues"
+        ]
+      },
+      {
+        "category": "Regulatory Compliance Reporting",
+        "description": "Comprehensive regulatory compliance reporting and monitoring, including audit preparation, regulatory reporting, and compliance monitoring. This includes ensuring compliance with healthcare regulations and reporting requirements.",
+        "scenarios": [
+          "Generate regulatory compliance reports for audit preparation",
+          "Monitor compliance with healthcare regulations and standards",
+          "Track regulatory reporting requirements and deadlines",
+          "Analyze compliance with billing and coding regulations",
+          "Monitor compliance with patient privacy and security regulations",
+          "Track compliance with quality reporting requirements",
+          "Analyze compliance with provider credentialing requirements",
+          "Monitor compliance with payer contract requirements"
+        ],
+        "natural_language_prompts": [
+          "Generate a compliance report for the annual audit",
+          "Show me claims that might violate billing regulations",
+          "Find providers with compliance issues that need attention",
+          "Generate a report of regulatory reporting requirements and deadlines",
+          "Show me compliance with patient privacy regulations",
+          "Find claims that need additional documentation for compliance",
+          "Generate a report of quality reporting compliance",
+          "Show me compliance with payer contract requirements"
+        ]
+      },
+      {
+        "category": "Quality Metrics and Performance Analysis",
+        "description": "Comprehensive quality metrics and performance analysis, including clinical outcomes, quality indicators, and performance benchmarking. This includes analyzing quality metrics and performance indicators across providers and services.",
+        "scenarios": [
+          "Analyze clinical outcomes and quality indicators by provider",
+          "Track performance metrics and benchmarking against industry standards",
+          "Monitor quality improvement initiatives and their impact",
+          "Analyze patient safety indicators and adverse events",
+          "Track quality metrics for specific medical conditions or procedures",
+          "Monitor quality metrics by payer type and coverage level",
+          "Analyze quality metrics by geographic region and population",
+          "Track quality metrics for chronic disease management programs"
+        ],
+        "natural_language_prompts": [
+          "Show me quality metrics for cardiology services by provider",
+          "Find providers with below-average quality scores that need improvement",
+          "Generate a report of patient safety indicators and adverse events",
+          "Show me quality trends for specific medical conditions",
+          "Find quality improvement opportunities in our care delivery",
+          "Generate a report of quality metrics compared to industry benchmarks",
+          "Show me quality metrics by patient population and demographics",
+          "Find quality metrics for chronic disease management programs"
+        ]
+      }
+    ],
+    "reports_generated": [
+      {
+        "report_type": "Claims Payment Summary Reports",
+        "description": "Comprehensive reports summarizing claim payment activities, including payment status, amounts, and processing timelines. These reports provide detailed insights into payment patterns, processing efficiency, and financial performance.",
+        "report_categories": [
+          {
+            "category": "Daily Payment Summary",
+            "description": "Daily summary of all payments processed, including total amounts, payment methods, and processing status.",
+            "sample_prompts": [
+              "Show me all payments processed today",
+              "Generate a daily payment summary for yesterday",
+              "What was the total amount of payments processed this week?",
+              "Show me payments by payer for the last 7 days",
+              "Generate a summary of electronic vs. check payments today"
+            ],
+            "filters": [
+              "Date range: today, yesterday, last 7 days, last 30 days",
+              "Payment method: EFT, check, wire transfer, ACH",
+              "Payer type: commercial, Medicare, Medicaid, self-pay",
+              "Payment status: completed, pending, failed, reversed",
+              "Amount ranges: <$100, $100-$500, $500-$1000, >$1000"
+            ]
+          },
+          {
+            "category": "Monthly Payment Analysis",
+            "description": "Monthly analysis of payment trends, including payment volumes, amounts, and processing efficiency metrics.",
+            "sample_prompts": [
+              "Show me monthly payment trends for the last 12 months",
+              "Generate a payment analysis report for last month",
+              "What was the average payment processing time this month?",
+              "Show me payment trends by provider specialty",
+              "Generate a report of payment delays and bottlenecks"
+            ],
+            "filters": [
+              "Month: current month, last month, specific month",
+              "Provider specialty: cardiology, dermatology, pediatrics, etc.",
+              "Payer: specific insurance company or payer type",
+              "Payment amount: ranges and thresholds",
+              "Processing time: <7 days, 7-14 days, 14-30 days, >30 days"
+            ]
+          },
+          {
+            "category": "Payment Reconciliation Reports",
+            "description": "Detailed reconciliation reports comparing billed amounts, allowed amounts, and actual payments for financial accuracy.",
+            "sample_prompts": [
+              "Show me payment reconciliation for all claims processed this week",
+              "Find discrepancies between billed and paid amounts",
+              "Generate a reconciliation report for Medicare claims",
+              "Show me claims with payment adjustments and reasons",
+              "Find claims that were overpaid or underpaid"
+            ],
+            "filters": [
+              "Reconciliation status: reconciled, pending, discrepancies",
+              "Payer: Medicare, Medicaid, commercial, self-pay",
+              "Adjustment type: contractual, patient responsibility, denial",
+              "Amount variance: <5%, 5-10%, 10-20%, >20%",
+              "Date range: specific periods for reconciliation"
+            ]
+          }
+        ]
+      },
+      {
+        "report_type": "Provider Performance Analytics",
+        "description": "Comprehensive analytics on provider performance, including billing accuracy, payment acceptance rates, and quality metrics. These reports help identify top performers and areas for improvement.",
+        "report_categories": [
+          {
+            "category": "Provider Billing Performance",
+            "description": "Analysis of provider billing accuracy, payment acceptance rates, and billing patterns.",
+            "sample_prompts": [
+              "Show me providers with the highest payment acceptance rates",
+              "Find providers with billing accuracy issues",
+              "Generate a report of provider billing patterns and trends",
+              "Show me providers with unusual billing amounts",
+              "Find providers with high denial rates"
+            ],
+            "filters": [
+              "Provider type: individual, group practice, hospital",
+              "Specialty: cardiology, dermatology, pediatrics, etc.",
+              "Performance metrics: payment rate, denial rate, accuracy",
+              "Time period: last quarter, last year, specific months",
+              "Geographic region: state, city, ZIP code"
+            ]
+          },
+          {
+            "category": "Provider Quality Metrics",
+            "description": "Analysis of provider quality indicators, patient satisfaction, and clinical outcomes.",
+            "sample_prompts": [
+              "Show me providers with the highest quality scores",
+              "Find providers with patient satisfaction issues",
+              "Generate a report of provider clinical outcomes",
+              "Show me providers with readmission rate concerns",
+              "Find providers with quality improvement opportunities"
+            ],
+            "filters": [
+              "Quality metrics: satisfaction, outcomes, readmissions",
+              "Provider specialty: specific medical specialties",
+              "Patient population: age groups, conditions, demographics",
+              "Time period: quarterly, annual, specific periods",
+              "Quality thresholds: above/below specific scores"
+            ]
+          },
+          {
+            "category": "Provider Network Analysis",
+            "description": "Analysis of provider network adequacy, coverage, and performance across different regions and specialties.",
+            "sample_prompts": [
+              "Show me provider network coverage by geographic region",
+              "Find gaps in provider network coverage",
+              "Generate a report of provider network performance",
+              "Show me provider availability by specialty",
+              "Find providers with capacity constraints"
+            ],
+            "filters": [
+              "Geographic region: state, county, city, ZIP code",
+              "Specialty: specific medical specialties",
+              "Network status: in-network, out-of-network, pending",
+              "Availability: accepting new patients, capacity",
+              "Performance: quality scores, patient satisfaction"
+            ]
+          }
+        ]
+      },
+      {
+        "report_type": "Financial Reconciliation Statements",
+        "description": "Detailed financial reconciliation statements comparing expected vs. actual payments, identifying discrepancies, and ensuring financial accuracy.",
+        "report_categories": [
+          {
+            "category": "Daily Financial Reconciliation",
+            "description": "Daily reconciliation of financial transactions, payments, and adjustments.",
+            "sample_prompts": [
+              "Show me daily financial reconciliation for today",
+              "Find financial discrepancies in yesterday's transactions",
+              "Generate a reconciliation report for this week",
+              "Show me outstanding payments and aging analysis",
+              "Find claims with financial adjustments"
+            ],
+            "filters": [
+              "Date: today, yesterday, specific date, date range",
+              "Transaction type: payments, adjustments, reversals",
+              "Amount: specific amounts, ranges, thresholds",
+              "Status: reconciled, pending, discrepancies",
+              "Payer: specific payers or payer types"
+            ]
+          },
+          {
+            "category": "Monthly Financial Summary",
+            "description": "Monthly summary of financial performance, including revenue, expenses, and profitability analysis.",
+            "sample_prompts": [
+              "Show me monthly financial performance for last month",
+              "Generate a financial summary for the quarter",
+              "Find revenue trends and patterns",
+              "Show me cost analysis and expense breakdown",
+              "Generate a profitability analysis by service line"
+            ],
+            "filters": [
+              "Month: current, last month, specific month, quarter",
+              "Financial metrics: revenue, expenses, profitability",
+              "Service line: specific services or service categories",
+              "Payer: specific payers or payer types",
+              "Provider: individual providers or provider groups"
+            ]
+          },
+          {
+            "category": "Accounts Receivable Analysis",
+            "description": "Analysis of accounts receivable, aging, and collection performance.",
+            "sample_prompts": [
+              "Show me accounts receivable aging analysis",
+              "Find overdue payments and collection issues",
+              "Generate a report of collection performance",
+              "Show me patient responsibility and collection rates",
+              "Find accounts requiring collection action"
+            ],
+            "filters": [
+              "Aging periods: 0-30 days, 31-60 days, 61-90 days, >90 days",
+              "Collection status: current, overdue, in collection",
+              "Amount: specific amounts, ranges, thresholds",
+              "Payer: specific payers or payer types",
+              "Provider: individual providers or provider groups"
+            ]
+          }
+        ]
+      },
+      {
+        "report_type": "Service Utilization Trends",
+        "description": "Analysis of healthcare service utilization patterns, trends, and forecasting for capacity planning and resource allocation.",
+        "report_categories": [
+          {
+            "category": "Service Volume Analysis",
+            "description": "Analysis of service volumes, trends, and patterns by service type, provider, and patient population.",
+            "sample_prompts": [
+              "Show me service volume trends for the last 12 months",
+              "Find the most common procedures performed",
+              "Generate a report of service utilization by patient age",
+              "Show me seasonal variations in service utilization",
+              "Find services with increasing or decreasing demand"
+            ],
+            "filters": [
+              "Service type: specific procedures, specialties, service categories",
+              "Time period: monthly, quarterly, annual, specific periods",
+              "Patient demographics: age, gender, location, insurance",
+              "Provider: individual providers, specialties, locations",
+              "Volume: high volume, low volume, specific thresholds"
+            ]
+          },
+          {
+            "category": "Capacity Planning Analysis",
+            "description": "Analysis of service capacity, utilization rates, and capacity planning for resource allocation.",
+            "sample_prompts": [
+              "Show me capacity utilization rates by service",
+              "Find services with capacity constraints",
+              "Generate a report of capacity planning needs",
+              "Show me peak utilization times and patterns",
+              "Find opportunities for capacity optimization"
+            ],
+            "filters": [
+              "Capacity metrics: utilization rate, wait times, availability",
+              "Service type: specific services or service categories",
+              "Time period: daily, weekly, monthly, seasonal",
+              "Location: specific facilities, regions, service areas",
+              "Capacity thresholds: underutilized, optimal, overutilized"
+            ]
+          },
+          {
+            "category": "Patient Population Analysis",
+            "description": "Analysis of patient populations, demographics, and utilization patterns for population health management.",
+            "sample_prompts": [
+              "Show me utilization patterns by patient demographics",
+              "Find high-risk patient populations",
+              "Generate a report of chronic disease utilization",
+              "Show me preventive care utilization rates",
+              "Find patient populations with access barriers"
+            ],
+            "filters": [
+              "Patient demographics: age, gender, race, ethnicity, location",
+              "Health conditions: chronic diseases, acute conditions, preventive care",
+              "Insurance: coverage type, payer, benefits",
+              "Risk factors: high-risk, medium-risk, low-risk populations",
+              "Access: geographic, financial, cultural barriers"
+            ]
+          }
+        ]
+      },
+      {
+        "report_type": "Adjustment Analysis Reports",
+        "description": "Detailed analysis of claim adjustments, including adjustment types, reasons, amounts, and patterns for process improvement.",
+        "report_categories": [
+          {
+            "category": "Adjustment Pattern Analysis",
+            "description": "Analysis of adjustment patterns, types, and reasons for identifying improvement opportunities.",
+            "sample_prompts": [
+              "Show me the most common types of claim adjustments",
+              "Find providers with high adjustment rates",
+              "Generate a report of adjustment reasons and patterns",
+              "Show me adjustments by payer and service type",
+              "Find trends in adjustment amounts and frequencies"
+            ],
+            "filters": [
+              "Adjustment type: contractual, patient responsibility, denial, correction",
+              "Adjustment reason: specific reason codes and descriptions",
+              "Amount: adjustment amounts, ranges, thresholds",
+              "Provider: individual providers, specialties, locations",
+              "Payer: specific payers or payer types"
+            ]
+          },
+          {
+            "category": "Denial Analysis",
+            "description": "Analysis of claim denials, denial reasons, and denial patterns for process improvement.",
+            "sample_prompts": [
+              "Show me the most common reasons for claim denials",
+              "Find providers with high denial rates",
+              "Generate a report of denial trends and patterns",
+              "Show me denials by payer and service type",
+              "Find opportunities to reduce denial rates"
+            ],
+            "filters": [
+              "Denial reason: specific denial codes and reasons",
+              "Denial rate: high, medium, low, specific thresholds",
+              "Provider: individual providers, specialties, locations",
+              "Payer: specific payers or payer types",
+              "Service type: specific services or service categories"
+            ]
+          },
+          {
+            "category": "Contractual Adjustment Analysis",
+            "description": "Analysis of contractual adjustments, fee schedule compliance, and contract performance.",
+            "sample_prompts": [
+              "Show me contractual adjustments by payer",
+              "Find providers with contract compliance issues",
+              "Generate a report of fee schedule performance",
+              "Show me contract adjustments and their impact",
+              "Find opportunities for contract optimization"
+            ],
+            "filters": [
+              "Contract type: specific contracts, fee schedules, agreements",
+              "Adjustment amount: specific amounts, ranges, thresholds",
+              "Provider: individual providers, specialties, locations",
+              "Payer: specific payers or payer types",
+              "Compliance: compliant, non-compliant, specific thresholds"
+            ]
+          }
+        ]
+      },
+      {
+        "report_type": "Patient Responsibility Summaries",
+        "description": "Analysis of patient financial responsibility, including copayments, deductibles, and coinsurance for patient communication and collection.",
+        "report_categories": [
+          {
+            "category": "Patient Financial Responsibility Analysis",
+            "description": "Analysis of patient financial responsibility, including amounts, collection rates, and payment patterns.",
+            "sample_prompts": [
+              "Show me patient responsibility amounts by service type",
+              "Find patients with high out-of-pocket costs",
+              "Generate a report of patient payment patterns",
+              "Show me collection rates for patient responsibility",
+              "Find patients with payment difficulties"
+            ],
+            "filters": [
+              "Responsibility type: copayment, deductible, coinsurance",
+              "Amount: specific amounts, ranges, thresholds",
+              "Payment status: paid, outstanding, in collection",
+              "Patient demographics: age, income, insurance type",
+              "Service type: specific services or service categories"
+            ]
+          },
+          {
+            "category": "Insurance Coverage Analysis",
+            "description": "Analysis of insurance coverage, benefits, and patient responsibility by coverage type.",
+            "sample_prompts": [
+              "Show me patient responsibility by insurance type",
+              "Find coverage gaps and limitations",
+              "Generate a report of benefit utilization",
+              "Show me coverage changes and their impact",
+              "Find patients with coverage issues"
+            ],
+            "filters": [
+              "Insurance type: commercial, Medicare, Medicaid, self-pay",
+              "Coverage level: individual, family, group",
+              "Benefits: specific benefits, coverage limits, exclusions",
+              "Patient demographics: age, income, location",
+              "Service type: specific services or service categories"
+            ]
+          },
+          {
+            "category": "Collection Performance Analysis",
+            "description": "Analysis of patient collection performance, including collection rates, methods, and effectiveness.",
+            "sample_prompts": [
+              "Show me collection rates for patient responsibility",
+              "Find effective collection methods and strategies",
+              "Generate a report of collection performance",
+              "Show me collection trends and patterns",
+              "Find opportunities to improve collection rates"
+            ],
+            "filters": [
+              "Collection method: payment plan, collection agency, write-off",
+              "Collection rate: specific rates, ranges, thresholds",
+              "Time period: monthly, quarterly, annual, specific periods",
+              "Patient demographics: age, income, payment history",
+              "Amount: specific amounts, ranges, thresholds"
+            ]
+          }
+        ]
+      },
+      {
+        "report_type": "EDI 835 Processing Statistics",
+        "description": "Comprehensive statistics on EDI 835 processing, including file processing times, error rates, and processing efficiency metrics.",
+        "report_categories": [
+          {
+            "category": "EDI Processing Performance",
+            "description": "Analysis of EDI 835 processing performance, including processing times, error rates, and efficiency metrics.",
+            "sample_prompts": [
+              "Show me EDI 835 processing times and performance",
+              "Find EDI processing errors and issues",
+              "Generate a report of EDI processing efficiency",
+              "Show me EDI file processing statistics",
+              "Find opportunities to improve EDI processing"
+            ],
+            "filters": [
+              "Processing time: specific times, ranges, thresholds",
+              "Error rate: specific rates, ranges, thresholds",
+              "File size: small, medium, large, specific sizes",
+              "Payer: specific payers or payer types",
+              "Processing status: successful, failed, pending"
+            ]
+          },
+          {
+            "category": "EDI Error Analysis",
+            "description": "Analysis of EDI processing errors, error types, and error resolution for process improvement.",
+            "sample_prompts": [
+              "Show me the most common EDI processing errors",
+              "Find EDI errors by payer and file type",
+              "Generate a report of EDI error resolution",
+              "Show me EDI error trends and patterns",
+              "Find opportunities to reduce EDI errors"
+            ],
+            "filters": [
+              "Error type: specific error codes and descriptions",
+              "Error severity: critical, warning, informational",
+              "Payer: specific payers or payer types",
+              "File type: specific EDI file types and formats",
+              "Resolution time: specific times, ranges, thresholds"
+            ]
+          },
+          {
+            "category": "EDI Compliance Monitoring",
+            "description": "Monitoring of EDI compliance, standards adherence, and regulatory requirements.",
+            "sample_prompts": [
+              "Show me EDI compliance status and metrics",
+              "Find EDI compliance issues and violations",
+              "Generate a report of EDI standards adherence",
+              "Show me EDI compliance trends and patterns",
+              "Find opportunities to improve EDI compliance"
+            ],
+            "filters": [
+              "Compliance status: compliant, non-compliant, pending",
+              "Standards: specific EDI standards and versions",
+              "Payer: specific payers or payer types",
+              "Time period: monthly, quarterly, annual, specific periods",
+              "Compliance metrics: specific metrics and thresholds"
+            ]
+          }
+        ]
+      },
+      {
+        "report_type": "Compliance and Audit Reports",
+        "description": "Comprehensive compliance and audit reports for regulatory requirements, internal audits, and external compliance monitoring.",
+        "report_categories": [
+          {
+            "category": "Regulatory Compliance Reports",
+            "description": "Reports on compliance with healthcare regulations, standards, and requirements.",
+            "sample_prompts": [
+              "Show me compliance with healthcare regulations",
+              "Find compliance violations and issues",
+              "Generate a report of regulatory compliance status",
+              "Show me compliance trends and patterns",
+              "Find opportunities to improve compliance"
+            ],
+            "filters": [
+              "Regulation: specific regulations, standards, requirements",
+              "Compliance status: compliant, non-compliant, pending",
+              "Time period: monthly, quarterly, annual, specific periods",
+              "Provider: individual providers, specialties, locations",
+              "Payer: specific payers or payer types"
+            ]
+          },
+          {
+            "category": "Internal Audit Reports",
+            "description": "Reports for internal audits, process reviews, and operational assessments.",
+            "sample_prompts": [
+              "Show me internal audit findings and recommendations",
+              "Find process improvement opportunities",
+              "Generate a report of internal audit results",
+              "Show me audit trends and patterns",
+              "Find areas requiring audit attention"
+            ],
+            "filters": [
+              "Audit type: financial, operational, compliance, quality",
+              "Audit status: completed, in progress, pending",
+              "Finding severity: critical, major, minor, informational",
+              "Department: specific departments or functional areas",
+              "Time period: monthly, quarterly, annual, specific periods"
+            ]
+          },
+          {
+            "category": "External Audit Support",
+            "description": "Reports and documentation to support external audits, regulatory reviews, and compliance monitoring.",
+            "sample_prompts": [
+              "Show me documentation for external audit",
+              "Find audit support materials and evidence",
+              "Generate a report of audit readiness",
+              "Show me audit response and remediation",
+              "Find audit follow-up requirements"
+            ],
+            "filters": [
+              "Audit type: external, regulatory, payer, accreditation",
+              "Audit status: preparation, in progress, completed, follow-up",
+              "Documentation: complete, incomplete, pending",
+              "Compliance: compliant, non-compliant, remediation required",
+              "Time period: specific audit periods and deadlines"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 1
+  },
+  "mappings": {
+    "properties": {
+      "claim_id": {
+        "type": "keyword",
+        "description": "Unique identifier for the healthcare claim. Used for claim tracking, reference, and linking across systems. Format typically includes alphanumeric characters and may include prefixes indicating claim type or source system.",
+        "possible_values": ["Alphanumeric strings", "Examples: CLM-2024-001234, 835-ABC-789456"],
+        "purpose": "Primary key for claim identification and cross-system referencing"
+      }
+    }
+  }
+}

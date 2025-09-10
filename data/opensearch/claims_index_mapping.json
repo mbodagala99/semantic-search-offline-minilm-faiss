@@ -1,0 +1,493 @@
+{
+  "_meta": {
+    "index_name": "healthcare_claims_index",
+    "description": "Healthcare Claims Index - Comprehensive EDI 835 Processing and Analysis",
+    "embedding_configuration": {
+      "primary_search_fields": [
+        "claim_id",
+        "patient.first_name",
+        "patient.last_name", 
+        "provider.name",
+        "payer.name",
+        "claim_type",
+        "claim_status",
+        "service_lines.procedure_description",
+        "adjustments.adjustment_reason",
+        "edi_835_info.transaction_id"
+      ],
+      "semantic_search_fields": [
+        "patient.first_name",
+        "patient.last_name",
+        "provider.name", 
+        "payer.name",
+        "service_lines.procedure_description",
+        "adjustments.adjustment_reason"
+      ],
+      "embedding_retrieval": {
+        "include_index_name": true,
+        "index_name_field": "source_index",
+        "text_combination_strategy": "concatenate_relevant_fields",
+        "field_priority": [
+          "claim_id",
+          "patient.first_name + patient.last_name",
+          "provider.name",
+          "service_lines.procedure_description",
+          "claim_status",
+          "payer.name"
+        ]
+      }
+    },
+    "purpose": "This index serves as the central repository for healthcare claims data processed from EDI 835 (Health Care Claim Payment/Advice) files. It enables comprehensive analysis of claim processing, payment patterns, provider performance, and financial reconciliation across healthcare organizations. The index supports semantic search capabilities for claims investigation, fraud detection, provider network analysis, and financial reporting. It facilitates real-time querying of claim status, payment history, adjustment patterns, and service utilization trends. This data structure enables healthcare administrators to track claim lifecycle from submission through payment, identify processing bottlenecks, analyze provider billing patterns, and generate comprehensive financial reports for stakeholders.",
+    "use_cases": [
+      "Claims processing and payment reconciliation",
+      "Provider network analysis and credentialing",
+      "Fraud detection and investigation",
+      "Financial reporting and analytics",
+      "Service utilization analysis",
+      "Patient care coordination",
+      "Regulatory compliance reporting",
+      "Quality metrics and performance analysis"
+    ],
+    "reports_generated": [
+      "Claims payment summary reports",
+      "Provider performance analytics",
+      "Financial reconciliation statements",
+      "Service utilization trends",
+      "Adjustment analysis reports",
+      "Patient responsibility summaries",
+      "EDI 835 processing statistics",
+      "Compliance and audit reports"
+    ]
+  },
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 1
+  },
+  "mappings": {
+    "properties": {
+      "claim_id": {
+        "type": "keyword",
+        "description": "Unique identifier for the healthcare claim. Used for claim tracking, reference, and linking across systems. Format typically includes alphanumeric characters and may include prefixes indicating claim type or source system.",
+        "possible_values": ["Alphanumeric strings", "Examples: CLM-2024-001234, 835-ABC-789456"],
+        "purpose": "Primary key for claim identification and cross-system referencing"
+      },
+      "policy_id": {
+        "type": "keyword",
+        "description": "Insurance policy identifier associated with the patient's coverage. Links the claim to the specific insurance policy under which services were provided.",
+        "possible_values": ["Policy numbers", "Group numbers", "Examples: POL-123456, GRP-789012"],
+        "purpose": "Links claims to insurance policies for coverage verification and billing"
+      },
+      "patient_id": {
+        "type": "keyword",
+        "description": "Unique patient identifier within the healthcare system. Used for patient record linking and care coordination across multiple claims and providers.",
+        "possible_values": ["Patient IDs", "Member IDs", "Examples: PAT-001234, MEM-567890"],
+        "purpose": "Enables patient-centric analysis and care coordination"
+      },
+      "provider_id": {
+        "type": "keyword",
+        "description": "Internal provider identifier used by the healthcare organization. May differ from NPI and is used for internal tracking and reporting.",
+        "possible_values": ["Internal provider codes", "Examples: PROV-001, DOC-12345"],
+        "purpose": "Internal provider tracking and performance analysis"
+      },
+      "payer_id": {
+        "type": "keyword",
+        "description": "Insurance company or payer identifier. Identifies the entity responsible for processing and paying the claim.",
+        "possible_values": ["Payer codes", "Insurance company IDs", "Examples: PAY-001, INS-ABC123"],
+        "purpose": "Identifies the responsible payer for claim processing and payment"
+      },
+      "claim_date": {
+        "type": "date",
+        "format": "yyyy-MM-dd",
+        "description": "Date when the claim was originally submitted to the payer. Critical for tracking claim processing timelines and identifying delays.",
+        "possible_values": ["Date format: YYYY-MM-DD", "Examples: 2024-01-15, 2024-03-22"],
+        "purpose": "Tracks claim submission timeline and processing efficiency"
+      },
+      "service_start_date": {
+        "type": "date",
+        "format": "yyyy-MM-dd",
+        "description": "Date when the healthcare service was first provided to the patient. Used for service period validation and coverage determination.",
+        "possible_values": ["Date format: YYYY-MM-DD", "Examples: 2024-01-10, 2024-03-20"],
+        "purpose": "Defines the service period for coverage and billing validation"
+      },
+      "service_end_date": {
+        "type": "date",
+        "format": "yyyy-MM-dd",
+        "description": "Date when the healthcare service was completed. For single-day services, this may be the same as service_start_date.",
+        "possible_values": ["Date format: YYYY-MM-DD", "Examples: 2024-01-10, 2024-01-15"],
+        "purpose": "Defines the end of service period for billing and coverage"
+      },
+      "remittance_date": {
+        "type": "date",
+        "format": "yyyy-MM-dd",
+        "description": "Date when the EDI 835 remittance advice was generated by the payer. Indicates when payment processing was completed.",
+        "possible_values": ["Date format: YYYY-MM-DD", "Examples: 2024-01-25, 2024-04-01"],
+        "purpose": "Tracks payment processing timeline and EDI 835 generation"
+      },
+      "claim_status": {
+        "type": "keyword",
+        "description": "Current status of the claim in the processing workflow. Indicates whether the claim has been paid, denied, pending, or requires additional information.",
+        "possible_values": ["PAID", "DENIED", "PENDING", "PARTIAL", "ADJUSTED", "REJECTED", "SUSPENDED"],
+        "purpose": "Provides real-time claim status for workflow management and reporting"
+      },
+      "claim_type": {
+        "type": "keyword",
+        "description": "Classification of the claim based on the type of service provided. Helps categorize claims for reporting and analysis purposes.",
+        "possible_values": ["MEDICAL", "DENTAL", "VISION", "PHARMACY", "MENTAL_HEALTH", "EMERGENCY", "PREVENTIVE"],
+        "purpose": "Enables service-type analysis and specialized reporting"
+      },
+      "total_charge_amount": {
+        "type": "double",
+        "description": "Total amount billed by the provider for all services included in the claim. Represents the provider's full charges before any adjustments or payments.",
+        "possible_values": ["Decimal numbers", "Examples: 1500.00, 250.75, 0.00"],
+        "purpose": "Tracks provider billing amounts for financial analysis and reconciliation"
+      },
+      "total_paid_amount": {
+        "type": "double",
+        "description": "Total amount paid by the insurance company for the claim. Represents the actual payment made to the provider.",
+        "possible_values": ["Decimal numbers", "Examples: 1200.00, 200.50, 0.00"],
+        "purpose": "Tracks actual payments for financial reconciliation and cash flow analysis"
+      },
+      "total_adjustment_amount": {
+        "type": "double",
+        "description": "Total amount of adjustments made to the claim. Includes contractual adjustments, denials, and other modifications to the original billed amount.",
+        "possible_values": ["Decimal numbers", "Examples: 300.00, -50.25, 0.00"],
+        "purpose": "Analyzes adjustment patterns and provider contract performance"
+      },
+      "patient_responsibility": {
+        "type": "double",
+        "description": "Total amount the patient is responsible for paying, including copayments, deductibles, and coinsurance.",
+        "possible_values": ["Decimal numbers", "Examples: 100.00, 25.00, 0.00"],
+        "purpose": "Tracks patient financial responsibility for billing and collection"
+      },
+      "patient": {
+        "type": "object",
+        "description": "Patient demographic and insurance information associated with the claim. Contains personal details and coverage information for patient identification and eligibility verification.",
+        "properties": {
+          "first_name": {
+            "type": "text",
+            "description": "Patient's first name as recorded in the insurance system. Used for patient identification and record matching.",
+            "possible_values": ["Text strings", "Examples: John, Mary, Robert"],
+            "purpose": "Patient identification and demographic analysis"
+          },
+          "last_name": {
+            "type": "text",
+            "description": "Patient's last name or surname. Critical for patient identification and family grouping analysis.",
+            "possible_values": ["Text strings", "Examples: Smith, Johnson, Williams"],
+            "purpose": "Patient identification and family demographic analysis"
+          },
+          "middle_name": {
+            "type": "text",
+            "description": "Patient's middle name or middle initial. Used for complete patient identification and record disambiguation.",
+            "possible_values": ["Text strings", "Examples: Michael, A, Elizabeth"],
+            "purpose": "Enhanced patient identification and record matching"
+          },
+          "date_of_birth": {
+            "type": "date",
+            "format": "yyyy-MM-dd",
+            "description": "Patient's date of birth. Used for age calculation, eligibility verification, and demographic analysis.",
+            "possible_values": ["Date format: YYYY-MM-DD", "Examples: 1985-03-15, 1992-11-22"],
+            "purpose": "Age-based analysis and eligibility verification"
+          },
+          "gender": {
+            "type": "keyword",
+            "description": "Patient's gender designation. Used for demographic analysis and certain medical service eligibility.",
+            "possible_values": ["M", "F", "O", "U"],
+            "purpose": "Demographic analysis and service eligibility determination"
+          },
+          "member_id": {
+            "type": "keyword",
+            "description": "Unique member identifier assigned by the insurance company. Primary identifier for patient within the payer's system.",
+            "possible_values": ["Alphanumeric strings", "Examples: MEM123456, 789012345"],
+            "purpose": "Primary patient identification within insurance system"
+          },
+          "group_number": {
+            "type": "keyword",
+            "description": "Group number associated with the patient's insurance plan. Identifies the employer or organization providing coverage.",
+            "possible_values": ["Group numbers", "Examples: GRP001, 12345"],
+            "purpose": "Identifies coverage group for plan-specific analysis"
+          },
+          "address": {
+            "type": "object",
+            "description": "Patient's residential address information. Used for geographic analysis and service area determination.",
+            "properties": {
+              "street": {
+                "type": "text",
+                "description": "Street address including house number and street name.",
+                "possible_values": ["Street addresses", "Examples: 123 Main St, 456 Oak Avenue"],
+                "purpose": "Geographic analysis and service area mapping"
+              },
+              "city": {
+                "type": "keyword",
+                "description": "City where the patient resides.",
+                "possible_values": ["City names", "Examples: New York, Los Angeles, Chicago"],
+                "purpose": "Geographic analysis and regional reporting"
+              },
+              "state": {
+                "type": "keyword",
+                "description": "State or province where the patient resides.",
+                "possible_values": ["State codes", "Examples: NY, CA, TX"],
+                "purpose": "State-level analysis and regulatory reporting"
+              },
+              "zip_code": {
+                "type": "keyword",
+                "description": "Postal or ZIP code for the patient's address.",
+                "possible_values": ["ZIP codes", "Examples: 10001, 90210, K1A 0A6"],
+                "purpose": "Detailed geographic analysis and service area mapping"
+              }
+            }
+          }
+        }
+      },
+      "provider": {
+        "type": "object",
+        "description": "Healthcare provider information associated with the claim. Contains provider identification, contact details, and billing information for provider analysis and network management.",
+        "properties": {
+          "npi": {
+            "type": "keyword",
+            "description": "National Provider Identifier - unique 10-digit identifier for healthcare providers in the United States. Standard identifier used across all healthcare systems.",
+            "possible_values": ["10-digit numbers", "Examples: 1234567890, 9876543210"],
+            "purpose": "Standard provider identification across healthcare systems"
+          },
+          "name": {
+            "type": "text",
+            "description": "Provider's business name or practice name. May be individual provider name or organization name.",
+            "possible_values": ["Provider names", "Examples: Dr. John Smith, ABC Medical Group"],
+            "purpose": "Provider identification and network analysis"
+          },
+          "tax_id": {
+            "type": "keyword",
+            "description": "Provider's Tax Identification Number (TIN) or Employer Identification Number (EIN). Used for tax reporting and billing purposes.",
+            "possible_values": ["Tax ID numbers", "Examples: 12-3456789, 98-7654321"],
+            "purpose": "Tax reporting and billing identification"
+          },
+          "address": {
+            "type": "object",
+            "description": "Provider's business address information. Used for geographic analysis and service area determination.",
+            "properties": {
+              "street": {
+                "type": "text",
+                "description": "Provider's street address including building number and street name.",
+                "possible_values": ["Street addresses", "Examples: 123 Medical Plaza, 456 Health Center Dr"],
+                "purpose": "Geographic analysis and service area mapping"
+              },
+              "city": {
+                "type": "keyword",
+                "description": "City where the provider is located.",
+                "possible_values": ["City names", "Examples: Boston, Miami, Seattle"],
+                "purpose": "Geographic analysis and regional reporting"
+              },
+              "state": {
+                "type": "keyword",
+                "description": "State where the provider is located.",
+                "possible_values": ["State codes", "Examples: MA, FL, WA"],
+                "purpose": "State-level analysis and regulatory reporting"
+              },
+              "zip_code": {
+                "type": "keyword",
+                "description": "ZIP code for the provider's location.",
+                "possible_values": ["ZIP codes", "Examples: 02101, 33101, 98101"],
+                "purpose": "Detailed geographic analysis and service area mapping"
+              }
+            }
+          }
+        }
+      },
+      "payer": {
+        "type": "object",
+        "description": "Insurance payer information responsible for processing and paying the claim. Contains payer identification and type for payer-specific analysis and reporting.",
+        "properties": {
+          "name": {
+            "type": "text",
+            "description": "Name of the insurance company or payer organization.",
+            "possible_values": ["Payer names", "Examples: Blue Cross Blue Shield, Aetna, UnitedHealthcare"],
+            "purpose": "Payer identification and network analysis"
+          },
+          "payer_id": {
+            "type": "keyword",
+            "description": "Unique identifier for the payer organization. May be internal system ID or external payer code.",
+            "possible_values": ["Payer IDs", "Examples: PAY001, BCBS123, AET456"],
+            "purpose": "Payer identification and system integration"
+          },
+          "payer_type": {
+            "type": "keyword",
+            "description": "Classification of the payer type based on coverage category.",
+            "possible_values": ["COMMERCIAL", "MEDICARE", "MEDICAID", "SELF_PAY", "WORKERS_COMP", "AUTO_INSURANCE"],
+            "purpose": "Payer type analysis and specialized reporting"
+          }
+        }
+      },
+      "service_lines": {
+        "type": "nested",
+        "description": "Detailed service line information for each procedure or service included in the claim. Contains procedure codes, diagnosis codes, dates, units, and financial details for granular analysis of services provided.",
+        "properties": {
+          "service_line_id": {
+            "type": "keyword",
+            "description": "Unique identifier for each service line within the claim. Used for tracking individual services and linking to adjustments.",
+            "possible_values": ["Service line IDs", "Examples: SL001, 12345"],
+            "purpose": "Individual service tracking and adjustment linking"
+          },
+          "procedure_code": {
+            "type": "keyword",
+            "description": "CPT (Current Procedural Terminology) or HCPCS code identifying the specific medical procedure or service performed.",
+            "possible_values": ["CPT/HCPCS codes", "Examples: 99213, 36415, J2001"],
+            "purpose": "Procedure identification and coding analysis"
+          },
+          "procedure_description": {
+            "type": "text",
+            "description": "Human-readable description of the procedure or service performed. Provides context for the procedure code.",
+            "possible_values": ["Procedure descriptions", "Examples: Office visit, Blood draw, Injection"],
+            "purpose": "Procedure understanding and reporting"
+          },
+          "modifier_codes": {
+            "type": "keyword",
+            "description": "Additional codes that modify or provide more specific information about the procedure performed.",
+            "possible_values": ["Modifier codes", "Examples: 25, 59, LT, RT"],
+            "purpose": "Enhanced procedure specification and billing accuracy"
+          },
+          "diagnosis_codes": {
+            "type": "keyword",
+            "description": "ICD-10 diagnosis codes indicating the medical conditions or reasons for the service.",
+            "possible_values": ["ICD-10 codes", "Examples: Z00.00, M79.3, F32.9"],
+            "purpose": "Diagnosis tracking and medical necessity analysis"
+          },
+          "service_date": {
+            "type": "date",
+            "format": "yyyy-MM-dd",
+            "description": "Date when the specific service was performed. May differ from claim dates for multi-day services.",
+            "possible_values": ["Date format: YYYY-MM-DD", "Examples: 2024-01-15, 2024-02-20"],
+            "purpose": "Service date tracking and timeline analysis"
+          },
+          "units": {
+            "type": "integer",
+            "description": "Number of units or quantity of the service provided. Used for calculating total charges and utilization analysis.",
+            "possible_values": ["Whole numbers", "Examples: 1, 5, 10"],
+            "purpose": "Service quantity tracking and utilization analysis"
+          },
+          "billed_amount": {
+            "type": "double",
+            "description": "Amount billed by the provider for this specific service line before any adjustments.",
+            "possible_values": ["Decimal numbers", "Examples: 150.00, 75.50, 0.00"],
+            "purpose": "Service-level billing analysis"
+          },
+          "allowed_amount": {
+            "type": "double",
+            "description": "Maximum amount the payer will allow for this service based on contract terms and fee schedules.",
+            "possible_values": ["Decimal numbers", "Examples: 120.00, 60.00, 0.00"],
+            "purpose": "Contract performance and fee schedule analysis"
+          },
+          "paid_amount": {
+            "type": "double",
+            "description": "Actual amount paid by the payer for this specific service line.",
+            "possible_values": ["Decimal numbers", "Examples: 100.00, 50.00, 0.00"],
+            "purpose": "Service-level payment tracking"
+          },
+          "adjustment_amount": {
+            "type": "double",
+            "description": "Total amount of adjustments applied to this service line, including contractual adjustments and denials.",
+            "possible_values": ["Decimal numbers", "Examples: 30.00, -10.00, 0.00"],
+            "purpose": "Service-level adjustment analysis"
+          },
+          "patient_responsibility": {
+            "type": "double",
+            "description": "Amount the patient is responsible for paying for this specific service, including copays and deductibles.",
+            "possible_values": ["Decimal numbers", "Examples: 25.00, 10.00, 0.00"],
+            "purpose": "Service-level patient responsibility tracking"
+          }
+        }
+      },
+      "adjustments": {
+        "type": "nested",
+        "description": "Detailed adjustment information explaining any modifications made to the claim amounts. Includes adjustment codes, reasons, amounts, and types for comprehensive adjustment analysis and reporting.",
+        "properties": {
+          "adjustment_code": {
+            "type": "keyword",
+            "description": "Standardized code indicating the reason for the adjustment. Uses industry-standard adjustment reason codes.",
+            "possible_values": ["Adjustment codes", "Examples: CO-45, PR-1, OA-23"],
+            "purpose": "Standardized adjustment reason identification"
+          },
+          "adjustment_reason": {
+            "type": "text",
+            "description": "Human-readable explanation of why the adjustment was made. Provides detailed context for the adjustment code.",
+            "possible_values": ["Adjustment descriptions", "Examples: Contractual adjustment, Patient responsibility, Deductible"],
+            "purpose": "Adjustment understanding and reporting"
+          },
+          "adjustment_amount": {
+            "type": "double",
+            "description": "Dollar amount of the adjustment. Positive values indicate reductions, negative values indicate additions.",
+            "possible_values": ["Decimal numbers", "Examples: 50.00, -25.00, 0.00"],
+            "purpose": "Adjustment amount tracking and financial analysis"
+          },
+          "adjustment_type": {
+            "type": "keyword",
+            "description": "Category classification of the adjustment type for grouping and analysis purposes.",
+            "possible_values": ["CONTRACTUAL", "PATIENT_RESPONSIBILITY", "DENIAL", "CORRECTION", "PENALTY"],
+            "purpose": "Adjustment categorization and trend analysis"
+          }
+        }
+      },
+      "payment_info": {
+        "type": "object",
+        "description": "Payment processing information including method, reference numbers, and dates. Used for payment tracking, reconciliation, and financial reporting.",
+        "properties": {
+          "payment_method": {
+            "type": "keyword",
+            "description": "Method used to process the payment to the provider.",
+            "possible_values": ["CHECK", "EFT", "WIRE_TRANSFER", "ACH", "CREDIT_CARD"],
+            "purpose": "Payment method analysis and processing optimization"
+          },
+          "check_number": {
+            "type": "keyword",
+            "description": "Check number if payment was made by paper check. Used for check reconciliation and tracking.",
+            "possible_values": ["Check numbers", "Examples: 123456, CHK-789012"],
+            "purpose": "Check payment tracking and reconciliation"
+          },
+          "eft_trace_number": {
+            "type": "keyword",
+            "description": "Electronic Funds Transfer trace number for electronic payments. Used for EFT tracking and reconciliation.",
+            "possible_values": ["EFT trace numbers", "Examples: EFT123456, 789012345"],
+            "purpose": "Electronic payment tracking and reconciliation"
+          },
+          "payment_date": {
+            "type": "date",
+            "format": "yyyy-MM-dd",
+            "description": "Date when the payment was actually processed and sent to the provider.",
+            "possible_values": ["Date format: YYYY-MM-DD", "Examples: 2024-01-30, 2024-02-15"],
+            "purpose": "Payment timeline tracking and cash flow analysis"
+          }
+        }
+      },
+      "edi_835_info": {
+        "type": "object",
+        "description": "EDI 835 specific metadata and tracking information. Contains transaction identifiers, trace numbers, and processing dates for EDI file tracking and audit purposes.",
+        "properties": {
+          "transaction_id": {
+            "type": "keyword",
+            "description": "Unique identifier for the EDI 835 transaction. Used for transaction tracking and audit trails.",
+            "possible_values": ["Transaction IDs", "Examples: TXN-835-001234, 835-ABC-789"],
+            "purpose": "EDI transaction tracking and audit trails"
+          },
+          "reassociation_trace_number": {
+            "type": "keyword",
+            "description": "Trace number used to link the EDI 835 remittance advice to the original claim submission. Critical for claim-to-payment reconciliation.",
+            "possible_values": ["Trace numbers", "Examples: TRN123456, 789012345"],
+            "purpose": "Claim-to-payment reconciliation and tracking"
+          },
+          "production_date": {
+            "type": "date",
+            "format": "yyyy-MM-dd",
+            "description": "Date when the EDI 835 file was produced by the payer system.",
+            "possible_values": ["Date format: YYYY-MM-DD", "Examples: 2024-01-25, 2024-02-01"],
+            "purpose": "EDI production timeline tracking"
+          },
+          "file_creation_date": {
+            "type": "date",
+            "format": "yyyy-MM-dd",
+            "description": "Date when the EDI 835 file was created and ready for transmission.",
+            "possible_values": ["Date format: YYYY-MM-DD", "Examples: 2024-01-25, 2024-02-01"],
+            "purpose": "EDI file creation tracking and processing timeline"
+          }
+        }
+      }
+    }
+  }
+}
