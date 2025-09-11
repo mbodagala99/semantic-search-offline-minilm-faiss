@@ -1,7 +1,7 @@
 {
-  "created_at": "2025-09-11T13:35:54",
+  "created_at": "2025-09-11T13:35:28",
   "total_embeddings": 52,
-  "dimensions": 768,
+  "dimensions": 1024,
   "source_files": [
     "providers_index_mapping_expanded.json",
     "claims_index_mapping_expanded.json"

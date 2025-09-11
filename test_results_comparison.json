@@ -1,0 +1,870 @@
+{
+  "comparison_date": "2025-09-10T08:43:40.308385",
+  "original_results": {
+    "success_rate": 7.5,
+    "high_confidence": 9,
+    "medium_confidence": 103,
+    "low_confidence": 8,
+    "average_confidence": 0.39707089178264143
+  },
+  "enhanced_results": {
+    "success_rate": 7.5,
+    "high_confidence": 9,
+    "medium_confidence": 103,
+    "low_confidence": 8,
+    "average_confidence": 0.39707089178264143
+  },
+  "changes": {
+    "success_rate_change": 0.0,
+    "high_confidence_change": 0,
+    "medium_confidence_change": 0,
+    "low_confidence_change": 0,
+    "average_confidence_change": 0.0
+  },
+  "detailed_changes": {
+    "improvements": [],
+    "degradations": [],
+    "unchanged": [
+      {
+        "test_number": 1,
+        "query": "Show me all claims submitted between January 1, 2022 and Mar...",
+        "original": 0.41973212361335754,
+        "enhanced": 0.41973212361335754,
+        "difference": 0.0
+      },
+      {
+        "test_number": 2,
+        "query": "Get the top 10 providers with the highest claim amounts in 2...",
+        "original": 0.4967615008354187,
+        "enhanced": 0.4967615008354187,
+        "difference": 0.0
+      },
+      {
+        "test_number": 3,
+        "query": "List all pharmacy claims for diabetic patients after July 20...",
+        "original": 0.41638240218162537,
+        "enhanced": 0.41638240218162537,
+        "difference": 0.0
+      },
+      {
+        "test_number": 4,
+        "query": "Which providers had more than 500 claims in 2022?...",
+        "original": 0.45958244800567627,
+        "enhanced": 0.45958244800567627,
+        "difference": 0.0
+      },
+      {
+        "test_number": 5,
+        "query": "Show outpatient claims for members over the age of 65 in Tex...",
+        "original": 0.4393816590309143,
+        "enhanced": 0.4393816590309143,
+        "difference": 0.0
+      },
+      {
+        "test_number": 6,
+        "query": "Retrieve claims rejected due to eligibility issues in 2023...",
+        "original": 0.4369194507598877,
+        "enhanced": 0.4369194507598877,
+        "difference": 0.0
+      },
+      {
+        "test_number": 7,
+        "query": "Show total paid amount by provider for Q4 of 2022...",
+        "original": 0.35885941982269287,
+        "enhanced": 0.35885941982269287,
+        "difference": 0.0
+      },
+      {
+        "test_number": 8,
+        "query": "Find all providers in Florida with average claim cost greate...",
+        "original": 0.4049730896949768,
+        "enhanced": 0.4049730896949768,
+        "difference": 0.0
+      },
+      {
+        "test_number": 9,
+        "query": "Show ER claims filed in August 2021 by Blue Cross members...",
+        "original": 0.38234761357307434,
+        "enhanced": 0.38234761357307434,
+        "difference": 0.0
+      },
+      {
+        "test_number": 10,
+        "query": "Get total number of claims per member between 2020 and 2022...",
+        "original": 0.3712334632873535,
+        "enhanced": 0.3712334632873535,
+        "difference": 0.0
+      },
+      {
+        "test_number": 11,
+        "query": "Show claims denied due to lack of prior authorization in fir...",
+        "original": 0.3268570303916931,
+        "enhanced": 0.3268570303916931,
+        "difference": 0.0
+      },
+      {
+        "test_number": 12,
+        "query": "Get the total paid amount for behavioral health services in ...",
+        "original": 0.3265886604785919,
+        "enhanced": 0.3265886604785919,
+        "difference": 0.0
+      },
+      {
+        "test_number": 13,
+        "query": "List providers specializing in cardiology with more than 10,...",
+        "original": 0.5167014598846436,
+        "enhanced": 0.5167014598846436,
+        "difference": 0.0
+      },
+      {
+        "test_number": 14,
+        "query": "Show member demographics for claim IDs 10001 through 10100...",
+        "original": 0.31703028082847595,
+        "enhanced": 0.31703028082847595,
+        "difference": 0.0
+      },
+      {
+        "test_number": 15,
+        "query": "Find monthly trend of dental claims in 2022...",
+        "original": 0.4019322097301483,
+        "enhanced": 0.4019322097301483,
+        "difference": 0.0
+      },
+      {
+        "test_number": 16,
+        "query": "Show average allowed amount for MRI procedures in 2021...",
+        "original": 0.29302769899368286,
+        "enhanced": 0.29302769899368286,
+        "difference": 0.0
+      },
+      {
+        "test_number": 17,
+        "query": "Which members had claims exceeding $50,000 in 2022?...",
+        "original": 0.2391151338815689,
+        "enhanced": 0.2391151338815689,
+        "difference": 0.0
+      },
+      {
+        "test_number": 18,
+        "query": "Find duplicate claims submitted between June and September 2...",
+        "original": 0.37090063095092773,
+        "enhanced": 0.37090063095092773,
+        "difference": 0.0
+      },
+      {
+        "test_number": 19,
+        "query": "Get proportion of denied claims by provider specialty for 20...",
+        "original": 0.4414132833480835,
+        "enhanced": 0.4414132833480835,
+        "difference": 0.0
+      },
+      {
+        "test_number": 20,
+        "query": "Retrieve inpatient admission claims for children under 12 in...",
+        "original": 0.379375696182251,
+        "enhanced": 0.379375696182251,
+        "difference": 0.0
+      },
+      {
+        "test_number": 21,
+        "query": "Get all maternity claims processed in 2021 and the total pay...",
+        "original": 0.4453497529029846,
+        "enhanced": 0.4453497529029846,
+        "difference": 0.0
+      },
+      {
+        "test_number": 22,
+        "query": "Show claims over $100,000 for oncology services in 2022...",
+        "original": 0.37134063243865967,
+        "enhanced": 0.37134063243865967,
+        "difference": 0.0
+      },
+      {
+        "test_number": 23,
+        "query": "List providers with highest claim denial rates in 2021...",
+        "original": 0.56058669090271,
+        "enhanced": 0.56058669090271,
+        "difference": 0.0
+      },
+      {
+        "test_number": 24,
+        "query": "Retrieve pharmacy data for insulin prescriptions in 2023...",
+        "original": 0.39529335498809814,
+        "enhanced": 0.39529335498809814,
+        "difference": 0.0
+      },
+      {
+        "test_number": 25,
+        "query": "Show count of claims filed per county in California for 2021...",
+        "original": 0.37807631492614746,
+        "enhanced": 0.37807631492614746,
+        "difference": 0.0
+      },
+      {
+        "test_number": 26,
+        "query": "Which providers submitted paper claims in January 2022?...",
+        "original": 0.4288980960845947,
+        "enhanced": 0.4288980960845947,
+        "difference": 0.0
+      },
+      {
+        "test_number": 27,
+        "query": "Show claims pending for more than 60 days as of today...",
+        "original": 0.47215327620506287,
+        "enhanced": 0.47215327620506287,
+        "difference": 0.0
+      },
+      {
+        "test_number": 28,
+        "query": "Compare paid vs billed amounts across all claims in 2022...",
+        "original": 0.4770113229751587,
+        "enhanced": 0.4770113229751587,
+        "difference": 0.0
+      },
+      {
+        "test_number": 29,
+        "query": "Show top 50 most expensive claims in 2023 to date...",
+        "original": 0.38173815608024597,
+        "enhanced": 0.38173815608024597,
+        "difference": 0.0
+      },
+      {
+        "test_number": 30,
+        "query": "Get list of providers with license numbers but missing NPI...",
+        "original": 0.3936507999897003,
+        "enhanced": 0.3936507999897003,
+        "difference": 0.0
+      },
+      {
+        "test_number": 31,
+        "query": "Retrieve chiropractic claims in New York for 2020...",
+        "original": 0.2860194146633148,
+        "enhanced": 0.2860194146633148,
+        "difference": 0.0
+      },
+      {
+        "test_number": 32,
+        "query": "Show claims denied due to coordination of benefits between 2...",
+        "original": 0.3511483073234558,
+        "enhanced": 0.3511483073234558,
+        "difference": 0.0
+      },
+      {
+        "test_number": 33,
+        "query": "Which procedure codes had highest denial rates in 2021?...",
+        "original": 0.5061272382736206,
+        "enhanced": 0.5061272382736206,
+        "difference": 0.0
+      },
+      {
+        "test_number": 34,
+        "query": "Get member claims summary with total billed and paid amounts...",
+        "original": 0.4970359802246094,
+        "enhanced": 0.4970359802246094,
+        "difference": 0.0
+      },
+      {
+        "test_number": 35,
+        "query": "Show claims for emergency transport services in 2021...",
+        "original": 0.3502900004386902,
+        "enhanced": 0.3502900004386902,
+        "difference": 0.0
+      },
+      {
+        "test_number": 36,
+        "query": "Identify fraudulent claim patterns from Feb\u2013Apr 2022...",
+        "original": 0.5472428798675537,
+        "enhanced": 0.5472428798675537,
+        "difference": 0.0
+      },
+      {
+        "test_number": 37,
+        "query": "Show outpatient surgery claims between July\u2013Dec 2021...",
+        "original": 0.43907254934310913,
+        "enhanced": 0.43907254934310913,
+        "difference": 0.0
+      },
+      {
+        "test_number": 38,
+        "query": "List members with more than 20 claims in a single month...",
+        "original": 0.39228540658950806,
+        "enhanced": 0.39228540658950806,
+        "difference": 0.0
+      },
+      {
+        "test_number": 39,
+        "query": "Find high-cost claims for premature newborns in 2020...",
+        "original": 0.347777396440506,
+        "enhanced": 0.347777396440506,
+        "difference": 0.0
+      },
+      {
+        "test_number": 40,
+        "query": "Show all claims for procedure code 99213 during Jan 2023...",
+        "original": 0.43473145365715027,
+        "enhanced": 0.43473145365715027,
+        "difference": 0.0
+      },
+      {
+        "test_number": 41,
+        "query": "Get all Tier-1 provider claims for PPO plan members in 2022...",
+        "original": 0.37610486149787903,
+        "enhanced": 0.37610486149787903,
+        "difference": 0.0
+      },
+      {
+        "test_number": 42,
+        "query": "Show denied claims due to missing documentation between Jan\u2013...",
+        "original": 0.4083881378173828,
+        "enhanced": 0.4083881378173828,
+        "difference": 0.0
+      },
+      {
+        "test_number": 43,
+        "query": "Get monthly pharmacy spend trends from 2019\u20132022...",
+        "original": 0.41535359621047974,
+        "enhanced": 0.41535359621047974,
+        "difference": 0.0
+      },
+      {
+        "test_number": 44,
+        "query": "Show orthopedic provider claims in Illinois in Q3 2021...",
+        "original": 0.3894931972026825,
+        "enhanced": 0.3894931972026825,
+        "difference": 0.0
+      },
+      {
+        "test_number": 45,
+        "query": "List top 5 facilities by total inpatient costs in 2022...",
+        "original": 0.47264114022254944,
+        "enhanced": 0.47264114022254944,
+        "difference": 0.0
+      },
+      {
+        "test_number": 46,
+        "query": "Retrieve claims of members with multiple chronic conditions ...",
+        "original": 0.430702269077301,
+        "enhanced": 0.430702269077301,
+        "difference": 0.0
+      },
+      {
+        "test_number": 47,
+        "query": "Find member IDs with denied claims due to invalid diagnosis ...",
+        "original": 0.36478206515312195,
+        "enhanced": 0.36478206515312195,
+        "difference": 0.0
+      },
+      {
+        "test_number": 48,
+        "query": "Which facilities submitted claims with DRG code 470 in 2022?...",
+        "original": 0.34143537282943726,
+        "enhanced": 0.34143537282943726,
+        "difference": 0.0
+      },
+      {
+        "test_number": 49,
+        "query": "Show telehealth claims in Q1 2022 compared to Q1 2021...",
+        "original": 0.36016085743904114,
+        "enhanced": 0.36016085743904114,
+        "difference": 0.0
+      },
+      {
+        "test_number": 50,
+        "query": "Get total spend per member over lifetime claims...",
+        "original": 0.3427508473396301,
+        "enhanced": 0.3427508473396301,
+        "difference": 0.0
+      },
+      {
+        "test_number": 51,
+        "query": "List all paid claims for HMO plan members in 2021...",
+        "original": 0.3700866103172302,
+        "enhanced": 0.3700866103172302,
+        "difference": 0.0
+      },
+      {
+        "test_number": 52,
+        "query": "Retrieve claims with partial payments issued in 2022...",
+        "original": 0.556515634059906,
+        "enhanced": 0.556515634059906,
+        "difference": 0.0
+      },
+      {
+        "test_number": 53,
+        "query": "Show total denied amount for provider ID 20045 in 2021...",
+        "original": 0.31822919845581055,
+        "enhanced": 0.31822919845581055,
+        "difference": 0.0
+      },
+      {
+        "test_number": 54,
+        "query": "Find trend in maternity-related claims from 2018 to 2022...",
+        "original": 0.33071160316467285,
+        "enhanced": 0.33071160316467285,
+        "difference": 0.0
+      },
+      {
+        "test_number": 55,
+        "query": "Show claims denied by system error in July 2021...",
+        "original": 0.36612749099731445,
+        "enhanced": 0.36612749099731445,
+        "difference": 0.0
+      },
+      {
+        "test_number": 56,
+        "query": "List providers who filed zero claims in 2022...",
+        "original": 0.3460887372493744,
+        "enhanced": 0.3460887372493744,
+        "difference": 0.0
+      },
+      {
+        "test_number": 57,
+        "query": "Show average turnaround time for claim payments between 2020...",
+        "original": 0.49654620885849,
+        "enhanced": 0.49654620885849,
+        "difference": 0.0
+      },
+      {
+        "test_number": 58,
+        "query": "Get all out-of-network claims for 2022...",
+        "original": 0.33485037088394165,
+        "enhanced": 0.33485037088394165,
+        "difference": 0.0
+      },
+      {
+        "test_number": 59,
+        "query": "Show member claims split by gender in 2021...",
+        "original": 0.24521705508232117,
+        "enhanced": 0.24521705508232117,
+        "difference": 0.0
+      },
+      {
+        "test_number": 60,
+        "query": "Calculate readmission rates from claims data in 2020...",
+        "original": 0.39853012561798096,
+        "enhanced": 0.39853012561798096,
+        "difference": 0.0
+      },
+      {
+        "test_number": 61,
+        "query": "Show rejected claims due to invalid subscriber ID in 2022...",
+        "original": 0.3064923882484436,
+        "enhanced": 0.3064923882484436,
+        "difference": 0.0
+      },
+      {
+        "test_number": 62,
+        "query": "List states with highest per-member claim costs in 2021...",
+        "original": 0.2985127568244934,
+        "enhanced": 0.2985127568244934,
+        "difference": 0.0
+      },
+      {
+        "test_number": 63,
+        "query": "Retrieve hospice claims between Jan 2020 and Jun 2021...",
+        "original": 0.3426758050918579,
+        "enhanced": 0.3426758050918579,
+        "difference": 0.0
+      },
+      {
+        "test_number": 64,
+        "query": "Show procedure codes billed by provider ID 10123 during 2022...",
+        "original": 0.4443407356739044,
+        "enhanced": 0.4443407356739044,
+        "difference": 0.0
+      },
+      {
+        "test_number": 65,
+        "query": "Get all mental health provider claims for adolescents in 202...",
+        "original": 0.2767161428928375,
+        "enhanced": 0.2767161428928375,
+        "difference": 0.0
+      },
+      {
+        "test_number": 66,
+        "query": "List all inpatient claims where stay exceeded 30 days...",
+        "original": 0.45234978199005127,
+        "enhanced": 0.45234978199005127,
+        "difference": 0.0
+      },
+      {
+        "test_number": 67,
+        "query": "Find duplicate member claims between Jan\u2013Mar 2023...",
+        "original": 0.3514631986618042,
+        "enhanced": 0.3514631986618042,
+        "difference": 0.0
+      },
+      {
+        "test_number": 68,
+        "query": "Show all anesthesia-related claims in Q4 2020...",
+        "original": 0.3406934142112732,
+        "enhanced": 0.3406934142112732,
+        "difference": 0.0
+      },
+      {
+        "test_number": 69,
+        "query": "Get breakdown of denied claims by payer type in 2021...",
+        "original": 0.49210983514785767,
+        "enhanced": 0.49210983514785767,
+        "difference": 0.0
+      },
+      {
+        "test_number": 70,
+        "query": "Which providers exceeded $10M total claims in 2022?...",
+        "original": 0.43320465087890625,
+        "enhanced": 0.43320465087890625,
+        "difference": 0.0
+      },
+      {
+        "test_number": 71,
+        "query": "Show claims submitted with invalid CPT codes in 2021...",
+        "original": 0.4128935933113098,
+        "enhanced": 0.4128935933113098,
+        "difference": 0.0
+      },
+      {
+        "test_number": 72,
+        "query": "Get all oncology-related claims filed after diagnosis...",
+        "original": 0.3668051064014435,
+        "enhanced": 0.3668051064014435,
+        "difference": 0.0
+      },
+      {
+        "test_number": 73,
+        "query": "Retrieve data on claims that required retroactive adjustment...",
+        "original": 0.44890570640563965,
+        "enhanced": 0.44890570640563965,
+        "difference": 0.0
+      },
+      {
+        "test_number": 74,
+        "query": "Show distribution of paid amounts for ER services in 2021...",
+        "original": 0.38563284277915955,
+        "enhanced": 0.38563284277915955,
+        "difference": 0.0
+      },
+      {
+        "test_number": 75,
+        "query": "Find claim records tagged as high dollar outliers in 2020...",
+        "original": 0.32897377014160156,
+        "enhanced": 0.32897377014160156,
+        "difference": 0.0
+      },
+      {
+        "test_number": 76,
+        "query": "List average payment lag time for orthopedic claims in 2022...",
+        "original": 0.4705994427204132,
+        "enhanced": 0.4705994427204132,
+        "difference": 0.0
+      },
+      {
+        "test_number": 77,
+        "query": "Show member IDs with outstanding claim balances in 2023...",
+        "original": 0.3999350965023041,
+        "enhanced": 0.3999350965023041,
+        "difference": 0.0
+      },
+      {
+        "test_number": 78,
+        "query": "Retrieve procedure mix for provider ID 50089 during 2021...",
+        "original": 0.355232298374176,
+        "enhanced": 0.355232298374176,
+        "difference": 0.0
+      },
+      {
+        "test_number": 79,
+        "query": "Show denied claims because service was not covered in 2021...",
+        "original": 0.3251544237136841,
+        "enhanced": 0.3251544237136841,
+        "difference": 0.0
+      },
+      {
+        "test_number": 80,
+        "query": "Get claim amounts submitted through clearinghouse X in 2022...",
+        "original": 0.45596814155578613,
+        "enhanced": 0.45596814155578613,
+        "difference": 0.0
+      },
+      {
+        "test_number": 81,
+        "query": "List claims from rural providers in Kentucky for 2020...",
+        "original": 0.4114872217178345,
+        "enhanced": 0.4114872217178345,
+        "difference": 0.0
+      },
+      {
+        "test_number": 82,
+        "query": "Show claim payments broken down by funding arrangement in 20...",
+        "original": 0.5027748942375183,
+        "enhanced": 0.5027748942375183,
+        "difference": 0.0
+      },
+      {
+        "test_number": 83,
+        "query": "Retrieve fraudulent claim flags in March 2022...",
+        "original": 0.3226698935031891,
+        "enhanced": 0.3226698935031891,
+        "difference": 0.0
+      },
+      {
+        "test_number": 84,
+        "query": "Find most common procedures denied in Florida 2022...",
+        "original": 0.37743163108825684,
+        "enhanced": 0.37743163108825684,
+        "difference": 0.0
+      },
+      {
+        "test_number": 85,
+        "query": "Show specialty mix of providers with highest reimbursements ...",
+        "original": 0.518416166305542,
+        "enhanced": 0.518416166305542,
+        "difference": 0.0
+      },
+      {
+        "test_number": 86,
+        "query": "Get monthly summary of capitation vs fee-for-service claims...",
+        "original": 0.4902258813381195,
+        "enhanced": 0.4902258813381195,
+        "difference": 0.0
+      },
+      {
+        "test_number": 87,
+        "query": "Retrieve all outpatient claims over $25,000 from 2021...",
+        "original": 0.43260452151298523,
+        "enhanced": 0.43260452151298523,
+        "difference": 0.0
+      },
+      {
+        "test_number": 88,
+        "query": "Show dental claim activity by provider network in 2020...",
+        "original": 0.47160330414772034,
+        "enhanced": 0.47160330414772034,
+        "difference": 0.0
+      },
+      {
+        "test_number": 89,
+        "query": "List facilities with DRG code 291 in 2021...",
+        "original": 0.3536145091056824,
+        "enhanced": 0.3536145091056824,
+        "difference": 0.0
+      },
+      {
+        "test_number": 90,
+        "query": "Get neonatal intensive care claims in 2021 and 2022...",
+        "original": 0.31793034076690674,
+        "enhanced": 0.31793034076690674,
+        "difference": 0.0
+      },
+      {
+        "test_number": 91,
+        "query": "Show providers filing highest number of appeals in 2022...",
+        "original": 0.37886571884155273,
+        "enhanced": 0.37886571884155273,
+        "difference": 0.0
+      },
+      {
+        "test_number": 92,
+        "query": "Retrieve denied claims due to pre-existing condition clause...",
+        "original": 0.29348424077033997,
+        "enhanced": 0.29348424077033997,
+        "difference": 0.0
+      },
+      {
+        "test_number": 93,
+        "query": "Show differences between billed and allowed amounts for 2022...",
+        "original": 0.43638575077056885,
+        "enhanced": 0.43638575077056885,
+        "difference": 0.0
+      },
+      {
+        "test_number": 94,
+        "query": "Find claims for procedures conducted on weekends only...",
+        "original": 0.4402175545692444,
+        "enhanced": 0.4402175545692444,
+        "difference": 0.0
+      },
+      {
+        "test_number": 95,
+        "query": "Generate provider ranking by claim amounts in Texas, 2021...",
+        "original": 0.3925730288028717,
+        "enhanced": 0.3925730288028717,
+        "difference": 0.0
+      },
+      {
+        "test_number": 96,
+        "query": "Show pharmacy claims for controlled substances in 2022...",
+        "original": 0.3063780665397644,
+        "enhanced": 0.3063780665397644,
+        "difference": 0.0
+      },
+      {
+        "test_number": 97,
+        "query": "List inpatient claims associated with COVID-19 in 2020...",
+        "original": 0.4459926187992096,
+        "enhanced": 0.4459926187992096,
+        "difference": 0.0
+      },
+      {
+        "test_number": 98,
+        "query": "Show all duplicate claim pairs across 2021...",
+        "original": 0.3426583707332611,
+        "enhanced": 0.3426583707332611,
+        "difference": 0.0
+      },
+      {
+        "test_number": 99,
+        "query": "Retrieve members with more than $100K total annual claims...",
+        "original": 0.3468632996082306,
+        "enhanced": 0.3468632996082306,
+        "difference": 0.0
+      },
+      {
+        "test_number": 100,
+        "query": "Find denial rate trends for cardiology specialty in 2020\u2013202...",
+        "original": 0.4938093423843384,
+        "enhanced": 0.4938093423843384,
+        "difference": 0.0
+      },
+      {
+        "test_number": 101,
+        "query": "Show providers credentialed in 2020 but no claims filed...",
+        "original": 0.5172666311264038,
+        "enhanced": 0.5172666311264038,
+        "difference": 0.0
+      },
+      {
+        "test_number": 102,
+        "query": "Get ER claim counts per member...",
+        "original": 0.31970423460006714,
+        "enhanced": 0.31970423460006714,
+        "difference": 0.0
+      },
+      {
+        "test_number": 103,
+        "query": "Show high-dollar transplant claims in 2022...",
+        "original": 0.27084556221961975,
+        "enhanced": 0.27084556221961975,
+        "difference": 0.0
+      },
+      {
+        "test_number": 104,
+        "query": "Retrieve transitional care claims after hospital discharge...",
+        "original": 0.38897764682769775,
+        "enhanced": 0.38897764682769775,
+        "difference": 0.0
+      },
+      {
+        "test_number": 105,
+        "query": "Which counties in Texas had most ER claims in 2022?...",
+        "original": 0.3022162914276123,
+        "enhanced": 0.3022162914276123,
+        "difference": 0.0
+      },
+      {
+        "test_number": 106,
+        "query": "Show rejected claims for unlisted procedure codes...",
+        "original": 0.34765446186065674,
+        "enhanced": 0.34765446186065674,
+        "difference": 0.0
+      },
+      {
+        "test_number": 107,
+        "query": "Find trends in provider submission methods (EDI vs paper)...",
+        "original": 0.484117716550827,
+        "enhanced": 0.484117716550827,
+        "difference": 0.0
+      },
+      {
+        "test_number": 108,
+        "query": "Compare member liabilities vs payer liabilities in 2021...",
+        "original": 0.36593806743621826,
+        "enhanced": 0.36593806743621826,
+        "difference": 0.0
+      },
+      {
+        "test_number": 109,
+        "query": "Show lab claim volumes monthly across 2022...",
+        "original": 0.41007983684539795,
+        "enhanced": 0.41007983684539795,
+        "difference": 0.0
+      },
+      {
+        "test_number": 110,
+        "query": "Get longest length of stay claims with details...",
+        "original": 0.3938174843788147,
+        "enhanced": 0.3938174843788147,
+        "difference": 0.0
+      },
+      {
+        "test_number": 111,
+        "query": "Which providers submitted claims only during holiday weeks?...",
+        "original": 0.45773375034332275,
+        "enhanced": 0.45773375034332275,
+        "difference": 0.0
+      },
+      {
+        "test_number": 112,
+        "query": "Show providers who had 100% claim acceptance rate in 2021...",
+        "original": 0.4770391583442688,
+        "enhanced": 0.4770391583442688,
+        "difference": 0.0
+      },
+      {
+        "test_number": 113,
+        "query": "Find NPI mismatches in 2022 claim submissions...",
+        "original": 0.4317324161529541,
+        "enhanced": 0.4317324161529541,
+        "difference": 0.0
+      },
+      {
+        "test_number": 114,
+        "query": "Retrieve rolling 12-month claim costs for oncology...",
+        "original": 0.4059085547924042,
+        "enhanced": 0.4059085547924042,
+        "difference": 0.0
+      },
+      {
+        "test_number": 115,
+        "query": "Show inpatient claims trends vs outpatient claims trends in ...",
+        "original": 0.526908278465271,
+        "enhanced": 0.526908278465271,
+        "difference": 0.0
+      },
+      {
+        "test_number": 116,
+        "query": "Get percentage of denied ER claims in 2021...",
+        "original": 0.3325735926628113,
+        "enhanced": 0.3325735926628113,
+        "difference": 0.0
+      },
+      {
+        "test_number": 117,
+        "query": "List all claims tied to catastrophic coverage in 2020...",
+        "original": 0.3904573321342468,
+        "enhanced": 0.3904573321342468,
+        "difference": 0.0
+      },
+      {
+        "test_number": 118,
+        "query": "Show pharmacy claims with brand vs generic splits by month...",
+        "original": 0.3366425633430481,
+        "enhanced": 0.3366425633430481,
+        "difference": 0.0
+      },
+      {
+        "test_number": 119,
+        "query": "Retrieve anomaly in claims for provider ID 99999 in 2021...",
+        "original": 0.3934830129146576,
+        "enhanced": 0.3934830129146576,
+        "difference": 0.0
+      },
+      {
+        "test_number": 120,
+        "query": "Show behavioral health claims per member between 2020\u20132022...",
+        "original": 0.41110527515411377,
+        "enhanced": 0.41110527515411377,
+        "difference": 0.0
+      }
+    ]
+  }
+}

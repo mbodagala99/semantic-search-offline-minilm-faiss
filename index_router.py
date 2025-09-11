@@ -29,7 +29,7 @@ class HealthcareQueryRouter:
             embedding_generator: Instance of EmbeddingGenerator for semantic search
         """
         self.embedding_generator = embedding_generator
-        self.confidence_threshold = 0.5
+        self.confidence_threshold = 0.4
         self.available_domains = [
             "Claims Processing and Payment Reconciliation",
             "Provider Network Management", 

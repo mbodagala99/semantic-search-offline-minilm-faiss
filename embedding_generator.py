@@ -161,7 +161,7 @@ class EmbeddingDataGenerator:
 class EmbeddingVectorGenerator:
     """Handles actual embedding vector generation using sentence-transformers"""
     
-    def __init__(self, model_name: str = "all-MiniLM-L6-v2"):
+    def __init__(self, model_name: str = "bert-base-uncased"):
         self.model_name = model_name
         self.model = None
         self._load_model()
@@ -212,7 +212,7 @@ class EmbeddingVectorGenerator:
 class EmbeddingGenerator:
     """Main orchestrator class that coordinates data generation and vector generation"""
     
-    def __init__(self, model_name: str = "all-MiniLM-L6-v2"):
+    def __init__(self, model_name: str = "bert-base-uncased"):
         self.data_generator = EmbeddingDataGenerator()
         self.vector_generator = EmbeddingVectorGenerator(model_name)
     
