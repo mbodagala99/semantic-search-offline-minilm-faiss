@@ -12,6 +12,7 @@ import os
 from typing import Dict, List, Any, Optional
 from embedding_generator import EmbeddingGenerator
 from config_reader import config
+from classifiers import ClassifierFactory
 
 
 class HealthcareQueryRouter:
@@ -39,6 +40,29 @@ class HealthcareQueryRouter:
             "Fraud Detection and Investigation",
             "Financial Reporting and Analytics"
         ]
+        
+        # Initialize healthcare classifier
+        self.classifier = self._initialize_classifier()
+    
+    def _initialize_classifier(self):
+        """Initialize the healthcare classifier"""
+        try:
+            classifier_config = {
+                'model_name': config.get_bart_model(),
+                'confidence_threshold': config.get_classifier_threshold(),
+                'device': config.get_classifier_device(),
+                'voting_strategy': config.get_voting_strategy(),
+                'bart_weight': config.get_bart_weight(),
+                'keyword_weight': config.get_keyword_weight(),
+                'min_confidence_threshold': config.get_min_confidence_threshold()
+            }
+            return ClassifierFactory.create_classifier(
+                config.get_classifier_type(),
+                classifier_config
+            )
+        except Exception as e:
+            print(f"Warning: Could not initialize classifier: {e}")
+            return None
     
     def route_healthcare_query(self, user_query: str) -> Dict[str, Any]:
         """
@@ -50,6 +74,44 @@ class HealthcareQueryRouter:
         Returns:
             Dictionary containing routing analysis and recommendations
         """
+        try:
+            # Step 1: Classify as healthcare/non-healthcare
+            if self.classifier and self.classifier.is_available():
+                classification_result = self.classifier.classify(user_query)
+                
+                # If not healthcare, reject early
+                if not self.classifier.should_route_to_healthcare(classification_result):
+                    return {
+                        "query": user_query,
+                        "routing_status": "REJECTED_NON_HEALTHCARE",
+                        "confidence_score": classification_result.confidence,
+                        "primary_data_source": "N/A",
+                        "classification_info": {
+                            "is_healthcare": classification_result.is_healthcare,
+                            "model_name": classification_result.model_name,
+                            "processing_time_ms": classification_result.processing_time_ms
+                        },
+                        "message": "Query appears to be non-healthcare related. Please provide a healthcare-specific query."
+                    }
+            
+            # Step 2: If healthcare, proceed with existing similarity search
+            return self._perform_similarity_search(user_query)
+                
+        except Exception as e:
+            return self._create_error_response(user_query, str(e))
+    
+    def _create_error_response(self, user_query: str, error_message: str) -> Dict[str, Any]:
+        """Create error response"""
+        return {
+            "query": user_query,
+            "routing_status": "ERROR",
+            "confidence_score": 0.0,
+            "primary_data_source": "N/A",
+            "message": f"Error processing query: {error_message}"
+        }
+    
+    def _perform_similarity_search(self, user_query: str) -> Dict[str, Any]:
+        """Perform semantic similarity search for healthcare queries"""
         # Search the consolidated healthcare index
         search_results = self.embedding_generator.search_consolidated_index(
             user_query, 

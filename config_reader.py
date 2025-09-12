@@ -110,6 +110,44 @@ class HealthcareSearchConfig:
         """Check if non-healthcare rejection is enabled"""
         return self.config.getboolean('SEARCH_OPTIMIZATION', 'enable_non_healthcare_rejection', fallback=True)
     
+    # Classifier Configuration
+    def get_classifier_type(self) -> str:
+        """Get classifier type"""
+        return self.config.get('CLASSIFIER', 'classifier_type', fallback='ensemble')
+    
+    def get_bart_model(self) -> str:
+        """Get BART model for classification"""
+        return self.config.get('CLASSIFIER', 'bart_model', fallback='facebook/bart-large-mnli')
+    
+    def get_classifier_threshold(self) -> float:
+        """Get classifier confidence threshold"""
+        return self.config.getfloat('CLASSIFIER', 'classifier_threshold', fallback=0.5)
+    
+    def get_classifier_device(self) -> int:
+        """Get classifier device (-1 for CPU, 0+ for GPU)"""
+        return self.config.getint('CLASSIFIER', 'classifier_device', fallback=-1)
+    
+    def is_classifier_fallback_enabled(self) -> bool:
+        """Check if classifier fallback is enabled"""
+        return self.config.getboolean('CLASSIFIER', 'enable_classifier_fallback', fallback=True)
+    
+    # Ensemble Configuration
+    def get_voting_strategy(self) -> str:
+        """Get ensemble voting strategy"""
+        return self.config.get('CLASSIFIER', 'voting_strategy', fallback='weighted')
+    
+    def get_bart_weight(self) -> float:
+        """Get BART weight for ensemble"""
+        return self.config.getfloat('CLASSIFIER', 'bart_weight', fallback=0.6)
+    
+    def get_keyword_weight(self) -> float:
+        """Get keyword weight for ensemble"""
+        return self.config.getfloat('CLASSIFIER', 'keyword_weight', fallback=0.4)
+    
+    def get_min_confidence_threshold(self) -> float:
+        """Get minimum confidence threshold for ensemble"""
+        return self.config.getfloat('CLASSIFIER', 'min_confidence_threshold', fallback=0.3)
+    
     # Index Configuration
     def get_index_type(self) -> str:
         """Get FAISS index type"""
