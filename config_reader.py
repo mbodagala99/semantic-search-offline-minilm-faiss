@@ -6,6 +6,7 @@ Reads configuration from .config file and provides easy access to settings
 
 import configparser
 import os
+import re
 from typing import List, Dict, Any, Union
 
 class HealthcareSearchConfig:
@@ -17,12 +18,32 @@ class HealthcareSearchConfig:
         self.load_config()
     
     def load_config(self):
-        """Load configuration from file"""
+        """Load configuration from file with environment variable substitution"""
         if not os.path.exists(self.config_file):
             raise FileNotFoundError(f"Configuration file {self.config_file} not found")
         
         self.config.read(self.config_file)
+        self._substitute_environment_variables()
         print(f"✅ Configuration loaded from {self.config_file}")
+    
+    def _substitute_environment_variables(self):
+        """Substitute environment variables in configuration values"""
+        for section_name in self.config.sections():
+            for key, value in self.config[section_name].items():
+                # Check for ${VAR_NAME} pattern
+                if isinstance(value, str) and '${' in value:
+                    substituted_value = self._expand_env_vars(value)
+                    self.config[section_name][key] = substituted_value
+    
+    def _expand_env_vars(self, text: str) -> str:
+        """Expand environment variables in text using ${VAR_NAME} syntax"""
+        def replace_env_var(match):
+            env_var = match.group(1)
+            return os.environ.get(env_var, match.group(0))  # Return original if not found
+        
+        # Pattern to match ${VAR_NAME}
+        pattern = r'\$\{([^}]+)\}'
+        return re.sub(pattern, replace_env_var, text)
     
     def reload_config(self):
         """Reload configuration from file"""
@@ -202,7 +223,15 @@ class HealthcareSearchConfig:
     
     def get_llm_api_key(self) -> str:
         """Get LLM API key"""
-        return self.config.get('LLM_INTEGRATION', 'api_key', fallback='')
+        api_key = self.config.get('LLM_INTEGRATION', 'api_key', fallback='')
+        if not api_key or api_key.startswith('${') and api_key.endswith('}'):
+            print("⚠️  WARNING: LLM API key not set. Please set the GEMINI_API_KEY environment variable.")
+        return api_key
+    
+    def is_api_key_set(self) -> bool:
+        """Check if API key is properly set"""
+        api_key = self.get_llm_api_key()
+        return bool(api_key) and not (api_key.startswith('${') and api_key.endswith('}'))
     
     def get_llm_model(self) -> str:
         """Get LLM model name"""

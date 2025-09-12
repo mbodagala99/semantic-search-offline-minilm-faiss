@@ -1,0 +1,13 @@
+# JVM heap size (adjust based on available memory)
+-Xms512m
+-Xmx512m
+
+# GC settings
+-XX:+UseG1GC
+-XX:G1HeapRegionSize=16m
+
+# Memory settings
+-XX:MaxDirectMemorySize=512m
+
+# Logging
+-Djava.util.logging.config.file=logging.properties

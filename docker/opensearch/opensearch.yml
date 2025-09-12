@@ -1,0 +1,22 @@
+cluster.name: healthcare-cluster
+node.name: healthcare-node
+path.data: /usr/share/opensearch/data
+path.logs: /usr/share/opensearch/logs
+network.host: 0.0.0.0
+discovery.type: single-node
+
+# Disable security for development
+plugins.security.disabled: true
+
+# Performance settings
+indices.memory.index_buffer_size: 20%
+indices.queries.cache.size: 10%
+indices.fielddata.cache.size: 20%
+
+# HTTP settings
+http.port: 9200
+transport.port: 9300
+
+# Thread pool settings
+thread_pool.write.queue_size: 1000
+thread_pool.search.queue_size: 1000
