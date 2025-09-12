@@ -847,7 +847,7 @@ def main():
     generator.print_sample_embeddings(embeddings, max_samples=1)
     
     # Save to file
-    generator.save_embeddings_to_file(embeddings, "healthcare_embeddings.json")
+    generator.save_embeddings_to_file(embeddings, "data/embeddings/healthcare_embeddings.json")
     
     print("\nEmbedding generation completed successfully!")
     

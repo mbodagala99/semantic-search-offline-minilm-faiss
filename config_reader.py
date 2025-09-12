@@ -11,7 +11,7 @@ from typing import List, Dict, Any, Union
 class HealthcareSearchConfig:
     """Configuration reader for healthcare search system"""
     
-    def __init__(self, config_file: str = "config.ini"):
+    def __init__(self, config_file: str = "configurations/config.ini"):
         self.config_file = config_file
         self.config = configparser.ConfigParser()
         self.load_config()

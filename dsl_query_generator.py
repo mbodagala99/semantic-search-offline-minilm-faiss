@@ -11,6 +11,7 @@ import json
 from typing import Dict, Any, Optional, List
 from llm_providers import LLMFactory, BaseLLMProvider
 from config_reader import config
+from opensearch_server_resolver import OpenSearchServerResolver
 
 
 class DSLQueryGenerator:
@@ -25,6 +26,7 @@ class DSLQueryGenerator:
         """Initialize the DSL query generator."""
         self.llm_provider = None
         self.is_enabled = config.is_llm_enabled()
+        self.url_resolver = OpenSearchServerResolver()
         
         if self.is_enabled:
             self._initialize_llm_provider()
@@ -96,6 +98,9 @@ class DSLQueryGenerator:
                 index_name = structured_data.get('index_name', index_info.get('index_name', 'unknown'))
                 query_type = structured_data.get('query_type', 'search')
                 
+                # Get OpenSearch URL configuration
+                opensearch_config = self.url_resolver.resolve_complete_config(index_name)
+                
                 # Validate query safety
                 safety_response = self.llm_provider.validate_query_safety(json.dumps(opensearch_dsl))
                 
@@ -104,6 +109,7 @@ class DSLQueryGenerator:
                     "dsl_type": "opensearch",
                     "index_name": index_name,
                     "query_type": query_type,
+                    "opensearch_config": opensearch_config,
                     "is_safe": safety_response.success,
                     "safety_issues": safety_response.error_message if not safety_response.success else None,
                     "explanation": self._generate_explanation(user_query, json.dumps(opensearch_dsl)),
@@ -221,11 +227,15 @@ class DSLQueryGenerator:
         # Simple fallback query generation
         fallback_data = self._generate_fallback_query(user_query, index_name)
         
+        # Get OpenSearch URL configuration for fallback
+        opensearch_config = self.url_resolver.resolve_complete_config(fallback_data["index_name"])
+        
         return {
             "dsl_query": fallback_data["opensearch_dsl"],
             "dsl_type": "opensearch",
             "index_name": fallback_data["index_name"],
             "query_type": fallback_data["query_type"],
+            "opensearch_config": opensearch_config,
             "is_safe": True,
             "safety_issues": None,
             "explanation": f"Fallback OpenSearch DSL query generated for: {user_query}",
