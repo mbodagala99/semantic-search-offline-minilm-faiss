@@ -1,0 +1,247 @@
+{
+  "index_name": "healthcare_members_index",
+  "total_queries": 40,
+  "description": "Test queries for healthcare_members_index",
+  "queries": [
+    {
+      "test_number": 61,
+      "query": "Find all members with diabetes in California",
+      "description": "Chronic condition and location member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 62,
+      "query": "Show members with high deductible health plans",
+      "description": "Plan type member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 63,
+      "query": "Get members whose coverage expires in the next 30 days",
+      "description": "Coverage expiration member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 64,
+      "query": "Find members aged 65 and older with Medicare plans",
+      "description": "Age and plan type member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 65,
+      "query": "Show members with missing contact information",
+      "description": "Data completeness member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 66,
+      "query": "Get members with risk scores above 2.0",
+      "description": "Risk stratification member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 67,
+      "query": "Find members who haven't used services in 12 months",
+      "description": "Utilization member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 68,
+      "query": "Show members with family coverage and dependents",
+      "description": "Coverage level member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 69,
+      "query": "Get members with specific chronic conditions",
+      "description": "Chronic condition member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 70,
+      "query": "Find members with zero deductible plans",
+      "description": "Deductible member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 71,
+      "query": "Show members by enrollment source and acquisition channel",
+      "description": "Enrollment source member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 72,
+      "query": "Get members with specific language preferences",
+      "description": "Language preference member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 73,
+      "query": "Find members with assigned primary care physicians",
+      "description": "PCP assignment member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 74,
+      "query": "Show members with high out-of-pocket maximums",
+      "description": "OOP maximum member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 75,
+      "query": "Get members by gender and age distribution",
+      "description": "Demographic member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 76,
+      "query": "Find members with specific plan migration history",
+      "description": "Plan migration member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 77,
+      "query": "Show members with care management program enrollment",
+      "description": "Care management member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 78,
+      "query": "Get members with specific copay amounts",
+      "description": "Copay member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 79,
+      "query": "Find members with address changes in the last 6 months",
+      "description": "Address change member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 80,
+      "query": "Show members with specific eligibility status",
+      "description": "Eligibility status member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 81,
+      "query": "Get members by geographic region and ZIP code",
+      "description": "Geographic member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 82,
+      "query": "Find members with specific group or employer affiliation",
+      "description": "Group affiliation member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 83,
+      "query": "Show members with specific communication preferences",
+      "description": "Communication preference member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 84,
+      "query": "Get members with specific plan tier and benefits",
+      "description": "Plan tier member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 85,
+      "query": "Find members with specific enrollment dates",
+      "description": "Enrollment date member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 86,
+      "query": "Show members with specific termination reasons",
+      "description": "Termination reason member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 87,
+      "query": "Get members with specific health risk factors",
+      "description": "Health risk member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 88,
+      "query": "Find members with specific income brackets",
+      "description": "Income member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 89,
+      "query": "Show members with specific education levels",
+      "description": "Education member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 90,
+      "query": "Get members with specific disability status",
+      "description": "Disability member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 91,
+      "query": "Find members with specific ethnicity and race",
+      "description": "Ethnicity member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 92,
+      "query": "Show members with specific marital status",
+      "description": "Marital status member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 93,
+      "query": "Get members with specific employment status",
+      "description": "Employment member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 94,
+      "query": "Find members with specific household composition",
+      "description": "Household member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 95,
+      "query": "Show members with specific insurance history",
+      "description": "Insurance history member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 96,
+      "query": "Get members with specific health literacy levels",
+      "description": "Health literacy member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 97,
+      "query": "Find members with specific technology access",
+      "description": "Technology access member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 98,
+      "query": "Show members with specific transportation needs",
+      "description": "Transportation member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 99,
+      "query": "Get members with specific social determinants of health",
+      "description": "Social determinants member query",
+      "expected_index": "healthcare_members_index"
+    },
+    {
+      "test_number": 100,
+      "query": "Find members with specific health equity indicators",
+      "description": "Health equity member query",
+      "expected_index": "healthcare_members_index"
+    }
+  ]
+}

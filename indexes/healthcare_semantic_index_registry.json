@@ -1,11 +1,13 @@
 {
-  "created_at": "2025-09-11T13:35:54",
-  "total_embeddings": 52,
+  "created_at": "2025-09-12T00:10:36",
+  "total_embeddings": 66,
   "dimensions": 768,
   "source_files": [
     "providers_index_mapping_expanded.json",
-    "claims_index_mapping_expanded.json"
+    "claims_index_mapping_expanded.json",
+    "procedures_index_mapping_expanded.json",
+    "members_index_mapping_expanded.json"
   ],
-  "consolidated_index_path": "indexes/healthcare_semantic_index.faiss",
-  "consolidated_metadata_path": "indexes/healthcare_semantic_index.json"
+  "consolidated_index_path": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/indexes/healthcare_semantic_index.faiss",
+  "consolidated_metadata_path": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/indexes/healthcare_semantic_index.json"
 }

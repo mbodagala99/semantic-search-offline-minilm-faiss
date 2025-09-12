@@ -1,0 +1,307 @@
+{
+  "index_name": "negative_test_scenarios",
+  "total_queries": 50,
+  "description": "Negative test scenarios that should NOT match any healthcare index",
+  "queries": [
+    {
+      "test_number": 201,
+      "query": "What is the weather like today?",
+      "description": "Weather query - completely unrelated to healthcare",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 202,
+      "query": "Show me the latest stock prices for Apple",
+      "description": "Financial query - not healthcare related",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 203,
+      "query": "Find restaurants near me",
+      "description": "Restaurant search - unrelated to healthcare",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 204,
+      "query": "How do I cook pasta?",
+      "description": "Cooking query - not healthcare related",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 205,
+      "query": "What movies are playing this weekend?",
+      "description": "Entertainment query - unrelated to healthcare",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 206,
+      "query": "Book a flight to New York",
+      "description": "Travel booking - not healthcare related",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 207,
+      "query": "Translate this text to Spanish",
+      "description": "Translation service - unrelated to healthcare",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 208,
+      "query": "What's the best laptop to buy?",
+      "description": "Technology shopping - not healthcare related",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 209,
+      "query": "How to fix a leaky faucet",
+      "description": "Home repair - unrelated to healthcare",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 210,
+      "query": "Find a good book to read",
+      "description": "Book recommendation - not healthcare related",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 211,
+      "query": "What's the capital of France?",
+      "description": "Geography question - unrelated to healthcare",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 212,
+      "query": "How to change a tire",
+      "description": "Automotive maintenance - not healthcare related",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 213,
+      "query": "What time does the store close?",
+      "description": "Business hours query - unrelated to healthcare",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 214,
+      "query": "How to learn programming",
+      "description": "Educational query - not healthcare related",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 215,
+      "query": "Find a good hotel in Paris",
+      "description": "Hotel search - unrelated to healthcare",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 216,
+      "query": "What's the best pizza place?",
+      "description": "Food recommendation - not healthcare related",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 217,
+      "query": "How to train a dog",
+      "description": "Pet training - unrelated to healthcare",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 218,
+      "query": "What's the latest news?",
+      "description": "News query - not healthcare related",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 219,
+      "query": "How to play guitar",
+      "description": "Music instruction - unrelated to healthcare",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 220,
+      "query": "Find a good gym near me",
+      "description": "Fitness facility search - not healthcare related",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 221,
+      "query": "What's the best car insurance?",
+      "description": "Insurance query - not healthcare related",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 222,
+      "query": "How to grow tomatoes",
+      "description": "Gardening advice - unrelated to healthcare",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 223,
+      "query": "What's the best smartphone?",
+      "description": "Technology recommendation - not healthcare related",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 224,
+      "query": "How to tie a tie",
+      "description": "Fashion advice - unrelated to healthcare",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 225,
+      "query": "Find a good lawyer",
+      "description": "Legal services - not healthcare related",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 226,
+      "query": "What's the best investment strategy?",
+      "description": "Financial advice - unrelated to healthcare",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 227,
+      "query": "How to clean windows",
+      "description": "Cleaning advice - not healthcare related",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 228,
+      "query": "What's the best camera for photography?",
+      "description": "Photography equipment - unrelated to healthcare",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 229,
+      "query": "How to write a resume",
+      "description": "Career advice - not healthcare related",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 230,
+      "query": "Find a good plumber",
+      "description": "Home services - unrelated to healthcare",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 231,
+      "query": "What's the best way to save money?",
+      "description": "Personal finance - not healthcare related",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 232,
+      "query": "How to paint a room",
+      "description": "Home improvement - unrelated to healthcare",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 233,
+      "query": "What's the best streaming service?",
+      "description": "Entertainment service - not healthcare related",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 234,
+      "query": "How to learn a new language",
+      "description": "Language learning - unrelated to healthcare",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 235,
+      "query": "Find a good accountant",
+      "description": "Professional services - not healthcare related",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 236,
+      "query": "What's the best way to organize files?",
+      "description": "Organization advice - unrelated to healthcare",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 237,
+      "query": "How to fix a computer",
+      "description": "Technical support - not healthcare related",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 238,
+      "query": "What's the best credit card?",
+      "description": "Financial product - unrelated to healthcare",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 239,
+      "query": "How to make coffee",
+      "description": "Beverage preparation - not healthcare related",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 240,
+      "query": "Find a good mechanic",
+      "description": "Automotive services - unrelated to healthcare",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 241,
+      "query": "What's the best way to study?",
+      "description": "Study advice - not healthcare related",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 242,
+      "query": "How to build a website",
+      "description": "Web development - unrelated to healthcare",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 243,
+      "query": "What's the best way to pack for a trip?",
+      "description": "Travel advice - not healthcare related",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 244,
+      "query": "How to negotiate a salary",
+      "description": "Career negotiation - unrelated to healthcare",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 245,
+      "query": "What's the best way to learn online?",
+      "description": "Online education - not healthcare related",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 246,
+      "query": "How to start a business",
+      "description": "Entrepreneurship - unrelated to healthcare",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 247,
+      "query": "What's the best way to save for retirement?",
+      "description": "Retirement planning - not healthcare related",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 248,
+      "query": "How to write a book",
+      "description": "Writing advice - unrelated to healthcare",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 249,
+      "query": "What's the best way to network professionally?",
+      "description": "Professional networking - not healthcare related",
+      "expected_index": "NO_MATCH"
+    },
+    {
+      "test_number": 250,
+      "query": "How to plan a wedding",
+      "description": "Event planning - unrelated to healthcare",
+      "expected_index": "NO_MATCH"
+    }
+  ]
+}

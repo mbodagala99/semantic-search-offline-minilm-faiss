@@ -1,0 +1,482 @@
+{
+  "mappings": {
+    "properties": {
+      "member_id": {
+        "type": "keyword",
+        "description": "Unique identifier for the health plan member",
+        "possible_values": ["Alphanumeric string, typically 8-12 characters"],
+        "edi_reference": "837/835 - Member identification number"
+      },
+      "subscriber_id": {
+        "type": "keyword", 
+        "description": "Primary subscriber ID for the member",
+        "possible_values": ["Alphanumeric string, matches member_id for primary subscriber"],
+        "edi_reference": "837/835 - Subscriber identification"
+      },
+      "member_type": {
+        "type": "keyword",
+        "description": "Type of member relationship to subscriber",
+        "possible_values": ["01-Subscriber", "02-Spouse", "03-Child", "04-Other", "05-Life Partner", "06-Domestic Partner"],
+        "edi_reference": "837 - Member relationship code"
+      },
+      "first_name": {
+        "type": "text",
+        "description": "Member's first name",
+        "possible_values": ["Text string, 1-35 characters"],
+        "edi_reference": "837 - Member first name"
+      },
+      "last_name": {
+        "type": "text",
+        "description": "Member's last name",
+        "possible_values": ["Text string, 1-60 characters"],
+        "edi_reference": "837 - Member last name"
+      },
+      "middle_name": {
+        "type": "text",
+        "description": "Member's middle name or initial",
+        "possible_values": ["Text string, 1-25 characters"],
+        "edi_reference": "837 - Member middle name"
+      },
+      "date_of_birth": {
+        "type": "date",
+        "description": "Member's date of birth",
+        "possible_values": ["YYYY-MM-DD format"],
+        "edi_reference": "837 - Member date of birth"
+      },
+      "gender": {
+        "type": "keyword",
+        "description": "Member's gender",
+        "possible_values": ["M-Male", "F-Female", "U-Unknown", "X-Not specified"],
+        "edi_reference": "837 - Member gender code"
+      },
+      "ssn": {
+        "type": "keyword",
+        "description": "Social Security Number (encrypted/masked)",
+        "possible_values": ["XXX-XX-XXXX format (masked)"],
+        "edi_reference": "837 - Member SSN"
+      },
+      "address_line_1": {
+        "type": "text",
+        "description": "Primary address line",
+        "possible_values": ["Text string, 1-55 characters"],
+        "edi_reference": "837 - Member address line 1"
+      },
+      "address_line_2": {
+        "type": "text",
+        "description": "Secondary address line (apartment, suite, etc.)",
+        "possible_values": ["Text string, 1-55 characters"],
+        "edi_reference": "837 - Member address line 2"
+      },
+      "city": {
+        "type": "keyword",
+        "description": "City name",
+        "possible_values": ["Text string, 1-30 characters"],
+        "edi_reference": "837 - Member city"
+      },
+      "state": {
+        "type": "keyword",
+        "description": "State or province code",
+        "possible_values": ["2-character state code (e.g., CA, NY, TX)"],
+        "edi_reference": "837 - Member state code"
+      },
+      "zip_code": {
+        "type": "keyword",
+        "description": "ZIP or postal code",
+        "possible_values": ["5-digit or 9-digit ZIP code"],
+        "edi_reference": "837 - Member ZIP code"
+      },
+      "phone_number": {
+        "type": "keyword",
+        "description": "Primary phone number",
+        "possible_values": ["10-digit phone number"],
+        "edi_reference": "837 - Member phone number"
+      },
+      "email": {
+        "type": "keyword",
+        "description": "Email address",
+        "possible_values": ["Valid email format"],
+        "edi_reference": "837 - Member email"
+      },
+      "plan_code": {
+        "type": "keyword",
+        "description": "Health plan code",
+        "possible_values": ["Alphanumeric plan identifier"],
+        "edi_reference": "837/835 - Plan code"
+      },
+      "plan_name": {
+        "type": "text",
+        "description": "Health plan name",
+        "possible_values": ["Text description of plan"],
+        "edi_reference": "837/835 - Plan name"
+      },
+      "group_number": {
+        "type": "keyword",
+        "description": "Group or employer number",
+        "possible_values": ["Alphanumeric group identifier"],
+        "edi_reference": "837/835 - Group number"
+      },
+      "group_name": {
+        "type": "text",
+        "description": "Group or employer name",
+        "possible_values": ["Text description of group"],
+        "edi_reference": "837/835 - Group name"
+      },
+      "effective_date": {
+        "type": "date",
+        "description": "Coverage effective date",
+        "possible_values": ["YYYY-MM-DD format"],
+        "edi_reference": "837/835 - Coverage effective date"
+      },
+      "termination_date": {
+        "type": "date",
+        "description": "Coverage termination date",
+        "possible_values": ["YYYY-MM-DD format, null if active"],
+        "edi_reference": "837/835 - Coverage termination date"
+      },
+      "eligibility_status": {
+        "type": "keyword",
+        "description": "Current eligibility status",
+        "possible_values": ["Active", "Terminated", "Suspended", "Pending", "Cancelled"],
+        "edi_reference": "837/835 - Eligibility status"
+      },
+      "coverage_level": {
+        "type": "keyword",
+        "description": "Level of coverage",
+        "possible_values": ["Individual", "Family", "Employee+1", "Employee+Children"],
+        "edi_reference": "837/835 - Coverage level"
+      },
+      "deductible_amount": {
+        "type": "double",
+        "description": "Annual deductible amount",
+        "possible_values": ["Numeric value, currency format"],
+        "edi_reference": "837/835 - Deductible amount"
+      },
+      "copay_amount": {
+        "type": "double",
+        "description": "Copayment amount",
+        "possible_values": ["Numeric value, currency format"],
+        "edi_reference": "837/835 - Copay amount"
+      },
+      "out_of_pocket_max": {
+        "type": "double",
+        "description": "Out-of-pocket maximum",
+        "possible_values": ["Numeric value, currency format"],
+        "edi_reference": "837/835 - Out-of-pocket maximum"
+      },
+      "primary_care_physician_id": {
+        "type": "keyword",
+        "description": "Assigned primary care physician ID",
+        "possible_values": ["Provider ID or NPI"],
+        "edi_reference": "837/835 - PCP assignment"
+      },
+      "risk_score": {
+        "type": "double",
+        "description": "Member risk score for care management",
+        "possible_values": ["Numeric value, typically 0.5-3.0"],
+        "edi_reference": "837/835 - Risk adjustment score"
+      },
+      "chronic_conditions": {
+        "type": "keyword",
+        "description": "List of chronic conditions",
+        "possible_values": ["Array of condition codes (ICD-10)"],
+        "edi_reference": "837/835 - Chronic condition indicators"
+      },
+      "last_updated": {
+        "type": "date",
+        "description": "Last update timestamp",
+        "possible_values": ["ISO 8601 timestamp"],
+        "edi_reference": "837/835 - Last update date"
+      }
+    }
+  },
+  "_meta": {
+    "index_name": "healthcare_members_index",
+    "organization_name": "ENSOrg",
+    "description": "Comprehensive healthcare member/enrollee data index following EDI 837/835 standards for member demographics, enrollment information, coverage details, and eligibility status. This index supports member management, eligibility verification, risk stratification, demographic analysis, care management, and population health initiatives across healthcare operations. The index captures complete member lifecycle from enrollment through termination, enabling real-time eligibility verification, demographic reporting, risk assessment, coverage determination, and targeted member communication programs. It integrates with claims and provider data to provide comprehensive member insights for healthcare analytics, fraud detection, and quality improvement initiatives.",
+    "use_cases": [
+      {
+        "category": "Member Eligibility and Verification",
+        "description": "Real-time member eligibility verification for healthcare services and claims processing",
+        "scenarios": [
+          "Verify member coverage before service delivery",
+          "Check eligibility status for specific dates of service",
+          "Validate member demographics and contact information",
+          "Confirm plan benefits and coverage levels",
+          "Identify terminated or suspended members",
+          "Support point-of-service eligibility checks",
+          "Validate member ID and subscriber relationships",
+          "Check coverage effective and termination dates",
+          "Verify plan type and coverage level eligibility",
+          "Support retroactive eligibility determinations"
+        ],
+        "natural_language_prompts": [
+          "Is member 123456789 eligible for services on 2023-03-15?",
+          "Show me all active members in plan ABC123",
+          "Find members whose coverage expires in the next 30 days",
+          "Verify member demographics for member ID 987654321",
+          "Get eligibility status for member 555666777",
+          "Check if member 111222333 has active coverage",
+          "Show members with pending eligibility verification",
+          "Find members with coverage gaps in 2023",
+          "Verify subscriber ID for member 444555666",
+          "Check member eligibility for specific plan benefits"
+        ]
+      },
+      {
+        "category": "Demographic Analysis and Reporting",
+        "description": "Comprehensive demographic analysis for population health management and reporting",
+        "scenarios": [
+          "Analyze member demographics by age, gender, and location",
+          "Generate population health reports by geographic region",
+          "Track member enrollment trends and patterns",
+          "Identify high-risk populations for care management",
+          "Create member segmentation for targeted interventions",
+          "Monitor member migration and address changes",
+          "Analyze member distribution by plan type and coverage level",
+          "Track member retention and churn patterns",
+          "Generate demographic profiles for marketing campaigns",
+          "Support health equity and disparity analysis"
+        ],
+        "natural_language_prompts": [
+          "Show demographic breakdown of members by age group",
+          "List all members in California by county",
+          "Find members aged 65+ with chronic conditions",
+          "Get member distribution by plan type and coverage level",
+          "Show enrollment trends by month for 2023",
+          "Display member demographics by geographic region",
+          "Find members who moved in the last 6 months",
+          "Show member retention rates by plan type",
+          "Get age distribution of members by gender",
+          "Display member density by ZIP code"
+        ]
+      },
+      {
+        "category": "Risk Stratification and Care Management",
+        "description": "Member risk assessment and care management program enrollment",
+        "scenarios": [
+          "Identify high-risk members for care management programs",
+          "Assign members to appropriate risk tiers",
+          "Track chronic condition prevalence in member population",
+          "Monitor member health status changes over time",
+          "Support care coordination and case management",
+          "Enable population health interventions",
+          "Track member engagement with care programs",
+          "Monitor risk score trends and changes",
+          "Support predictive modeling for health outcomes",
+          "Enable targeted preventive care initiatives"
+        ],
+        "natural_language_prompts": [
+          "Find all members with risk score above 2.0",
+          "Show members with diabetes and hypertension",
+          "List members eligible for care management programs",
+          "Get chronic condition summary by member segment",
+          "Identify members needing preventive care reminders",
+          "Show members with multiple chronic conditions",
+          "Find high-risk members not enrolled in care management",
+          "Display risk score distribution across population",
+          "Get members with increasing risk scores",
+          "Show members with complex care needs"
+        ]
+      },
+      {
+        "category": "Coverage and Benefits Management",
+        "description": "Health plan coverage and benefits administration",
+        "scenarios": [
+          "Manage plan enrollment and terminations",
+          "Track coverage changes and plan migrations",
+          "Monitor deductible and copay utilization",
+          "Support open enrollment processes",
+          "Handle coverage disputes and appeals",
+          "Manage plan benefit design and changes",
+          "Track member cost-sharing responsibilities",
+          "Support plan comparison and selection tools",
+          "Monitor coverage adequacy and gaps",
+          "Enable benefits optimization recommendations"
+        ],
+        "natural_language_prompts": [
+          "Show members with high deductible plans",
+          "Find members approaching out-of-pocket maximum",
+          "List members who changed plans in 2023",
+          "Get coverage level distribution across all members",
+          "Show members with zero deductible plans",
+          "Find members with coverage gaps",
+          "Show plan migration patterns for 2023",
+          "Get members with high copay amounts",
+          "Display coverage changes by member segment",
+          "Show members eligible for plan upgrades"
+        ]
+      },
+      {
+        "category": "Member Communication and Outreach",
+        "description": "Targeted member communication and engagement programs",
+        "scenarios": [
+          "Identify members for health screenings and preventive care",
+          "Support member education and wellness programs",
+          "Manage member notifications and communications",
+          "Track member engagement and response rates",
+          "Coordinate member services and support",
+          "Enable personalized member communications",
+          "Support member portal and digital engagement",
+          "Manage member preferences and communication channels",
+          "Track member satisfaction and feedback",
+          "Enable member self-service capabilities"
+        ],
+        "natural_language_prompts": [
+          "Find members due for annual physical exams",
+          "Show members who haven't used services in 12 months",
+          "List members eligible for wellness programs",
+          "Get members with missing contact information",
+          "Find members in specific geographic areas for outreach",
+          "Show members with low engagement scores",
+          "Find members needing preventive care reminders",
+          "Get members eligible for health coaching programs",
+          "Show members with communication preferences",
+          "Find members for targeted health education campaigns"
+        ]
+      },
+      {
+        "category": "Fraud Detection and Security",
+        "description": "Member identity verification and fraud prevention",
+        "scenarios": [
+          "Detect duplicate member registrations",
+          "Validate member identity and demographics",
+          "Monitor suspicious member activity patterns",
+          "Track member address and contact changes",
+          "Support identity theft prevention measures",
+          "Enable member authentication and verification",
+          "Monitor member data quality and integrity",
+          "Support compliance with privacy regulations",
+          "Track member consent and authorization",
+          "Enable secure member data access"
+        ],
+        "natural_language_prompts": [
+          "Find potential duplicate member records",
+          "Show members with suspicious demographic changes",
+          "Get members with invalid contact information",
+          "Find members with multiple addresses",
+          "Show members with unusual enrollment patterns",
+          "Get members with missing identity verification",
+          "Find members with data quality issues",
+          "Show members requiring identity validation",
+          "Get members with privacy consent issues",
+          "Find members with security flag indicators"
+        ]
+      }
+    ],
+    "reports_generated": [
+      {
+        "report_type": "Member Demographics and Enrollment Reports",
+        "description": "Comprehensive member demographic analysis, enrollment tracking, and population health reporting",
+        "report_categories": [
+          {
+            "category": "Demographic Analysis Reports",
+            "description": "Member population demographics, characteristics, and distribution analysis",
+            "sample_prompts": [
+              "Generate member age distribution report by plan type",
+              "Show gender breakdown and demographic profiles by geographic region",
+              "Create member geographic distribution analysis by state and county",
+              "Display member count by coverage level and plan tier",
+              "Generate member enrollment trends and growth analysis by month",
+              "Show member demographic diversity analysis by ethnicity and age",
+              "Create member household composition analysis by family size",
+              "Display member education level and income bracket distribution",
+              "Generate member language preference analysis by region",
+              "Show member disability status and accommodation needs"
+            ],
+            "filters": ["date_range", "plan_type", "coverage_level", "geographic_region", "age_group", "gender", "ethnicity", "income_bracket", "family_size"]
+          },
+          {
+            "category": "Enrollment Status and Coverage Reports",
+            "description": "Member enrollment status tracking, coverage analysis, and eligibility management",
+            "sample_prompts": [
+              "Show active vs terminated members by month with termination reasons",
+              "Generate new enrollment report for Q4 2023 with source analysis",
+              "Display member termination patterns and retention analysis",
+              "Create coverage effective date distribution and enrollment trends",
+              "Show members pending eligibility verification by status type",
+              "Generate member plan migration and coverage change analysis",
+              "Display member enrollment source tracking and acquisition analysis",
+              "Create member retention rate analysis by plan type and segment",
+              "Show member coverage gap analysis and re-enrollment patterns",
+              "Generate member eligibility audit and compliance reports"
+            ],
+            "filters": ["date_range", "eligibility_status", "plan_code", "group_number", "effective_date_range", "termination_reason", "enrollment_source", "retention_status"]
+          },
+          {
+            "category": "Risk Stratification and Care Management Reports",
+            "description": "Member risk assessment, chronic condition tracking, and care management program enrollment",
+            "sample_prompts": [
+              "Generate high-risk member identification report with care management recommendations",
+              "Show chronic condition prevalence and comorbidity analysis by age group",
+              "Display risk score distribution and trend analysis across population segments",
+              "Create care management program enrollment status and outcomes tracking",
+              "Show member health status summary with risk factor analysis",
+              "Generate member care gap analysis and preventive care needs assessment",
+              "Display member medication adherence and health behavior tracking",
+              "Create member health outcome prediction and intervention recommendations",
+              "Show member care team assignments and coordination effectiveness",
+              "Generate member health goal tracking and progress monitoring reports"
+            ],
+            "filters": ["risk_score_range", "chronic_conditions", "age_group", "plan_type", "care_management_status", "health_outcomes", "intervention_type", "care_team"]
+          },
+          {
+            "category": "Coverage and Benefits Utilization Reports",
+            "description": "Health plan coverage analysis, benefits utilization tracking, and cost-sharing monitoring",
+            "sample_prompts": [
+              "Show deductible utilization and cost-sharing analysis by member segment",
+              "Generate copay amount distribution and payment pattern analysis",
+              "Display out-of-pocket maximum tracking and financial burden assessment",
+              "Create plan migration and coverage change impact analysis",
+              "Show coverage level utilization trends and benefit optimization opportunities",
+              "Generate member benefit utilization efficiency and waste reduction analysis",
+              "Display member cost-sharing burden and affordability assessment",
+              "Create plan design effectiveness and member satisfaction correlation analysis",
+              "Show member benefit awareness and utilization education needs",
+              "Generate member financial assistance and subsidy utilization tracking"
+            ],
+            "filters": ["plan_code", "coverage_level", "deductible_range", "copay_amount", "date_range", "cost_sharing_type", "benefit_category", "utilization_level"]
+          },
+          {
+            "category": "Member Contact and Communication Reports",
+            "description": "Member contact information management, communication tracking, and engagement analysis",
+            "sample_prompts": [
+              "Generate members with missing or invalid contact information by type",
+              "Show member communication preferences and channel effectiveness analysis",
+              "Display primary care physician assignments and provider network utilization",
+              "Create member address validation and geographic distribution accuracy reports",
+              "Show member phone and email completeness with update frequency tracking",
+              "Generate member communication response rates and engagement metrics",
+              "Display member digital engagement and portal usage statistics",
+              "Create member communication campaign effectiveness and ROI analysis",
+              "Show member language preference distribution and translation service needs",
+              "Generate member communication compliance and opt-out tracking reports"
+            ],
+            "filters": ["contact_completeness", "geographic_region", "plan_type", "communication_method", "pcp_assignment", "engagement_level", "language_preference", "communication_campaign"]
+          },
+          {
+            "category": "Eligibility and Verification Reports",
+            "description": "Member eligibility status tracking, verification processes, and compliance monitoring",
+            "sample_prompts": [
+              "Generate eligibility verification status and process efficiency reports",
+              "Show members with coverage gaps and retroactive eligibility needs",
+              "Display pending eligibility determinations and processing time analysis",
+              "Create member ID validation and duplicate detection reports",
+              "Show duplicate member identification and consolidation recommendations",
+              "Generate member eligibility audit findings and compliance reports",
+              "Display member enrollment verification and documentation completeness",
+              "Create member eligibility appeal and dispute resolution tracking",
+              "Show member eligibility system integration and data quality metrics",
+              "Generate member eligibility fraud detection and prevention reports"
+            ],
+            "filters": ["eligibility_status", "verification_status", "date_range", "plan_code", "member_type", "audit_status", "compliance_level", "fraud_risk"]
+          }
+        ]
+      }
+    ],
+    "embedding_configuration": {
+      "primary_search_fields": ["member_id", "subscriber_id", "first_name", "last_name", "plan_code", "group_number"],
+      "semantic_search_fields": ["use_cases", "reports_generated", "description"],
+      "embedding_retrieval": "member_demographics_coverage_analysis"
+    }
+  }
+}

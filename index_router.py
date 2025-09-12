@@ -11,6 +11,7 @@ import json
 import os
 from typing import Dict, List, Any, Optional
 from embedding_generator import EmbeddingGenerator
+from config_reader import config
 
 
 class HealthcareQueryRouter:
@@ -29,7 +30,9 @@ class HealthcareQueryRouter:
             embedding_generator: Instance of EmbeddingGenerator for semantic search
         """
         self.embedding_generator = embedding_generator
-        self.confidence_threshold = 0.4
+        # Use configuration for thresholds
+        self.confidence_threshold = config.get_default_threshold()
+        self.minimum_threshold = config.get_minimum_threshold()
         self.available_domains = [
             "Claims Processing and Payment Reconciliation",
             "Provider Network Management", 

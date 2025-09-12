@@ -8,7 +8,6 @@ import sys
 import os
 from datetime import datetime
 
-# Add current directory to path for imports
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from model_comparison_tester import ModelComparisonTester

@@ -1,0 +1,398 @@
+{
+  "mappings": {
+    "properties": {
+      "procedure_code": {
+        "type": "keyword",
+        "description": "Primary procedure code (CPT, HCPCS, or ICD-10-PCS)",
+        "possible_values": ["5-digit CPT codes (e.g., 99213)", "Alphanumeric HCPCS codes", "7-character ICD-10-PCS codes"],
+        "edi_reference": "837 - Procedure code"
+      },
+      "procedure_description": {
+        "type": "text",
+        "description": "Detailed description of the procedure or service",
+        "possible_values": ["Text description, typically 1-80 characters"],
+        "edi_reference": "837 - Procedure description"
+      },
+      "procedure_category": {
+        "type": "keyword",
+        "description": "Category or classification of the procedure",
+        "possible_values": ["Evaluation and Management", "Surgery", "Radiology", "Pathology", "Medicine", "Anesthesia"],
+        "edi_reference": "837 - Procedure category"
+      },
+      "body_system": {
+        "type": "keyword",
+        "description": "Body system or anatomical region",
+        "possible_values": ["Cardiovascular", "Musculoskeletal", "Nervous", "Respiratory", "Digestive", "Genitourinary"],
+        "edi_reference": "837 - Body system code"
+      },
+      "specialty": {
+        "type": "keyword",
+        "description": "Medical specialty that typically performs this procedure",
+        "possible_values": ["Cardiology", "Orthopedics", "Neurology", "Radiology", "General Surgery", "Internal Medicine"],
+        "edi_reference": "837 - Specialty code"
+      },
+      "modifier_1": {
+        "type": "keyword",
+        "description": "Primary procedure modifier",
+        "possible_values": ["2-character alphanumeric modifier codes"],
+        "edi_reference": "837 - Procedure modifier 1"
+      },
+      "modifier_2": {
+        "type": "keyword",
+        "description": "Secondary procedure modifier",
+        "possible_values": ["2-character alphanumeric modifier codes"],
+        "edi_reference": "837 - Procedure modifier 2"
+      },
+      "modifier_3": {
+        "type": "keyword",
+        "description": "Third procedure modifier",
+        "possible_values": ["2-character alphanumeric modifier codes"],
+        "edi_reference": "837 - Procedure modifier 3"
+      },
+      "modifier_4": {
+        "type": "keyword",
+        "description": "Fourth procedure modifier",
+        "possible_values": ["2-character alphanumeric modifier codes"],
+        "edi_reference": "837 - Procedure modifier 4"
+      },
+      "allowed_amount": {
+        "type": "double",
+        "description": "Maximum allowed amount for this procedure",
+        "possible_values": ["Numeric value, currency format"],
+        "edi_reference": "837/835 - Allowed amount"
+      },
+      "billed_amount": {
+        "type": "double",
+        "description": "Amount billed for this procedure",
+        "possible_values": ["Numeric value, currency format"],
+        "edi_reference": "837 - Billed amount"
+      },
+      "paid_amount": {
+        "type": "double",
+        "description": "Amount paid for this procedure",
+        "possible_values": ["Numeric value, currency format"],
+        "edi_reference": "835 - Paid amount"
+      },
+      "relative_value_unit": {
+        "type": "double",
+        "description": "Relative Value Unit (RVU) for the procedure",
+        "possible_values": ["Numeric value, typically 0.5-50.0"],
+        "edi_reference": "837/835 - RVU value"
+      },
+      "work_rvu": {
+        "type": "double",
+        "description": "Work component of RVU",
+        "possible_values": ["Numeric value, portion of total RVU"],
+        "edi_reference": "837/835 - Work RVU"
+      },
+      "practice_expense_rvu": {
+        "type": "double",
+        "description": "Practice expense component of RVU",
+        "possible_values": ["Numeric value, portion of total RVU"],
+        "edi_reference": "837/835 - Practice expense RVU"
+      },
+      "malpractice_rvu": {
+        "type": "double",
+        "description": "Malpractice component of RVU",
+        "possible_values": ["Numeric value, portion of total RVU"],
+        "edi_reference": "837/835 - Malpractice RVU"
+      },
+      "geographic_practice_cost_index": {
+        "type": "double",
+        "description": "Geographic practice cost index multiplier",
+        "possible_values": ["Numeric value, typically 0.8-1.2"],
+        "edi_reference": "837/835 - GPCI value"
+      },
+      "conversion_factor": {
+        "type": "double",
+        "description": "Medicare conversion factor for fee calculation",
+        "possible_values": ["Numeric value, currency per RVU"],
+        "edi_reference": "837/835 - Conversion factor"
+      },
+      "facility_type": {
+        "type": "keyword",
+        "description": "Type of facility where procedure is performed",
+        "possible_values": ["Hospital", "Ambulatory Surgery Center", "Office", "Home", "Skilled Nursing Facility"],
+        "edi_reference": "837 - Place of service code"
+      },
+      "place_of_service_code": {
+        "type": "keyword",
+        "description": "CMS place of service code",
+        "possible_values": ["01-Hospital", "11-Office", "21-Inpatient Hospital", "22-Outpatient Hospital"],
+        "edi_reference": "837 - Place of service code"
+      },
+      "prior_authorization_required": {
+        "type": "boolean",
+        "description": "Whether prior authorization is required",
+        "possible_values": ["true", "false"],
+        "edi_reference": "837 - Prior authorization indicator"
+      },
+      "frequency_limit": {
+        "type": "integer",
+        "description": "Maximum number of times procedure can be performed per period",
+        "possible_values": ["Numeric value, typically 1-365"],
+        "edi_reference": "837 - Frequency limit"
+      },
+      "frequency_period": {
+        "type": "keyword",
+        "description": "Time period for frequency limit",
+        "possible_values": ["Daily", "Weekly", "Monthly", "Quarterly", "Annually"],
+        "edi_reference": "837 - Frequency period"
+      },
+      "age_restriction_min": {
+        "type": "integer",
+        "description": "Minimum age for procedure eligibility",
+        "possible_values": ["Age in years, 0-120"],
+        "edi_reference": "837 - Age restriction minimum"
+      },
+      "age_restriction_max": {
+        "type": "integer",
+        "description": "Maximum age for procedure eligibility",
+        "possible_values": ["Age in years, 0-120"],
+        "edi_reference": "837 - Age restriction maximum"
+      },
+      "gender_restriction": {
+        "type": "keyword",
+        "description": "Gender restriction for procedure",
+        "possible_values": ["Male", "Female", "Both", "None"],
+        "edi_reference": "837 - Gender restriction"
+      },
+      "diagnosis_required": {
+        "type": "boolean",
+        "description": "Whether supporting diagnosis is required",
+        "possible_values": ["true", "false"],
+        "edi_reference": "837 - Diagnosis requirement"
+      },
+      "bundling_rule": {
+        "type": "keyword",
+        "description": "Bundling or unbundling rule",
+        "possible_values": ["Bundled", "Separate", "Global", "Component"],
+        "edi_reference": "837 - Bundling indicator"
+      },
+      "global_period": {
+        "type": "integer",
+        "description": "Global period in days (0, 10, or 90)",
+        "possible_values": ["0", "10", "90"],
+        "edi_reference": "837 - Global period"
+      },
+      "anesthesia_base_unit": {
+        "type": "double",
+        "description": "Base units for anesthesia procedures",
+        "possible_values": ["Numeric value, typically 1-20"],
+        "edi_reference": "837 - Anesthesia base units"
+      },
+      "time_units": {
+        "type": "integer",
+        "description": "Time units for time-based procedures",
+        "possible_values": ["Numeric value, minutes or time units"],
+        "edi_reference": "837 - Time units"
+      },
+      "effective_date": {
+        "type": "date",
+        "description": "Date when procedure code became effective",
+        "possible_values": ["YYYY-MM-DD format"],
+        "edi_reference": "837/835 - Effective date"
+      },
+      "termination_date": {
+        "type": "date",
+        "description": "Date when procedure code was terminated",
+        "possible_values": ["YYYY-MM-DD format, null if active"],
+        "edi_reference": "837/835 - Termination date"
+      },
+      "status": {
+        "type": "keyword",
+        "description": "Current status of the procedure code",
+        "possible_values": ["Active", "Inactive", "Deleted", "New"],
+        "edi_reference": "837/835 - Code status"
+      },
+      "last_updated": {
+        "type": "date",
+        "description": "Last update timestamp",
+        "possible_values": ["ISO 8601 timestamp"],
+        "edi_reference": "837/835 - Last update date"
+      }
+    }
+  },
+  "_meta": {
+    "index_name": "healthcare_procedures_index",
+    "organization_name": "ENSOrg",
+    "description": "Comprehensive healthcare procedures and services data index following EDI 837/835 standards for procedure codes, billing information, clinical metadata, and coverage rules. This index supports procedure validation, cost analysis, coverage determination, and clinical decision support across healthcare operations.",
+    "use_cases": [
+      {
+        "category": "Procedure Code Validation and Lookup",
+        "description": "Real-time procedure code validation and detailed lookup services",
+        "scenarios": [
+          "Validate procedure codes against current code sets",
+          "Look up procedure descriptions and billing information",
+          "Check procedure code status and effective dates",
+          "Verify modifier usage and bundling rules",
+          "Identify invalid or discontinued procedure codes"
+        ],
+        "natural_language_prompts": [
+          "Is procedure code 99213 valid and active?",
+          "Show me all details for CPT code 45380",
+          "Find procedures that require modifier 51",
+          "List all radiology procedures with RVU > 5.0",
+          "Get procedure description for HCPCS code G0438"
+        ]
+      },
+      {
+        "category": "Cost Analysis and Fee Schedule Management",
+        "description": "Procedure cost analysis and fee schedule administration",
+        "scenarios": [
+          "Analyze procedure costs and reimbursement rates",
+          "Compare allowed amounts across different payers",
+          "Track RVU utilization and fee schedule updates",
+          "Monitor billing accuracy and payment variances",
+          "Support contract negotiations and fee schedule development"
+        ],
+        "natural_language_prompts": [
+          "Show average allowed amount for MRI procedures",
+          "Compare RVU values for orthopedic procedures",
+          "Find procedures with highest reimbursement rates",
+          "List procedures with significant payment variances",
+          "Get fee schedule comparison for cardiology procedures"
+        ]
+      },
+      {
+        "category": "Coverage Determination and Prior Authorization",
+        "description": "Procedure coverage rules and prior authorization requirements",
+        "scenarios": [
+          "Determine if procedures require prior authorization",
+          "Check age and gender restrictions for procedures",
+          "Validate frequency limits and bundling rules",
+          "Support coverage determination workflows",
+          "Manage prior authorization requests and approvals"
+        ],
+        "natural_language_prompts": [
+          "Which procedures require prior authorization?",
+          "Find procedures restricted to patients over 65",
+          "Show procedures with annual frequency limits",
+          "List procedures that can't be billed together",
+          "Get coverage rules for cosmetic procedures"
+        ]
+      },
+      {
+        "category": "Clinical Decision Support and Quality",
+        "description": "Clinical decision support and quality improvement initiatives",
+        "scenarios": [
+          "Support clinical decision making with procedure information",
+          "Identify appropriate procedures for specific conditions",
+          "Track procedure utilization and outcomes",
+          "Support quality metrics and reporting",
+          "Enable evidence-based practice guidelines"
+        ],
+        "natural_language_prompts": [
+          "Find recommended procedures for diabetes management",
+          "Show procedures with highest complication rates",
+          "List procedures appropriate for pediatric patients",
+          "Get procedure utilization by specialty",
+          "Find procedures with quality measure requirements"
+        ]
+      },
+      {
+        "category": "Provider Education and Training",
+        "description": "Provider education on procedure coding and billing",
+        "scenarios": [
+          "Educate providers on proper procedure coding",
+          "Provide billing guidelines and requirements",
+          "Support coding audits and compliance reviews",
+          "Offer training on new procedure codes and updates",
+          "Facilitate provider documentation improvements"
+        ],
+        "natural_language_prompts": [
+          "Show coding guidelines for evaluation and management",
+          "Find procedures commonly miscoded in cardiology",
+          "List new procedure codes introduced in 2023",
+          "Get documentation requirements for surgery codes",
+          "Show procedures requiring specific provider credentials"
+        ]
+      }
+    ],
+    "reports_generated": [
+      {
+        "report_type": "Procedure Analysis and Management Reports",
+        "description": "Comprehensive procedure code analysis, cost management, and utilization tracking reports",
+        "report_categories": [
+          {
+            "category": "Procedure Code Analysis Reports",
+            "description": "Procedure code validation, status, and utilization analysis",
+            "sample_prompts": [
+              "Generate procedure code validation report",
+              "Show active vs inactive procedure codes by specialty",
+              "Display procedure code utilization trends",
+              "Create procedure code error analysis",
+              "Generate new procedure codes report for 2023"
+            ],
+            "filters": ["procedure_category", "specialty", "status", "date_range", "code_type", "body_system"]
+          },
+          {
+            "category": "Cost Analysis and Fee Schedule Reports",
+            "description": "Procedure cost analysis and fee schedule management",
+            "sample_prompts": [
+              "Show procedure cost comparison by payer",
+              "Generate RVU utilization analysis",
+              "Display fee schedule update impact analysis",
+              "Create procedure reimbursement variance report",
+              "Show high-cost procedure identification"
+            ],
+            "filters": ["cost_range", "rvu_range", "specialty", "procedure_category", "facility_type", "payer_type"]
+          },
+          {
+            "category": "Coverage and Authorization Reports",
+            "description": "Procedure coverage rules and prior authorization tracking",
+            "sample_prompts": [
+              "Generate prior authorization requirement report",
+              "Show procedure coverage restriction analysis",
+              "Display frequency limit utilization",
+              "Create bundling rule compliance report",
+              "Show procedure eligibility by age and gender"
+            ],
+            "filters": ["prior_auth_required", "age_restriction", "gender_restriction", "frequency_limit", "bundling_rule"]
+          },
+          {
+            "category": "Clinical Quality and Outcomes Reports",
+            "description": "Procedure quality metrics and clinical outcomes",
+            "sample_prompts": [
+              "Generate procedure quality measure report",
+              "Show procedure complication rate analysis",
+              "Display appropriate use criteria compliance",
+              "Create procedure outcome tracking report",
+              "Show procedure benchmarking by specialty"
+            ],
+            "filters": ["quality_measures", "outcome_metrics", "specialty", "procedure_category", "time_period"]
+          },
+          {
+            "category": "Provider Performance and Education Reports",
+            "description": "Provider procedure coding and billing performance",
+            "sample_prompts": [
+              "Generate provider coding accuracy report",
+              "Show procedure billing pattern analysis",
+              "Display provider education needs assessment",
+              "Create coding audit findings report",
+              "Show procedure documentation compliance"
+            ],
+            "filters": ["provider_specialty", "coding_accuracy", "billing_patterns", "education_needs", "audit_status"]
+          },
+          {
+            "category": "Utilization and Trend Analysis Reports",
+            "description": "Procedure utilization patterns and trend analysis",
+            "sample_prompts": [
+              "Generate procedure utilization trend report",
+              "Show procedure volume by geographic region",
+              "Display seasonal procedure utilization patterns",
+              "Create procedure growth rate analysis",
+              "Show procedure mix by facility type"
+            ],
+            "filters": ["utilization_trend", "geographic_region", "seasonal_pattern", "facility_type", "time_period"]
+          }
+        ]
+      }
+    ],
+    "embedding_configuration": {
+      "primary_search_fields": ["procedure_code", "procedure_description", "procedure_category", "specialty", "body_system"],
+      "semantic_search_fields": ["use_cases", "reports_generated", "description"],
+      "embedding_retrieval": "procedure_coding_billing_analysis"
+    }
+  }
+}

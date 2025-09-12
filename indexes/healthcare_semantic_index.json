@@ -5,7 +5,7 @@
     "source_index": "healthcare_providers_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/providers_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/providers_index_mapping_expanded.json",
     "file_index_name": "providers_index_mapping_expanded",
     "consolidated_id": 0
   },
@@ -15,7 +15,7 @@
     "source_index": "healthcare_providers_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/providers_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/providers_index_mapping_expanded.json",
     "file_index_name": "providers_index_mapping_expanded",
     "consolidated_id": 1
   },
@@ -25,7 +25,7 @@
     "source_index": "healthcare_providers_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/providers_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/providers_index_mapping_expanded.json",
     "file_index_name": "providers_index_mapping_expanded",
     "consolidated_id": 2
   },
@@ -35,7 +35,7 @@
     "source_index": "healthcare_providers_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/providers_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/providers_index_mapping_expanded.json",
     "file_index_name": "providers_index_mapping_expanded",
     "consolidated_id": 3
   },
@@ -45,7 +45,7 @@
     "source_index": "healthcare_providers_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/providers_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/providers_index_mapping_expanded.json",
     "file_index_name": "providers_index_mapping_expanded",
     "consolidated_id": 4
   },
@@ -55,7 +55,7 @@
     "source_index": "healthcare_providers_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/providers_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/providers_index_mapping_expanded.json",
     "file_index_name": "providers_index_mapping_expanded",
     "consolidated_id": 5
   },
@@ -65,7 +65,7 @@
     "source_index": "healthcare_providers_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/providers_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/providers_index_mapping_expanded.json",
     "file_index_name": "providers_index_mapping_expanded",
     "consolidated_id": 6
   },
@@ -75,7 +75,7 @@
     "source_index": "healthcare_providers_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/providers_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/providers_index_mapping_expanded.json",
     "file_index_name": "providers_index_mapping_expanded",
     "consolidated_id": 7
   },
@@ -85,7 +85,7 @@
     "source_index": "healthcare_providers_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/providers_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/providers_index_mapping_expanded.json",
     "file_index_name": "providers_index_mapping_expanded",
     "consolidated_id": 8
   },
@@ -95,7 +95,7 @@
     "source_index": "healthcare_providers_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/providers_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/providers_index_mapping_expanded.json",
     "file_index_name": "providers_index_mapping_expanded",
     "consolidated_id": 9
   },
@@ -105,7 +105,7 @@
     "source_index": "healthcare_providers_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/providers_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/providers_index_mapping_expanded.json",
     "file_index_name": "providers_index_mapping_expanded",
     "consolidated_id": 10
   },
@@ -115,7 +115,7 @@
     "source_index": "healthcare_providers_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/providers_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/providers_index_mapping_expanded.json",
     "file_index_name": "providers_index_mapping_expanded",
     "consolidated_id": 11
   },
@@ -125,7 +125,7 @@
     "source_index": "healthcare_providers_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/providers_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/providers_index_mapping_expanded.json",
     "file_index_name": "providers_index_mapping_expanded",
     "consolidated_id": 12
   },
@@ -135,7 +135,7 @@
     "source_index": "healthcare_providers_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/providers_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/providers_index_mapping_expanded.json",
     "file_index_name": "providers_index_mapping_expanded",
     "consolidated_id": 13
   },
@@ -145,7 +145,7 @@
     "source_index": "healthcare_providers_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/providers_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/providers_index_mapping_expanded.json",
     "file_index_name": "providers_index_mapping_expanded",
     "consolidated_id": 14
   },
@@ -155,7 +155,7 @@
     "source_index": "healthcare_providers_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/providers_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/providers_index_mapping_expanded.json",
     "file_index_name": "providers_index_mapping_expanded",
     "consolidated_id": 15
   },
@@ -165,7 +165,7 @@
     "source_index": "healthcare_providers_index",
     "organization": "ENSOrg",
     "type": "report",
-    "source_file": "data/opensearch/providers_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/providers_index_mapping_expanded.json",
     "file_index_name": "providers_index_mapping_expanded",
     "consolidated_id": 16
   },
@@ -175,7 +175,7 @@
     "source_index": "healthcare_providers_index",
     "organization": "ENSOrg",
     "type": "report",
-    "source_file": "data/opensearch/providers_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/providers_index_mapping_expanded.json",
     "file_index_name": "providers_index_mapping_expanded",
     "consolidated_id": 17
   },
@@ -185,7 +185,7 @@
     "source_index": "healthcare_providers_index",
     "organization": "ENSOrg",
     "type": "report",
-    "source_file": "data/opensearch/providers_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/providers_index_mapping_expanded.json",
     "file_index_name": "providers_index_mapping_expanded",
     "consolidated_id": 18
   },
@@ -195,7 +195,7 @@
     "source_index": "healthcare_providers_index",
     "organization": "ENSOrg",
     "type": "report",
-    "source_file": "data/opensearch/providers_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/providers_index_mapping_expanded.json",
     "file_index_name": "providers_index_mapping_expanded",
     "consolidated_id": 19
   },
@@ -205,7 +205,7 @@
     "source_index": "healthcare_providers_index",
     "organization": "ENSOrg",
     "type": "report",
-    "source_file": "data/opensearch/providers_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/providers_index_mapping_expanded.json",
     "file_index_name": "providers_index_mapping_expanded",
     "consolidated_id": 20
   },
@@ -215,7 +215,7 @@
     "source_index": "healthcare_providers_index",
     "organization": "ENSOrg",
     "type": "report",
-    "source_file": "data/opensearch/providers_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/providers_index_mapping_expanded.json",
     "file_index_name": "providers_index_mapping_expanded",
     "consolidated_id": 21
   },
@@ -225,7 +225,7 @@
     "source_index": "healthcare_providers_index",
     "organization": "ENSOrg",
     "type": "report",
-    "source_file": "data/opensearch/providers_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/providers_index_mapping_expanded.json",
     "file_index_name": "providers_index_mapping_expanded",
     "consolidated_id": 22
   },
@@ -235,7 +235,7 @@
     "source_index": "healthcare_providers_index",
     "organization": "ENSOrg",
     "type": "report",
-    "source_file": "data/opensearch/providers_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/providers_index_mapping_expanded.json",
     "file_index_name": "providers_index_mapping_expanded",
     "consolidated_id": 23
   },
@@ -245,7 +245,7 @@
     "source_index": "healthcare_providers_index",
     "organization": "ENSOrg",
     "type": "report",
-    "source_file": "data/opensearch/providers_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/providers_index_mapping_expanded.json",
     "file_index_name": "providers_index_mapping_expanded",
     "consolidated_id": 24
   },
@@ -255,7 +255,7 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 25
   },
@@ -265,7 +265,7 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 26
   },
@@ -275,7 +275,7 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 27
   },
@@ -285,7 +285,7 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 28
   },
@@ -295,7 +295,7 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 29
   },
@@ -305,7 +305,7 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 30
   },
@@ -315,7 +315,7 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 31
   },
@@ -325,7 +325,7 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 32
   },
@@ -335,7 +335,7 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 33
   },
@@ -345,7 +345,7 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 34
   },
@@ -355,7 +355,7 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 35
   },
@@ -365,7 +365,7 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 36
   },
@@ -375,7 +375,7 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 37
   },
@@ -385,7 +385,7 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 38
   },
@@ -395,7 +395,7 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 39
   },
@@ -405,7 +405,7 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 40
   },
@@ -415,7 +415,7 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 41
   },
@@ -425,7 +425,7 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "use_case",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 42
   },
@@ -435,7 +435,7 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "report",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 43
   },
@@ -445,7 +445,7 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "report",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 44
   },
@@ -455,7 +455,7 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "report",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 45
   },
@@ -465,7 +465,7 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "report",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 46
   },
@@ -475,7 +475,7 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "report",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 47
   },
@@ -485,7 +485,7 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "report",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 48
   },
@@ -495,7 +495,7 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "report",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 49
   },
@@ -505,7 +505,7 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "report",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 50
   },
@@ -515,8 +515,148 @@
     "source_index": "healthcare_claims_index",
     "organization": "ENSOrg",
     "type": "report",
-    "source_file": "data/opensearch/claims_index_mapping_expanded.json",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/claims_index_mapping_expanded.json",
     "file_index_name": "claims_index_mapping_expanded",
     "consolidated_id": 51
+  },
+  {
+    "id": 52,
+    "text": "Category: Procedure Code Validation and Lookup | Description: Real-time procedure code validation, detailed lookup services, and coding accuracy support | Scenarios: Validate procedure codes against current code sets and effective dates; Look up procedure descriptions, billing information, and clinical details; Check procedure code status, effective dates, and termination information; Verify modifier usage, bundling rules, and coding guidelines; Identify invalid, discontinued, or deprecated procedure codes; Support procedure code audits and compliance reviews; Enable automated procedure code validation in billing systems; Provide procedure coding education and training support; Support procedure code mapping and crosswalks; Enable procedure code search and discovery tools | Natural Language Prompts: Is procedure code 99213 valid and active for 2023?; Show me all details for CPT code 45380 including modifiers; Find procedures that require modifier 51 for multiple procedures; List all radiology procedures with RVU greater than 5.0; Get procedure description and billing rules for HCPCS code G0438; Check if procedure code 27447 requires prior authorization; Find all procedures in the cardiology specialty category; Show procedures with global period of 90 days; Get procedure codes that are bundled with other services; Find procedures appropriate for office-based settings",
+    "source_index": "healthcare_procedures_index",
+    "organization": "ENSOrg",
+    "type": "use_case",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/procedures_index_mapping_expanded.json",
+    "file_index_name": "procedures_index_mapping_expanded",
+    "consolidated_id": 52
+  },
+  {
+    "id": 53,
+    "text": "Category: Cost Analysis and Fee Schedule Management | Description: Procedure cost analysis, fee schedule administration, and reimbursement optimization | Scenarios: Analyze procedure costs, reimbursement rates, and payment variances; Compare allowed amounts across different payers and regions; Track RVU utilization, fee schedule updates, and rate changes; Monitor billing accuracy, payment variances, and revenue optimization; Support contract negotiations, fee schedule development, and rate setting; Enable cost comparison analysis and benchmarking; Support budget planning and financial forecasting; Enable provider payment optimization and revenue cycle management; Support cost-effectiveness analysis and value-based care initiatives; Enable fraud detection and cost containment programs | Natural Language Prompts: Show average allowed amount for MRI procedures by payer; Compare RVU values for orthopedic procedures across specialties; Find procedures with highest reimbursement rates and profit margins; List procedures with significant payment variances between payers; Get fee schedule comparison for cardiology procedures by region; Show procedures with declining reimbursement rates over time; Find high-cost procedures with low utilization rates; Compare procedure costs between facility and non-facility settings; Get procedure cost trend analysis for the past 12 months; Show procedures with cost containment opportunities",
+    "source_index": "healthcare_procedures_index",
+    "organization": "ENSOrg",
+    "type": "use_case",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/procedures_index_mapping_expanded.json",
+    "file_index_name": "procedures_index_mapping_expanded",
+    "consolidated_id": 53
+  },
+  {
+    "id": 54,
+    "text": "Category: Coverage Determination and Prior Authorization | Description: Procedure coverage rules, prior authorization requirements, and utilization management | Scenarios: Determine if procedures require prior authorization and approval criteria; Check age and gender restrictions for specific procedures; Validate frequency limits, bundling rules, and utilization guidelines; Support coverage determination workflows and benefit administration; Manage prior authorization requests, approvals, and denials; Enable utilization review and medical necessity determinations; Support step therapy and formulary management programs; Enable coverage policy updates and implementation; Support appeals and grievance processes for coverage denials; Enable provider education on coverage policies and requirements | Natural Language Prompts: Which procedures require prior authorization for cardiology services?; Find procedures restricted to patients over age 65; Show procedures with annual frequency limits and monitoring requirements; List procedures that cannot be billed together due to bundling rules; Get coverage rules and restrictions for cosmetic procedures; Find procedures with gender-specific eligibility requirements; Show procedures requiring supporting diagnosis documentation; List procedures with age restrictions for pediatric patients; Get procedures with facility-specific coverage requirements; Find procedures with experimental or investigational status",
+    "source_index": "healthcare_procedures_index",
+    "organization": "ENSOrg",
+    "type": "use_case",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/procedures_index_mapping_expanded.json",
+    "file_index_name": "procedures_index_mapping_expanded",
+    "consolidated_id": 54
+  },
+  {
+    "id": 55,
+    "text": "Category: Clinical Decision Support and Quality | Description: Clinical decision support, quality improvement, and evidence-based practice initiatives | Scenarios: Support clinical decision making with comprehensive procedure information; Identify appropriate procedures for specific conditions and diagnoses; Track procedure utilization, outcomes, and quality metrics; Support quality improvement initiatives and best practice guidelines; Enable evidence-based practice guidelines and clinical pathways; Support comparative effectiveness research and outcomes analysis; Enable patient safety initiatives and adverse event tracking; Support value-based care and quality measure reporting; Enable clinical research and data analytics initiatives; Support accreditation and certification requirements | Natural Language Prompts: Find recommended procedures for diabetes management and monitoring; Show procedures with highest complication rates and safety concerns; List procedures appropriate for pediatric patients by age group; Get procedure utilization patterns by specialty and provider type; Find procedures with quality measure requirements and reporting needs; Show procedures with evidence-based guidelines and recommendations; List procedures with appropriate use criteria and utilization standards; Get procedure outcome tracking and performance metrics; Find procedures with patient safety alerts and warnings; Show procedures with clinical trial and research opportunities",
+    "source_index": "healthcare_procedures_index",
+    "organization": "ENSOrg",
+    "type": "use_case",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/procedures_index_mapping_expanded.json",
+    "file_index_name": "procedures_index_mapping_expanded",
+    "consolidated_id": 55
+  },
+  {
+    "id": 56,
+    "text": "Category: Provider Education and Training | Description: Provider education on procedure coding, billing, and clinical best practices | Scenarios: Educate providers on proper procedure coding and documentation; Provide billing guidelines, requirements, and compliance training; Support coding audits, compliance reviews, and quality assurance; Offer training on new procedure codes, updates, and changes; Facilitate provider documentation improvements and accuracy; Enable provider performance monitoring and feedback; Support credentialing and privileging processes; Enable provider benchmarking and comparative analysis; Support continuing education and professional development; Enable provider satisfaction and engagement programs | Natural Language Prompts: Show coding guidelines and requirements for evaluation and management services; Find procedures commonly miscoded in cardiology with correction guidance; List new procedure codes introduced in 2023 with training materials; Get documentation requirements and templates for surgery procedures; Show procedures requiring specific provider credentials and qualifications; Find procedures with complex billing rules and modifier requirements; List procedures with high denial rates and prevention strategies; Get provider performance metrics and benchmarking data; Show procedures with educational resources and training materials; Find procedures with provider feedback and improvement opportunities",
+    "source_index": "healthcare_procedures_index",
+    "organization": "ENSOrg",
+    "type": "use_case",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/procedures_index_mapping_expanded.json",
+    "file_index_name": "procedures_index_mapping_expanded",
+    "consolidated_id": 56
+  },
+  {
+    "id": 57,
+    "text": "Category: Utilization Management and Analytics | Description: Procedure utilization tracking, trend analysis, and population health management | Scenarios: Track procedure utilization patterns and trends across populations; Analyze procedure volume, frequency, and geographic distribution; Monitor procedure appropriateness and medical necessity; Support population health management and care coordination; Enable utilization review and cost management initiatives; Support predictive analytics and forecasting for procedure demand; Enable benchmarking and comparative analysis across providers; Support resource planning and capacity management; Enable quality improvement and outcome optimization; Support regulatory reporting and compliance requirements | Natural Language Prompts: Show procedure utilization trends by specialty and geographic region; Find procedures with increasing utilization and cost impact; List procedures with seasonal variation and planning implications; Get procedure volume analysis by facility type and setting; Show procedures with inappropriate utilization patterns; Find procedures with high variation in utilization across providers; List procedures with emerging trends and future demand projections; Get procedure utilization efficiency and optimization opportunities; Show procedures with quality variation and improvement needs; Find procedures with cost and utilization correlation analysis",
+    "source_index": "healthcare_procedures_index",
+    "organization": "ENSOrg",
+    "type": "use_case",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/procedures_index_mapping_expanded.json",
+    "file_index_name": "procedures_index_mapping_expanded",
+    "consolidated_id": 57
+  },
+  {
+    "id": 58,
+    "text": "Report Type: Procedure Analysis and Management Reports | Description: Comprehensive procedure code analysis, cost management, utilization tracking, and quality improvement reports | Category: Procedure Code Analysis Reports - Procedure code validation, status tracking, utilization analysis, and code set management | Sample Prompts: Generate procedure code validation and accuracy report with error analysis; Show active vs inactive procedure codes by specialty with utilization impact; Display procedure code utilization trends and patterns by month and quarter; Create procedure code error analysis with common mistakes and corrections; Generate new procedure codes report for 2023 with implementation guidance; Show procedure code mapping and crosswalk analysis for system integration; Display procedure code compliance and audit findings with recommendations; Create procedure code update impact analysis with provider notification requirements; Generate procedure code search and discovery usage analytics; Show procedure code standardization and normalization effectiveness metrics | Filters: procedure_category; specialty; status; date_range; code_type; body_system; validation_status; compliance_level | Category: Cost Analysis and Fee Schedule Reports - Procedure cost analysis, fee schedule management, reimbursement optimization, and financial impact assessment | Sample Prompts: Show procedure cost comparison by payer with variance analysis and recommendations; Generate RVU utilization analysis with efficiency metrics and optimization opportunities; Display fee schedule update impact analysis with provider and member cost implications; Create procedure reimbursement variance report with root cause analysis; Show high-cost procedure identification with utilization and outcome correlation; Generate procedure cost trend analysis with forecasting and budget planning; Display procedure profitability analysis with revenue cycle optimization; Create procedure cost containment opportunities with implementation roadmap; Generate procedure benchmarking analysis with peer comparison and best practices; Show procedure financial impact assessment with ROI and value analysis | Filters: cost_range; rvu_range; specialty; procedure_category; facility_type; payer_type; profitability_level; cost_trend | Category: Coverage and Authorization Reports - Procedure coverage rules, prior authorization tracking, utilization management, and policy compliance | Sample Prompts: Generate prior authorization requirement report with approval rates and processing times; Show procedure coverage restriction analysis with member impact assessment; Display frequency limit utilization with overutilization identification and prevention; Create bundling rule compliance report with billing accuracy improvements; Show procedure eligibility by age and gender with policy optimization recommendations; Generate procedure coverage policy effectiveness analysis with member satisfaction; Display procedure authorization workflow efficiency with bottleneck identification; Create procedure coverage dispute resolution tracking with outcome analysis; Generate procedure policy update impact assessment with implementation timeline; Show procedure coverage gap analysis with member education and outreach needs | Filters: prior_auth_required; age_restriction; gender_restriction; frequency_limit; bundling_rule; coverage_policy; authorization_status | Category: Clinical Quality and Outcomes Reports - Procedure quality metrics, clinical outcomes, patient safety, and evidence-based practice tracking | Sample Prompts: Generate procedure quality measure report with performance benchmarking and improvement plans; Show procedure complication rate analysis with risk factors and prevention strategies; Display appropriate use criteria compliance with provider education and feedback; Create procedure outcome tracking report with patient satisfaction and safety metrics; Show procedure benchmarking by specialty with best practice identification; Generate procedure clinical pathway adherence analysis with variation reduction; Display procedure patient safety alerts with incident tracking and resolution; Create procedure evidence-based guideline compliance with implementation support; Generate procedure research and clinical trial participation tracking; Show procedure accreditation and certification requirement compliance | Filters: quality_measures; outcome_metrics; specialty; procedure_category; time_period; safety_level; evidence_grade | Category: Provider Performance and Education Reports - Provider procedure coding and billing performance, education needs, and improvement initiatives | Sample Prompts: Generate provider coding accuracy report with training recommendations and feedback; Show procedure billing pattern analysis with optimization opportunities and best practices; Display provider education needs assessment with curriculum development and delivery; Create coding audit findings report with corrective action plans and follow-up; Show procedure documentation compliance with template improvements and training; Generate provider performance benchmarking with peer comparison and goal setting; Display procedure coding productivity analysis with efficiency improvements; Create provider feedback and satisfaction survey with procedure-related insights; Generate provider credentialing and privileging procedure requirement tracking; Show provider continuing education and professional development procedure training | Filters: provider_specialty; coding_accuracy; billing_patterns; education_needs; audit_status; performance_level; training_completion | Category: Utilization and Trend Analysis Reports - Procedure utilization patterns, trend analysis, population health management, and forecasting | Sample Prompts: Generate procedure utilization trend report with forecasting and capacity planning; Show procedure volume by geographic region with market analysis and expansion opportunities; Display seasonal procedure utilization patterns with resource planning and optimization; Create procedure growth rate analysis with demand forecasting and supply planning; Show procedure mix by facility type with efficiency analysis and optimization; Generate procedure utilization efficiency analysis with best practice identification; Display procedure variation analysis across providers with standardization opportunities; Create procedure population health impact assessment with intervention planning; Generate procedure emerging trend identification with future planning and preparation; Show procedure utilization correlation analysis with outcomes and cost optimization | Filters: utilization_trend; geographic_region; seasonal_pattern; facility_type; time_period; growth_rate; efficiency_level",
+    "source_index": "healthcare_procedures_index",
+    "organization": "ENSOrg",
+    "type": "report",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/procedures_index_mapping_expanded.json",
+    "file_index_name": "procedures_index_mapping_expanded",
+    "consolidated_id": 58
+  },
+  {
+    "id": 59,
+    "text": "Category: Member Eligibility and Verification | Description: Real-time member eligibility verification for healthcare services and claims processing | Scenarios: Verify member coverage before service delivery; Check eligibility status for specific dates of service; Validate member demographics and contact information; Confirm plan benefits and coverage levels; Identify terminated or suspended members; Support point-of-service eligibility checks; Validate member ID and subscriber relationships; Check coverage effective and termination dates; Verify plan type and coverage level eligibility; Support retroactive eligibility determinations | Natural Language Prompts: Is member 123456789 eligible for services on 2023-03-15?; Show me all active members in plan ABC123; Find members whose coverage expires in the next 30 days; Verify member demographics for member ID 987654321; Get eligibility status for member 555666777; Check if member 111222333 has active coverage; Show members with pending eligibility verification; Find members with coverage gaps in 2023; Verify subscriber ID for member 444555666; Check member eligibility for specific plan benefits",
+    "source_index": "healthcare_members_index",
+    "organization": "ENSOrg",
+    "type": "use_case",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/members_index_mapping_expanded.json",
+    "file_index_name": "members_index_mapping_expanded",
+    "consolidated_id": 59
+  },
+  {
+    "id": 60,
+    "text": "Category: Demographic Analysis and Reporting | Description: Comprehensive demographic analysis for population health management and reporting | Scenarios: Analyze member demographics by age, gender, and location; Generate population health reports by geographic region; Track member enrollment trends and patterns; Identify high-risk populations for care management; Create member segmentation for targeted interventions; Monitor member migration and address changes; Analyze member distribution by plan type and coverage level; Track member retention and churn patterns; Generate demographic profiles for marketing campaigns; Support health equity and disparity analysis | Natural Language Prompts: Show demographic breakdown of members by age group; List all members in California by county; Find members aged 65+ with chronic conditions; Get member distribution by plan type and coverage level; Show enrollment trends by month for 2023; Display member demographics by geographic region; Find members who moved in the last 6 months; Show member retention rates by plan type; Get age distribution of members by gender; Display member density by ZIP code",
+    "source_index": "healthcare_members_index",
+    "organization": "ENSOrg",
+    "type": "use_case",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/members_index_mapping_expanded.json",
+    "file_index_name": "members_index_mapping_expanded",
+    "consolidated_id": 60
+  },
+  {
+    "id": 61,
+    "text": "Category: Risk Stratification and Care Management | Description: Member risk assessment and care management program enrollment | Scenarios: Identify high-risk members for care management programs; Assign members to appropriate risk tiers; Track chronic condition prevalence in member population; Monitor member health status changes over time; Support care coordination and case management; Enable population health interventions; Track member engagement with care programs; Monitor risk score trends and changes; Support predictive modeling for health outcomes; Enable targeted preventive care initiatives | Natural Language Prompts: Find all members with risk score above 2.0; Show members with diabetes and hypertension; List members eligible for care management programs; Get chronic condition summary by member segment; Identify members needing preventive care reminders; Show members with multiple chronic conditions; Find high-risk members not enrolled in care management; Display risk score distribution across population; Get members with increasing risk scores; Show members with complex care needs",
+    "source_index": "healthcare_members_index",
+    "organization": "ENSOrg",
+    "type": "use_case",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/members_index_mapping_expanded.json",
+    "file_index_name": "members_index_mapping_expanded",
+    "consolidated_id": 61
+  },
+  {
+    "id": 62,
+    "text": "Category: Coverage and Benefits Management | Description: Health plan coverage and benefits administration | Scenarios: Manage plan enrollment and terminations; Track coverage changes and plan migrations; Monitor deductible and copay utilization; Support open enrollment processes; Handle coverage disputes and appeals; Manage plan benefit design and changes; Track member cost-sharing responsibilities; Support plan comparison and selection tools; Monitor coverage adequacy and gaps; Enable benefits optimization recommendations | Natural Language Prompts: Show members with high deductible plans; Find members approaching out-of-pocket maximum; List members who changed plans in 2023; Get coverage level distribution across all members; Show members with zero deductible plans; Find members with coverage gaps; Show plan migration patterns for 2023; Get members with high copay amounts; Display coverage changes by member segment; Show members eligible for plan upgrades",
+    "source_index": "healthcare_members_index",
+    "organization": "ENSOrg",
+    "type": "use_case",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/members_index_mapping_expanded.json",
+    "file_index_name": "members_index_mapping_expanded",
+    "consolidated_id": 62
+  },
+  {
+    "id": 63,
+    "text": "Category: Member Communication and Outreach | Description: Targeted member communication and engagement programs | Scenarios: Identify members for health screenings and preventive care; Support member education and wellness programs; Manage member notifications and communications; Track member engagement and response rates; Coordinate member services and support; Enable personalized member communications; Support member portal and digital engagement; Manage member preferences and communication channels; Track member satisfaction and feedback; Enable member self-service capabilities | Natural Language Prompts: Find members due for annual physical exams; Show members who haven't used services in 12 months; List members eligible for wellness programs; Get members with missing contact information; Find members in specific geographic areas for outreach; Show members with low engagement scores; Find members needing preventive care reminders; Get members eligible for health coaching programs; Show members with communication preferences; Find members for targeted health education campaigns",
+    "source_index": "healthcare_members_index",
+    "organization": "ENSOrg",
+    "type": "use_case",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/members_index_mapping_expanded.json",
+    "file_index_name": "members_index_mapping_expanded",
+    "consolidated_id": 63
+  },
+  {
+    "id": 64,
+    "text": "Category: Fraud Detection and Security | Description: Member identity verification and fraud prevention | Scenarios: Detect duplicate member registrations; Validate member identity and demographics; Monitor suspicious member activity patterns; Track member address and contact changes; Support identity theft prevention measures; Enable member authentication and verification; Monitor member data quality and integrity; Support compliance with privacy regulations; Track member consent and authorization; Enable secure member data access | Natural Language Prompts: Find potential duplicate member records; Show members with suspicious demographic changes; Get members with invalid contact information; Find members with multiple addresses; Show members with unusual enrollment patterns; Get members with missing identity verification; Find members with data quality issues; Show members requiring identity validation; Get members with privacy consent issues; Find members with security flag indicators",
+    "source_index": "healthcare_members_index",
+    "organization": "ENSOrg",
+    "type": "use_case",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/members_index_mapping_expanded.json",
+    "file_index_name": "members_index_mapping_expanded",
+    "consolidated_id": 64
+  },
+  {
+    "id": 65,
+    "text": "Report Type: Member Demographics and Enrollment Reports | Description: Comprehensive member demographic analysis, enrollment tracking, and population health reporting | Category: Demographic Analysis Reports - Member population demographics, characteristics, and distribution analysis | Sample Prompts: Generate member age distribution report by plan type; Show gender breakdown and demographic profiles by geographic region; Create member geographic distribution analysis by state and county; Display member count by coverage level and plan tier; Generate member enrollment trends and growth analysis by month; Show member demographic diversity analysis by ethnicity and age; Create member household composition analysis by family size; Display member education level and income bracket distribution; Generate member language preference analysis by region; Show member disability status and accommodation needs | Filters: date_range; plan_type; coverage_level; geographic_region; age_group; gender; ethnicity; income_bracket; family_size | Category: Enrollment Status and Coverage Reports - Member enrollment status tracking, coverage analysis, and eligibility management | Sample Prompts: Show active vs terminated members by month with termination reasons; Generate new enrollment report for Q4 2023 with source analysis; Display member termination patterns and retention analysis; Create coverage effective date distribution and enrollment trends; Show members pending eligibility verification by status type; Generate member plan migration and coverage change analysis; Display member enrollment source tracking and acquisition analysis; Create member retention rate analysis by plan type and segment; Show member coverage gap analysis and re-enrollment patterns; Generate member eligibility audit and compliance reports | Filters: date_range; eligibility_status; plan_code; group_number; effective_date_range; termination_reason; enrollment_source; retention_status | Category: Risk Stratification and Care Management Reports - Member risk assessment, chronic condition tracking, and care management program enrollment | Sample Prompts: Generate high-risk member identification report with care management recommendations; Show chronic condition prevalence and comorbidity analysis by age group; Display risk score distribution and trend analysis across population segments; Create care management program enrollment status and outcomes tracking; Show member health status summary with risk factor analysis; Generate member care gap analysis and preventive care needs assessment; Display member medication adherence and health behavior tracking; Create member health outcome prediction and intervention recommendations; Show member care team assignments and coordination effectiveness; Generate member health goal tracking and progress monitoring reports | Filters: risk_score_range; chronic_conditions; age_group; plan_type; care_management_status; health_outcomes; intervention_type; care_team | Category: Coverage and Benefits Utilization Reports - Health plan coverage analysis, benefits utilization tracking, and cost-sharing monitoring | Sample Prompts: Show deductible utilization and cost-sharing analysis by member segment; Generate copay amount distribution and payment pattern analysis; Display out-of-pocket maximum tracking and financial burden assessment; Create plan migration and coverage change impact analysis; Show coverage level utilization trends and benefit optimization opportunities; Generate member benefit utilization efficiency and waste reduction analysis; Display member cost-sharing burden and affordability assessment; Create plan design effectiveness and member satisfaction correlation analysis; Show member benefit awareness and utilization education needs; Generate member financial assistance and subsidy utilization tracking | Filters: plan_code; coverage_level; deductible_range; copay_amount; date_range; cost_sharing_type; benefit_category; utilization_level | Category: Member Contact and Communication Reports - Member contact information management, communication tracking, and engagement analysis | Sample Prompts: Generate members with missing or invalid contact information by type; Show member communication preferences and channel effectiveness analysis; Display primary care physician assignments and provider network utilization; Create member address validation and geographic distribution accuracy reports; Show member phone and email completeness with update frequency tracking; Generate member communication response rates and engagement metrics; Display member digital engagement and portal usage statistics; Create member communication campaign effectiveness and ROI analysis; Show member language preference distribution and translation service needs; Generate member communication compliance and opt-out tracking reports | Filters: contact_completeness; geographic_region; plan_type; communication_method; pcp_assignment; engagement_level; language_preference; communication_campaign | Category: Eligibility and Verification Reports - Member eligibility status tracking, verification processes, and compliance monitoring | Sample Prompts: Generate eligibility verification status and process efficiency reports; Show members with coverage gaps and retroactive eligibility needs; Display pending eligibility determinations and processing time analysis; Create member ID validation and duplicate detection reports; Show duplicate member identification and consolidation recommendations; Generate member eligibility audit findings and compliance reports; Display member enrollment verification and documentation completeness; Create member eligibility appeal and dispute resolution tracking; Show member eligibility system integration and data quality metrics; Generate member eligibility fraud detection and prevention reports | Filters: eligibility_status; verification_status; date_range; plan_code; member_type; audit_status; compliance_level; fraud_risk",
+    "source_index": "healthcare_members_index",
+    "organization": "ENSOrg",
+    "type": "report",
+    "source_file": "/Users/murali/Documents/GitHub/semantic-search-offline-minilm-faiss/data/opensearch/members_index_mapping_expanded.json",
+    "file_index_name": "members_index_mapping_expanded",
+    "consolidated_id": 65
   }
 ]

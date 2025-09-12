@@ -1,0 +1,187 @@
+{
+  "index_name": "healthcare_claims_index",
+  "total_queries": 30,
+  "description": "Test queries for healthcare_claims_index",
+  "queries": [
+    {
+      "test_number": 1,
+      "query": "Show me all claims submitted between January 1, 2022 and March 31, 2022",
+      "description": "Claims query with specific date range",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 2,
+      "query": "Find denied claims for provider ID 12345 in 2021",
+      "description": "Provider-specific denied claims query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 3,
+      "query": "Get total payment amount for all approved claims in Q4 2022",
+      "description": "Payment amount aggregation query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 4,
+      "query": "Show claims with procedure code 99213 and their status",
+      "description": "Procedure code specific claims query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 5,
+      "query": "Find high-cost claims over $50,000 submitted in 2023",
+      "description": "High-cost claims identification query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 6,
+      "query": "Get claims by diagnosis code E11.9 for diabetes",
+      "description": "Diagnosis-specific claims query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 7,
+      "query": "Show duplicate claims submitted in the same month",
+      "description": "Duplicate claims detection query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 8,
+      "query": "Find claims with missing or invalid member information",
+      "description": "Data quality claims query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 9,
+      "query": "Get claims processing time analysis for 2022",
+      "description": "Claims processing efficiency query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 10,
+      "query": "Show claims by place of service code 11 (office)",
+      "description": "Place of service specific claims query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 11,
+      "query": "Find claims with coordination of benefits issues",
+      "description": "COB claims query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 12,
+      "query": "Get claims submitted electronically vs paper",
+      "description": "Submission method claims query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 13,
+      "query": "Show claims with retroactive adjustments in 2023",
+      "description": "Retroactive claims query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 14,
+      "query": "Find claims with partial payments and remaining balances",
+      "description": "Partial payment claims query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 15,
+      "query": "Get claims by member age group and gender",
+      "description": "Demographic claims analysis query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 16,
+      "query": "Show claims with fraud flags or suspicious activity",
+      "description": "Fraud detection claims query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 17,
+      "query": "Find claims with prior authorization requirements",
+      "description": "Prior auth claims query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 18,
+      "query": "Get claims by insurance plan type and coverage level",
+      "description": "Plan type claims query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 19,
+      "query": "Show claims with appeal status and outcomes",
+      "description": "Appeals claims query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 20,
+      "query": "Find claims with missing or incomplete documentation",
+      "description": "Documentation claims query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 21,
+      "query": "Get claims by geographic region and state",
+      "description": "Geographic claims query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 22,
+      "query": "Show claims with billing errors and corrections",
+      "description": "Billing error claims query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 23,
+      "query": "Find claims with experimental or investigational procedures",
+      "description": "Experimental claims query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 24,
+      "query": "Get claims by provider specialty and service type",
+      "description": "Specialty claims query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 25,
+      "query": "Show claims with capitation vs fee-for-service payments",
+      "description": "Payment model claims query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 26,
+      "query": "Find claims with bundling or unbundling issues",
+      "description": "Bundling claims query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 27,
+      "query": "Get claims with global period and follow-up services",
+      "description": "Global period claims query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 28,
+      "query": "Show claims with modifier usage and billing accuracy",
+      "description": "Modifier claims query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 29,
+      "query": "Find claims with outlier payments and cost analysis",
+      "description": "Outlier claims query",
+      "expected_index": "healthcare_claims_index"
+    },
+    {
+      "test_number": 30,
+      "query": "Get claims with quality measures and reporting requirements",
+      "description": "Quality measures claims query",
+      "expected_index": "healthcare_claims_index"
+    }
+  ]
+}

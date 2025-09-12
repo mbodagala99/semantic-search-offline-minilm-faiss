@@ -1,0 +1,187 @@
+{
+  "index_name": "healthcare_providers_index",
+  "total_queries": 30,
+  "description": "Test queries for healthcare_providers_index",
+  "queries": [
+    {
+      "test_number": 31,
+      "query": "Find all cardiology providers in California",
+      "description": "Specialty and location provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 32,
+      "query": "Show providers with NPI numbers starting with 123",
+      "description": "NPI-specific provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 33,
+      "query": "Get providers with expired credentials in 2023",
+      "description": "Credentialing status provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 34,
+      "query": "Find providers accepting new patients",
+      "description": "Patient acceptance provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 35,
+      "query": "Show providers by practice type and size",
+      "description": "Practice characteristics provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 36,
+      "query": "Get providers with specific board certifications",
+      "description": "Certification provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 37,
+      "query": "Find providers with telehealth capabilities",
+      "description": "Telehealth provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 38,
+      "query": "Show providers by years of experience and education",
+      "description": "Experience provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 39,
+      "query": "Get providers with specific language capabilities",
+      "description": "Language provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 40,
+      "query": "Find providers with quality ratings above 4.0",
+      "description": "Quality rating provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 41,
+      "query": "Show providers by insurance network participation",
+      "description": "Network participation provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 42,
+      "query": "Get providers with specific facility affiliations",
+      "description": "Facility affiliation provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 43,
+      "query": "Find providers with malpractice history",
+      "description": "Malpractice provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 44,
+      "query": "Show providers by geographic service area",
+      "description": "Service area provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 45,
+      "query": "Get providers with specific procedure capabilities",
+      "description": "Procedure capability provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 46,
+      "query": "Find providers with research participation",
+      "description": "Research provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 47,
+      "query": "Show providers by patient volume and capacity",
+      "description": "Volume provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 48,
+      "query": "Get providers with specific technology access",
+      "description": "Technology provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 49,
+      "query": "Find providers with continuing education requirements",
+      "description": "Education provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 50,
+      "query": "Show providers by referral patterns and relationships",
+      "description": "Referral provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 51,
+      "query": "Get providers with specific billing preferences",
+      "description": "Billing provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 52,
+      "query": "Find providers with emergency coverage",
+      "description": "Emergency coverage provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 53,
+      "query": "Show providers by patient satisfaction scores",
+      "description": "Satisfaction provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 54,
+      "query": "Get providers with specific scheduling availability",
+      "description": "Scheduling provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 55,
+      "query": "Find providers with specific insurance contracts",
+      "description": "Contract provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 56,
+      "query": "Show providers by practice ownership type",
+      "description": "Ownership provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 57,
+      "query": "Get providers with specific demographic focus",
+      "description": "Demographic focus provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 58,
+      "query": "Find providers with specific outcome metrics",
+      "description": "Outcome provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 59,
+      "query": "Show providers by cost efficiency ratings",
+      "description": "Cost efficiency provider query",
+      "expected_index": "healthcare_providers_index"
+    },
+    {
+      "test_number": 60,
+      "query": "Get providers with specific compliance status",
+      "description": "Compliance provider query",
+      "expected_index": "healthcare_providers_index"
+    }
+  ]
+}

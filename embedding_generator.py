@@ -10,13 +10,16 @@ import numpy as np
 from typing import Dict, List, Any, Optional, Tuple
 from sentence_transformers import SentenceTransformer
 import faiss
+from config_reader import config
 
 class EmbeddingDataGenerator:
     """Handles text processing and data preparation for embeddings"""
     
     def __init__(self):
-        self.claims_index_file = "data/opensearch/claims_index_mapping_expanded.json"
-        self.providers_index_file = "data/opensearch/providers_index_mapping_expanded.json"
+        # Get the project root directory (same directory as current file)
+        project_root = os.path.dirname(os.path.abspath(__file__))
+        self.claims_index_file = os.path.join(project_root, "data/opensearch/claims_index_mapping_expanded.json")
+        self.providers_index_file = os.path.join(project_root, "data/opensearch/providers_index_mapping_expanded.json")
     
     def load_index_metadata(self, file_path: str) -> Dict[str, Any]:
         """Load index metadata from JSON file"""
@@ -161,9 +164,12 @@ class EmbeddingDataGenerator:
 class EmbeddingVectorGenerator:
     """Handles actual embedding vector generation using sentence-transformers"""
     
-    def __init__(self, model_name: str = "bert-base-uncased"):
-        self.model_name = model_name
+    def __init__(self, model_name: str = None):
+        # Use configuration if no model specified
+        self.model_name = model_name or config.get_primary_model()
         self.model = None
+        self.normalize_vectors = config.is_vector_normalization_enabled()
+        self.preprocess_text = config.is_text_preprocessing_enabled()
         self._load_model()
     
     def _load_model(self):
@@ -176,6 +182,36 @@ class EmbeddingVectorGenerator:
             print(f"Error loading model: {e}")
             self.model = None
     
+    def preprocess_text_for_embedding(self, text: str) -> str:
+        """Preprocess text for better embedding quality"""
+        if not self.preprocess_text:
+            return text
+        
+        # Remove excessive whitespace
+        import re
+        text = re.sub(r'\s+', ' ', text.strip())
+        
+        # Expand healthcare abbreviations
+        abbreviations = {
+            'ER': 'emergency room',
+            'NPI': 'national provider identifier',
+            'CPT': 'current procedural terminology',
+            'DRG': 'diagnosis related group',
+            'HMO': 'health maintenance organization',
+            'PPO': 'preferred provider organization'
+        }
+        
+        for abbr, full in abbreviations.items():
+            text = text.replace(abbr, f"{abbr} ({full})")
+        
+        # Add context markers for better semantic understanding
+        if 'claim' in text.lower():
+            text = f"healthcare claims analysis: {text}"
+        elif 'provider' in text.lower():
+            text = f"healthcare provider management: {text}"
+        
+        return text
+    
     def generate_embedding_vector(self, text: str) -> List[float]:
         """Generate embedding vector for given text using the loaded model"""
         if self.model is None:
@@ -183,8 +219,16 @@ class EmbeddingVectorGenerator:
             return []
         
         try:
+            # Preprocess text if enabled
+            processed_text = self.preprocess_text_for_embedding(text)
+            
             # Generate embedding vector
-            embedding = self.model.encode(text, convert_to_tensor=False)
+            embedding = self.model.encode(processed_text, convert_to_tensor=False)
+            
+            # Normalize vectors if enabled
+            if self.normalize_vectors:
+                embedding = embedding / np.linalg.norm(embedding)
+            
             return embedding.tolist()
         except Exception as e:
             print(f"Error generating embedding: {e}")
@@ -212,9 +256,13 @@ class EmbeddingVectorGenerator:
 class EmbeddingGenerator:
     """Main orchestrator class that coordinates data generation and vector generation"""
     
-    def __init__(self, model_name: str = "bert-base-uncased"):
+    def __init__(self, model_name: str = None):
+        # Use configuration if no model specified
+        self.model_name = model_name or config.get_primary_model()
         self.data_generator = EmbeddingDataGenerator()
-        self.vector_generator = EmbeddingVectorGenerator(model_name)
+        self.vector_generator = EmbeddingVectorGenerator(self.model_name)
+        self.index_directory = config.get_index_directory()
+        self.cache_directory = config.get_cache_directory()
     
     def generate_all_embeddings(self) -> List[Dict[str, Any]]:
         """Generate all embeddings for both indexes as a flat list"""
@@ -468,9 +516,13 @@ class EmbeddingGenerator:
         for index_name in available_indexes:
             # Find corresponding source file
             source_file = None
-            for file in os.listdir("data/opensearch"):
+            # Get the project root directory
+            project_root = os.path.dirname(os.path.abspath(__file__))
+            data_dir = os.path.join(project_root, "data/opensearch")
+            
+            for file in os.listdir(data_dir):
                 if file.startswith(index_name) and file.endswith('.json'):
-                    source_file = f"data/opensearch/{file}"
+                    source_file = os.path.join(data_dir, file)
                     break
             
             if source_file:
@@ -519,19 +571,27 @@ class EmbeddingGenerator:
         except Exception as e:
             return {"error": f"Error getting statistics: {e}"}
     
-    def create_consolidated_index(self, output_path: str = "indexes/healthcare_semantic_index") -> bool:
+    def create_consolidated_index(self, output_path: str = None) -> bool:
         """Create a consolidated index directly from source files"""
         try:
             print("Creating healthcare semantic index...")
             
+            # Get the project root directory
+            project_root = os.path.dirname(os.path.abspath(__file__))
+            data_dir = os.path.join(project_root, "data/opensearch")
+            
+            # Set default output path if not provided
+            if output_path is None:
+                output_path = os.path.join(project_root, "indexes/healthcare_semantic_index")
+            
             # Get all source files
             source_files = []
-            for file in os.listdir("data/opensearch"):
+            for file in os.listdir(data_dir):
                 if file.endswith('_expanded.json'):
-                    source_files.append(f"data/opensearch/{file}")
+                    source_files.append(os.path.join(data_dir, file))
             
             if not source_files:
-                print("No expanded source files found in data/opensearch/")
+                print(f"No expanded source files found in {data_dir}")
                 return False
             
             print(f"Processing {len(source_files)} source files...")
@@ -620,7 +680,9 @@ class EmbeddingGenerator:
     def search_consolidated_index(self, query: str, top_k: int = 10, filters: Optional[Dict[str, Any]] = None) -> List[Dict[str, Any]]:
         """Search the consolidated index with optional filters"""
         try:
-            consolidated_path = "indexes/healthcare_semantic_index"
+            # Get the project root directory
+            project_root = os.path.dirname(os.path.abspath(__file__))
+            consolidated_path = os.path.join(project_root, "indexes/healthcare_semantic_index")
             index_path = f"{consolidated_path}.faiss"
             metadata_path = f"{consolidated_path}.json"
             
@@ -703,9 +765,11 @@ class EmbeddingGenerator:
     def get_consolidated_index_statistics(self) -> Dict[str, Any]:
         """Get statistics for the consolidated index"""
         try:
-            registry_path = "indexes/healthcare_semantic_index_registry.json"
-            index_path = "indexes/healthcare_semantic_index.faiss"
-            metadata_path = "indexes/healthcare_semantic_index.json"
+            # Get the project root directory
+            project_root = os.path.dirname(os.path.abspath(__file__))
+            registry_path = os.path.join(project_root, "indexes/healthcare_semantic_index_registry.json")
+            index_path = os.path.join(project_root, "indexes/healthcare_semantic_index.faiss")
+            metadata_path = os.path.join(project_root, "indexes/healthcare_semantic_index.json")
             
             if not os.path.exists(registry_path):
                 return {"error": "Consolidated index not found"}

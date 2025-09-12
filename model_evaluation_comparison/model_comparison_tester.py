@@ -15,10 +15,15 @@ import numpy as np
 from model_config import (
     MODELS_TO_TEST, 
     CONFIDENCE_THRESHOLDS, 
-    TEST_PARAMETERS,
-    MODEL_DESCRIPTIONS,
+    TEST_PARAMETERS, 
+    MODEL_DESCRIPTIONS, 
     OUTPUT_PATTERNS
 )
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from config_reader import config
 from embedding_generator import EmbeddingGenerator
 from index_router import HealthcareQueryRouter
 from test_healthcare_router_comprehensive import test_healthcare_query_routing

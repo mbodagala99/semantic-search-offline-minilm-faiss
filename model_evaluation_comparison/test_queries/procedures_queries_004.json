@@ -1,0 +1,307 @@
+{
+  "index_name": "healthcare_procedures_index",
+  "total_queries": 50,
+  "description": "Test queries for healthcare_procedures_index",
+  "queries": [
+    {
+      "test_number": 101,
+      "query": "Find all procedures that require prior authorization",
+      "description": "Prior authorization procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 102,
+      "query": "Show procedures with RVU greater than 5.0",
+      "description": "RVU procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 103,
+      "query": "Get procedures in the cardiology specialty",
+      "description": "Specialty procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 104,
+      "query": "Find procedures with age restrictions for pediatric patients",
+      "description": "Age restriction procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 105,
+      "query": "Show procedures with gender-specific requirements",
+      "description": "Gender restriction procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 106,
+      "query": "Get procedures with frequency limits per year",
+      "description": "Frequency limit procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 107,
+      "query": "Find procedures with bundling rules and requirements",
+      "description": "Bundling procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 108,
+      "query": "Show procedures with global periods of 90 days",
+      "description": "Global period procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 109,
+      "query": "Get procedures with high allowed amounts over $1000",
+      "description": "High-cost procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 110,
+      "query": "Find procedures requiring specific facility types",
+      "description": "Facility type procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 111,
+      "query": "Show procedures with anesthesia base units",
+      "description": "Anesthesia procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 112,
+      "query": "Get procedures with time-based billing requirements",
+      "description": "Time-based procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 113,
+      "query": "Find procedures with specific modifier requirements",
+      "description": "Modifier procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 114,
+      "query": "Show procedures with diagnosis code requirements",
+      "description": "Diagnosis requirement procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 115,
+      "query": "Get procedures in the musculoskeletal body system",
+      "description": "Body system procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 116,
+      "query": "Find procedures with experimental or investigational status",
+      "description": "Experimental procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 117,
+      "query": "Show procedures with quality measure requirements",
+      "description": "Quality measure procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 118,
+      "query": "Get procedures with specific provider credential requirements",
+      "description": "Credential requirement procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 119,
+      "query": "Find procedures with geographic practice cost index variations",
+      "description": "GPCI procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 120,
+      "query": "Show procedures with conversion factor calculations",
+      "description": "Conversion factor procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 121,
+      "query": "Get procedures with work RVU components",
+      "description": "Work RVU procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 122,
+      "query": "Find procedures with practice expense RVU components",
+      "description": "Practice expense RVU procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 123,
+      "query": "Show procedures with malpractice RVU components",
+      "description": "Malpractice RVU procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 124,
+      "query": "Get procedures with specific place of service codes",
+      "description": "Place of service procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 125,
+      "query": "Find procedures with effective dates in 2023",
+      "description": "Effective date procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 126,
+      "query": "Show procedures with termination dates in 2023",
+      "description": "Termination date procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 127,
+      "query": "Get procedures with active status and current availability",
+      "description": "Status procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 128,
+      "query": "Find procedures with specific billing codes and descriptions",
+      "description": "Billing code procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 129,
+      "query": "Show procedures with HCPCS codes and coverage",
+      "description": "HCPCS procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 130,
+      "query": "Get procedures with CPT codes and reimbursement",
+      "description": "CPT procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 131,
+      "query": "Find procedures with ICD-10-PCS codes and classification",
+      "description": "ICD-10-PCS procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 132,
+      "query": "Show procedures with specific procedure categories",
+      "description": "Category procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 133,
+      "query": "Get procedures with evaluation and management codes",
+      "description": "E&M procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 134,
+      "query": "Find procedures with surgery codes and requirements",
+      "description": "Surgery procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 135,
+      "query": "Show procedures with radiology codes and imaging",
+      "description": "Radiology procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 136,
+      "query": "Get procedures with pathology codes and laboratory",
+      "description": "Pathology procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 137,
+      "query": "Find procedures with medicine codes and treatments",
+      "description": "Medicine procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 138,
+      "query": "Show procedures with anesthesia codes and monitoring",
+      "description": "Anesthesia code procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 139,
+      "query": "Get procedures with specific cost analysis and pricing",
+      "description": "Cost analysis procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 140,
+      "query": "Find procedures with utilization management requirements",
+      "description": "Utilization management procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 141,
+      "query": "Show procedures with clinical decision support needs",
+      "description": "Clinical decision support procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 142,
+      "query": "Get procedures with evidence-based guidelines",
+      "description": "Evidence-based procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 143,
+      "query": "Find procedures with appropriate use criteria",
+      "description": "Appropriate use procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 144,
+      "query": "Show procedures with patient safety requirements",
+      "description": "Patient safety procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 145,
+      "query": "Get procedures with outcome measurement requirements",
+      "description": "Outcome measurement procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 146,
+      "query": "Find procedures with benchmarking and comparison data",
+      "description": "Benchmarking procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 147,
+      "query": "Show procedures with research and clinical trial participation",
+      "description": "Research procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 148,
+      "query": "Get procedures with accreditation and certification requirements",
+      "description": "Accreditation procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 149,
+      "query": "Find procedures with compliance and regulatory requirements",
+      "description": "Compliance procedure query",
+      "expected_index": "healthcare_procedures_index"
+    },
+    {
+      "test_number": 150,
+      "query": "Show procedures with technology and innovation requirements",
+      "description": "Technology procedure query",
+      "expected_index": "healthcare_procedures_index"
+    }
+  ]
+}
