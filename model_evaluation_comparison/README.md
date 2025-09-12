@@ -11,7 +11,6 @@ This directory contains all scripts and tools for evaluating and comparing diffe
 - **`model_config.py`** - Configuration for models and testing parameters
 
 ### Analysis Tools
-- **`analyze_test_queries.py`** - Analyzes test query patterns and performance
 - **`compare_test_results.py`** - Compares results across different model runs
 
 ### Configuration
@@ -42,7 +41,6 @@ print(f'Success rate: {result[1]:.1f}%')
 ### Analyze Test Results
 ```bash
 cd model_evaluation_comparison
-python analyze_test_queries.py
 ```
 
 ## 📊 Models Tested
@@ -76,7 +74,7 @@ Edit `model_config.py` to:
 
 ## 📝 Notes
 
-- All scripts use the main configuration system (`../healthcare_search.config`)
+- All scripts use the main configuration system (`../config.ini`)
 - Embeddings are cached to avoid regeneration
 - Results are automatically timestamped
 - Supports both individual and batch testing

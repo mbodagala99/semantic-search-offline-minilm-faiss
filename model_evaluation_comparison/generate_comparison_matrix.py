@@ -11,27 +11,31 @@ from datetime import datetime
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from model_comparison_tester import ModelComparisonTester
-from model_config import MODELS_TO_TEST, CONFIDENCE_THRESHOLDS
 
 def main():
     """Main execution function"""
     print("🏥 Healthcare Query Router - Model Comparison Testing")
     print("=" * 60)
     print(f"📅 Start Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print(f"🤖 Models to Test: {len(MODELS_TO_TEST)}")
-    print(f"🎯 Confidence Thresholds: {len(CONFIDENCE_THRESHOLDS)}")
-    print(f"📊 Total Test Combinations: {len(MODELS_TO_TEST) * len(CONFIDENCE_THRESHOLDS)}")
+    # Initialize tester to get configuration
+    tester = ModelComparisonTester(regenerate_embeddings=False)
+    models_count = len(tester.models_to_test)
+    thresholds_count = len(tester.confidence_thresholds)
+    
+    print(f"🤖 Models to Test: {models_count}")
+    print(f"🎯 Confidence Thresholds: {thresholds_count}")
+    print(f"📊 Total Test Combinations: {models_count * thresholds_count}")
     print("=" * 60)
     
     # Display models and thresholds
     print("\n📋 Models to Test:")
-    for i, model in enumerate(MODELS_TO_TEST, 1):
+    for i, model in enumerate(tester.models_to_test, 1):
         print(f"   {i}. {model}")
     
-    print(f"\n🎯 Confidence Thresholds: {CONFIDENCE_THRESHOLDS}")
+    print(f"\n🎯 Confidence Thresholds: {tester.confidence_thresholds}")
     
     # Estimate time
-    estimated_hours = len(MODELS_TO_TEST) * len(CONFIDENCE_THRESHOLDS) * 0.05  # ~3 minutes per test
+    estimated_hours = models_count * thresholds_count * 0.05  # ~3 minutes per test
     print(f"\n⏱️  Estimated Time: {estimated_hours:.1f} hours")
     
     # Auto-proceed with testing
@@ -39,8 +43,7 @@ def main():
     print("🚀 Starting comprehensive testing automatically...")
     
     try:
-        # Initialize tester with optimization
-        tester = ModelComparisonTester(regenerate_embeddings=False)
+        # Use the already initialized tester
         
         # Run complete comparison with optimization
         results = tester.run_complete_comparison_optimized()
@@ -56,7 +59,7 @@ def main():
         print("-" * 30)
         
         # Best overall performance
-        best_overall = max(MODELS_TO_TEST, key=lambda m: stats[m]['max_success_rate'])
+        best_overall = max(tester.models_to_test, key=lambda m: stats[m]['max_success_rate'])
         best_score = stats[best_overall]['max_success_rate']
         best_threshold = stats[best_overall]['best_threshold']
         
@@ -66,7 +69,7 @@ def main():
         
         # Model rankings
         print(f"\n📈 Model Rankings (by max success rate):")
-        sorted_models = sorted(MODELS_TO_TEST, key=lambda m: stats[m]['max_success_rate'], reverse=True)
+        sorted_models = sorted(tester.models_to_test, key=lambda m: stats[m]['max_success_rate'], reverse=True)
         for i, model in enumerate(sorted_models, 1):
             max_rate = stats[model]['max_success_rate']
             avg_rate = stats[model]['avg_success_rate']
@@ -74,8 +77,8 @@ def main():
         
         # Threshold analysis
         print(f"\n🎯 Threshold Analysis:")
-        for threshold in CONFIDENCE_THRESHOLDS:
-            best_at_threshold = max(MODELS_TO_TEST, key=lambda m: matrix_data['matrix'][m][threshold])
+        for threshold in tester.confidence_thresholds:
+            best_at_threshold = max(tester.models_to_test, key=lambda m: matrix_data['matrix'][m][threshold])
             score_at_threshold = matrix_data['matrix'][best_at_threshold][threshold]
             print(f"   Threshold {threshold}: {best_at_threshold} ({score_at_threshold:.1f}%)")
         

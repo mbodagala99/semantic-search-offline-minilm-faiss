@@ -1,31 +1,38 @@
 #!/usr/bin/env python3
 """
-Healthcare Index Router - Intelligent Query Routing System
+Healthcare Query Processor - Comprehensive Query Processing System
 
-This module provides intelligent routing capabilities for healthcare data queries
-using semantic similarity search with confidence-based decision making.
+This module provides comprehensive healthcare query processing capabilities including:
+- Healthcare/non-healthcare pre-classification using ensemble models
+- Intelligent routing to appropriate data indexes using semantic similarity search
+- Analytics and performance tracking
+- Enhanced error handling
+- User context support and comprehensive logging
 
 """
 
 import json
 import os
+import time
 from typing import Dict, List, Any, Optional
+from datetime import datetime
 from embedding_generator import EmbeddingGenerator
 from config_reader import config
 from classifiers import ClassifierFactory
 
 
-class HealthcareQueryRouter:
+class HealthcareQueryProcessor:
     """
-    Intelligent router for healthcare data queries using semantic similarity.
+    Comprehensive healthcare query processing system.
     
-    Routes user queries to appropriate healthcare data indexes based on
-    confidence scores from semantic similarity search.
+    Provides end-to-end healthcare query processing including pre-classification,
+    intelligent routing, analytics tracking, and enhanced error handling with
+    and user context support.
     """
     
     def __init__(self, embedding_generator: EmbeddingGenerator):
         """
-        Initialize the healthcare query router.
+        Initialize the healthcare query processor.
         
         Args:
             embedding_generator: Instance of EmbeddingGenerator for semantic search
@@ -43,6 +50,17 @@ class HealthcareQueryRouter:
         
         # Initialize healthcare classifier
         self.classifier = self._initialize_classifier()
+        
+        # Analytics and performance tracking
+        self.query_count = 0
+        self.classification_count = 0
+        self.rejection_count = 0
+        self.error_count = 0
+        self.total_processing_time = 0.0
+        
+        # Enhanced configuration
+        self.enable_analytics = True  # Default to True
+        self.log_classification_results = True  # Default to True
     
     def _initialize_classifier(self):
         """Initialize the healthcare classifier"""
@@ -64,51 +82,189 @@ class HealthcareQueryRouter:
             print(f"Warning: Could not initialize classifier: {e}")
             return None
     
-    def route_healthcare_query(self, user_query: str) -> Dict[str, Any]:
+    def route_healthcare_query(self, user_query: str, user_context: Dict[str, Any] = None) -> Dict[str, Any]:
         """
         Route a healthcare query to the most appropriate data source.
         
         Args:
             user_query: The user's query string
+            user_context: Optional user context information
             
         Returns:
             Dictionary containing routing analysis and recommendations
         """
+        # Analytics tracking
+        start_time = time.time()
+        self.query_count += 1
+        
         try:
-            # Step 1: Classify as healthcare/non-healthcare
+            # Step 1: Enhanced healthcare/non-healthcare classification
             if self.classifier and self.classifier.is_available():
                 classification_result = self.classifier.classify(user_query)
+                self.classification_count += 1
                 
-                # If not healthcare, reject early
+                # Log classification results if enabled
+                if self.log_classification_results:
+                    self._log_classification_result(user_query, classification_result)
+                
+                # If not healthcare, reject early with enhanced response
                 if not self.classifier.should_route_to_healthcare(classification_result):
-                    return {
-                        "query": user_query,
-                        "routing_status": "REJECTED_NON_HEALTHCARE",
-                        "confidence_score": classification_result.confidence,
-                        "primary_data_source": "N/A",
-                        "classification_info": {
-                            "is_healthcare": classification_result.is_healthcare,
-                            "model_name": classification_result.model_name,
-                            "processing_time_ms": classification_result.processing_time_ms
-                        },
-                        "message": "Query appears to be non-healthcare related. Please provide a healthcare-specific query."
-                    }
+                    self.rejection_count += 1
+                    processing_time = (time.time() - start_time) * 1000
+                    self.total_processing_time += processing_time
+                    
+                    return self._create_enhanced_rejection_response(
+                        user_query, classification_result, user_context, processing_time
+                    )
             
             # Step 2: If healthcare, proceed with existing similarity search
-            return self._perform_similarity_search(user_query)
+            result = self._perform_similarity_search(user_query)
+            
+            # Update analytics
+            processing_time = (time.time() - start_time) * 1000
+            self.total_processing_time += processing_time
+            
+            # Add analytics to result
+            if self.enable_analytics:
+                result["analytics"] = {
+                    "processing_time_ms": processing_time,
+                    "query_count": self.query_count,
+                    "classification_count": self.classification_count,
+                    "rejection_count": self.rejection_count,
+                    "timestamp": datetime.now().isoformat()
+                }
+            
+            return result
                 
         except Exception as e:
-            return self._create_error_response(user_query, str(e))
+            self.error_count += 1
+            processing_time = (time.time() - start_time) * 1000
+            self.total_processing_time += processing_time
+            
+            return self._create_enhanced_error_response(user_query, str(e), processing_time)
     
-    def _create_error_response(self, user_query: str, error_message: str) -> Dict[str, Any]:
-        """Create error response"""
-        return {
+    def _create_enhanced_rejection_response(self, user_query: str, classification_result, 
+                                          user_context: Dict[str, Any] = None, 
+                                          processing_time: float = 0.0) -> Dict[str, Any]:
+        """Create enhanced rejection response for non-healthcare queries"""
+        
+        # No suggestions for now - keeping it minimal
+        
+        # Create base response
+        response = {
+            "query": user_query,
+            "routing_status": "REJECTED_NON_HEALTHCARE",
+            "confidence_score": classification_result.confidence,
+            "primary_data_source": "N/A",
+            "processing_time_ms": processing_time,
+            "classification_info": {
+                "is_healthcare": classification_result.is_healthcare,
+                "model_name": classification_result.model_name,
+                "processing_time_ms": classification_result.processing_time_ms,
+                "raw_response": classification_result.raw_response
+            },
+            "message": "Query appears to be non-healthcare related. Please provide a healthcare-specific query.",
+            "timestamp": datetime.now().isoformat()
+        }
+        
+        # No suggestions added - keeping response minimal
+        
+        # Add user context if provided
+        if user_context:
+            response["user_context"] = {
+                "user_id": user_context.get("user_id"),
+                "session_id": user_context.get("session_id"),
+                "previous_queries": user_context.get("previous_queries", [])
+            }
+        
+        # Add analytics
+        if self.enable_analytics:
+            response["analytics"] = {
+                "query_count": self.query_count,
+                "classification_count": self.classification_count,
+                "rejection_count": self.rejection_count,
+                "rejection_rate": (self.rejection_count / self.query_count) * 100 if self.query_count > 0 else 0
+            }
+        
+        return response
+    
+    def _create_enhanced_error_response(self, user_query: str, error_message: str, 
+                                      processing_time: float = 0.0) -> Dict[str, Any]:
+        """Create enhanced error response with analytics"""
+        response = {
             "query": user_query,
             "routing_status": "ERROR",
             "confidence_score": 0.0,
             "primary_data_source": "N/A",
-            "message": f"Error processing query: {error_message}"
+            "processing_time_ms": processing_time,
+            "message": f"Error processing query: {error_message}",
+            "timestamp": datetime.now().isoformat(),
+            "error_details": {
+                "error_type": "processing_error",
+                "error_message": error_message
+            }
         }
+        
+        # Add analytics
+        if self.enable_analytics:
+            response["analytics"] = {
+                "query_count": self.query_count,
+                "error_count": self.error_count,
+                "error_rate": (self.error_count / self.query_count) * 100 if self.query_count > 0 else 0
+            }
+        
+        return response
+    
+    def _create_error_response(self, user_query: str, error_message: str) -> Dict[str, Any]:
+        """Create basic error response (backward compatibility)"""
+        return self._create_enhanced_error_response(user_query, error_message, 0.0)
+    
+    
+    def _log_classification_result(self, query: str, classification_result) -> None:
+        """Log classification results for analytics and debugging"""
+        try:
+            log_entry = {
+                "timestamp": datetime.now().isoformat(),
+                "query": query,
+                "is_healthcare": classification_result.is_healthcare,
+                "confidence": classification_result.confidence,
+                "model_name": classification_result.model_name,
+                "processing_time_ms": classification_result.processing_time_ms
+            }
+            
+            # Log to console if enabled
+            if self.log_classification_results:
+                print(f"🔍 Classification: {query[:50]}... -> {'Healthcare' if classification_result.is_healthcare else 'Non-Healthcare'} (conf: {classification_result.confidence:.3f})")
+            
+            # Could also log to file or database here
+            # self._write_to_log_file(log_entry)
+            
+        except Exception as e:
+            print(f"Warning: Could not log classification result: {e}")
+    
+    def get_analytics_summary(self) -> Dict[str, Any]:
+        """Get comprehensive analytics summary"""
+        return {
+            "total_queries": self.query_count,
+            "classification_count": self.classification_count,
+            "rejection_count": self.rejection_count,
+            "error_count": self.error_count,
+            "total_processing_time_ms": self.total_processing_time,
+            "average_processing_time_ms": self.total_processing_time / self.query_count if self.query_count > 0 else 0,
+            "rejection_rate": (self.rejection_count / self.query_count) * 100 if self.query_count > 0 else 0,
+            "error_rate": (self.error_count / self.query_count) * 100 if self.query_count > 0 else 0,
+            "classification_rate": (self.classification_count / self.query_count) * 100 if self.query_count > 0 else 0,
+            "timestamp": datetime.now().isoformat()
+        }
+    
+    def reset_analytics(self) -> None:
+        """Reset analytics counters"""
+        self.query_count = 0
+        self.classification_count = 0
+        self.rejection_count = 0
+        self.error_count = 0
+        self.total_processing_time = 0.0
+        print("📊 Analytics counters reset")
     
     def _perform_similarity_search(self, user_query: str) -> Dict[str, Any]:
         """Perform semantic similarity search for healthcare queries"""
@@ -250,12 +406,12 @@ class HealthcareQueryAnalyzer:
     Analyzer for healthcare queries to provide insights and recommendations.
     """
     
-    def __init__(self, query_router: HealthcareQueryRouter):
+    def __init__(self, query_router: HealthcareQueryProcessor):
         """
         Initialize the healthcare query analyzer.
         
         Args:
-            query_router: Instance of HealthcareQueryRouter
+            query_router: Instance of HealthcareQueryProcessor
         """
         self.query_router = query_router
     
@@ -348,7 +504,7 @@ def main():
     embedding_gen = EmbeddingGenerator()
     
     # Initialize the query router
-    query_router = HealthcareQueryRouter(embedding_gen)
+    query_router = HealthcareQueryProcessor(embedding_gen)
     
     # Initialize the query analyzer
     query_analyzer = HealthcareQueryAnalyzer(query_router)

@@ -11,7 +11,7 @@ from typing import List, Dict, Any, Union
 class HealthcareSearchConfig:
     """Configuration reader for healthcare search system"""
     
-    def __init__(self, config_file: str = "healthcare_search.config"):
+    def __init__(self, config_file: str = "config.ini"):
         self.config_file = config_file
         self.config = configparser.ConfigParser()
         self.load_config()
@@ -193,7 +193,53 @@ class HealthcareSearchConfig:
     
     def get_log_file(self) -> str:
         """Get log file path"""
-        return self.config.get('LOGGING', 'log_file', fallback='healthcare_search.log')
+        return self.config.get('LOGGING', 'log_file', fallback='app.log')
+    
+    # LLM Integration Configuration
+    def get_llm_provider(self) -> str:
+        """Get LLM provider name"""
+        return self.config.get('LLM_INTEGRATION', 'provider', fallback='gemini')
+    
+    def get_llm_api_key(self) -> str:
+        """Get LLM API key"""
+        return self.config.get('LLM_INTEGRATION', 'api_key', fallback='')
+    
+    def get_llm_model(self) -> str:
+        """Get LLM model name"""
+        return self.config.get('LLM_INTEGRATION', 'model', fallback='gemini-1.5-pro')
+    
+    def get_llm_temperature(self) -> float:
+        """Get LLM temperature"""
+        return self.config.getfloat('LLM_INTEGRATION', 'temperature', fallback=0.1)
+    
+    def get_llm_max_tokens(self) -> int:
+        """Get LLM max tokens"""
+        return self.config.getint('LLM_INTEGRATION', 'max_tokens', fallback=1000)
+    
+    def get_llm_top_p(self) -> float:
+        """Get LLM top-p parameter"""
+        return self.config.getfloat('LLM_INTEGRATION', 'top_p', fallback=0.8)
+    
+    def get_llm_top_k(self) -> int:
+        """Get LLM top-k parameter"""
+        return self.config.getint('LLM_INTEGRATION', 'top_k', fallback=40)
+    
+    def is_llm_enabled(self) -> bool:
+        """Check if LLM integration is enabled"""
+        return self.config.getboolean('LLM_INTEGRATION', 'enable_llm', fallback=False)
+    
+    def get_llm_config(self) -> Dict[str, Any]:
+        """Get complete LLM configuration"""
+        return {
+            'provider': self.get_llm_provider(),
+            'api_key': self.get_llm_api_key(),
+            'model': self.get_llm_model(),
+            'temperature': self.get_llm_temperature(),
+            'max_tokens': self.get_llm_max_tokens(),
+            'top_p': self.get_llm_top_p(),
+            'top_k': self.get_llm_top_k(),
+            'enabled': self.is_llm_enabled()
+        }
     
     def get_all_config(self) -> Dict[str, Any]:
         """Get all configuration as dictionary"""

@@ -17,7 +17,7 @@ from pathlib import Path
 # Add parent directory to path for imports
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from index_router import HealthcareQueryRouter, HealthcareQueryAnalyzer
+from healthcare_query_processor import HealthcareQueryProcessor, HealthcareQueryAnalyzer
 from embedding_generator import EmbeddingGenerator
 
 
@@ -69,7 +69,7 @@ def test_healthcare_query_routing(query_router=None, save_results=True):
     if query_router is None:
         # Initialize the embedding generator and router
         embedding_gen = EmbeddingGenerator()
-        query_router = HealthcareQueryRouter(embedding_gen)
+        query_router = HealthcareQueryProcessor(embedding_gen)
     
     # Load queries from JSON files
     print("🏥 Healthcare Query Router - JSON File Based Test Suite")
@@ -104,7 +104,7 @@ def test_healthcare_query_routing(query_router=None, save_results=True):
         try:
             # Route the query
             routing_result = query_router.route_healthcare_query(query)
-            
+        
             # Extract key information
             confidence_score = routing_result.get('routing_analysis', {}).get('confidence_score', 0.0)
             routing_status = routing_result.get('routing_analysis', {}).get('routing_status', 'UNKNOWN')
@@ -134,7 +134,7 @@ def test_healthcare_query_routing(query_router=None, save_results=True):
                     low_confidence_clarification += 1
                     status_icon = "❓"
                     status_text = "Low Confidence - Clarification"
-            
+        
             print(f"     Confidence: {confidence_score:.3f}")
             print(f"     Status: {routing_status}")
             print(f"     {status_icon} {status_text}")
@@ -219,8 +219,12 @@ def test_healthcare_query_routing(query_router=None, save_results=True):
     if save_results:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         
+        # Create results directory if it doesn't exist
+        results_dir = "results"
+        os.makedirs(results_dir, exist_ok=True)
+        
         # Save JSON results
-        json_filename = f"healthcare_router_json_test_{timestamp}.json"
+        json_filename = os.path.join(results_dir, f"healthcare_router_json_test_{timestamp}.json")
         with open(json_filename, 'w', encoding='utf-8') as f:
             json.dump({
                 "test_summary": {
@@ -236,15 +240,15 @@ def test_healthcare_query_routing(query_router=None, save_results=True):
             }, f, indent=2, ensure_ascii=False)
         
         # Save CSV results
-        csv_filename = f"healthcare_router_json_test_{timestamp}.csv"
+        csv_filename = os.path.join(results_dir, f"healthcare_router_json_test_{timestamp}.csv")
         with open(csv_filename, 'w', newline='', encoding='utf-8') as f:
             if results:
                 writer = csv.DictWriter(f, fieldnames=results[0].keys())
                 writer.writeheader()
                 writer.writerows(results)
-        
+    
         # Save summary report
-        report_filename = f"healthcare_router_json_test_{timestamp}.txt"
+        report_filename = os.path.join(results_dir, f"healthcare_router_json_test_{timestamp}.txt")
         with open(report_filename, 'w', encoding='utf-8') as f:
             f.write("Healthcare Query Router - JSON File Based Test Report\n")
             f.write("=" * 60 + "\n\n")
@@ -274,10 +278,10 @@ def test_healthcare_query_routing(query_router=None, save_results=True):
                 f.write(f"Status: {result['routing_status']}\n")
                 f.write(f"Data Source: {result['primary_data_source']}\n")
         
-        print(f"\n📄 Results saved to:")
-        print(f"   JSON: {json_filename}")
-        print(f"   CSV: {csv_filename}")
-        print(f"   Report: {report_filename}")
+        print(f"\n📄 Results saved to {results_dir}/ folder:")
+        print(f"   JSON: {os.path.basename(json_filename)}")
+        print(f"   CSV: {os.path.basename(csv_filename)}")
+        print(f"   Report: {os.path.basename(report_filename)}")
     
     return {
         "total_queries": total_queries,
@@ -302,7 +306,7 @@ def main():
     
     # Initialize the embedding generator and router
     embedding_gen = EmbeddingGenerator()
-    router = HealthcareQueryRouter(embedding_gen)
+    router = HealthcareQueryProcessor(embedding_gen)
     
     # Run the test
     result_data = test_healthcare_query_routing(router, save_results=True)

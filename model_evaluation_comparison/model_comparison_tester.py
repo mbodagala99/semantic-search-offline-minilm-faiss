@@ -12,31 +12,33 @@ from datetime import datetime
 from typing import Dict, List, Any, Tuple
 import numpy as np
 
-from model_config import (
-    MODELS_TO_TEST, 
-    CONFIDENCE_THRESHOLDS, 
-    TEST_PARAMETERS, 
-    MODEL_DESCRIPTIONS, 
-    OUTPUT_PATTERNS
-)
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from config_reader import config
+from config_reader import HealthcareSearchConfig
 from embedding_generator import EmbeddingGenerator
-from index_router import HealthcareQueryRouter
+from healthcare_query_processor import HealthcareQueryProcessor
 from test_healthcare_router_comprehensive import test_healthcare_query_routing
 
 class ModelComparisonTester:
     """Orchestrates comprehensive testing of multiple models and confidence thresholds"""
     
     def __init__(self, regenerate_embeddings=False):
+        # Initialize configuration
+        self.config = HealthcareSearchConfig()
+        
+        # Get configuration values
+        self.models_to_test = self.config.get_alternative_models()
+        self.confidence_thresholds = self.config.get_test_thresholds()
+        
+        # Test parameters (using config defaults)
+        self.results_dir = "results"
+        self.individual_dir = os.path.join(self.results_dir, "individual_model_results")
+        
         self.results = {}
         self.matrix_data = {}
         self.timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        self.results_dir = TEST_PARAMETERS["results_directory"]
-        self.individual_dir = os.path.join(self.results_dir, TEST_PARAMETERS["individual_results_directory"])
         self.regenerate_embeddings = regenerate_embeddings
         
         # Create directories
@@ -117,7 +119,7 @@ class ModelComparisonTester:
                 print(f"   📁 Loaded cached embeddings from {model_cache_path}")
             
             # Run tests with threshold 0.0 to capture all confidence scores
-            router = HealthcareQueryRouter(embedding_gen)
+            router = HealthcareQueryProcessor(embedding_gen)
             router.confidence_threshold = 0.0  # Capture all confidence scores
             
             # Run comprehensive tests
@@ -144,7 +146,7 @@ class ModelComparisonTester:
                 'confidence_scores': confidence_scores,
                 'query_results': query_results,
                 'test_timestamp': datetime.now().isoformat(),
-                'model_description': MODEL_DESCRIPTIONS.get(model_name, model_name)
+                'model_description': model_name  # Simplified - can add descriptions to config later
             }
             
             print(f"   ✅ Captured {len(confidence_scores)} confidence scores")
@@ -195,13 +197,13 @@ class ModelComparisonTester:
     def test_all_combinations_optimized(self) -> Dict[str, Any]:
         """Test all models once and generate matrix from confidence scores"""
         print("🚀 Starting Optimized Model Comparison Testing")
-        print(f"📊 Testing {len(MODELS_TO_TEST)} models (single run each) × {len(CONFIDENCE_THRESHOLDS)} thresholds = {len(MODELS_TO_TEST)} executions")
+        print(f"📊 Testing {len(self.models_to_test)} models (single run each) × {len(self.confidence_thresholds)} thresholds = {len(self.models_to_test)} executions")
         
         model_results = {}
         start_time = time.time()
         
-        for i, model_name in enumerate(MODELS_TO_TEST, 1):
-            print(f"\n📋 Model {i}/{len(MODELS_TO_TEST)}: {model_name}")
+        for i, model_name in enumerate(self.models_to_test, 1):
+            print(f"\n📋 Model {i}/{len(self.models_to_test)}: {model_name}")
             result = self.test_single_model_optimized(model_name)
             model_results[model_name] = result
             
@@ -226,16 +228,16 @@ class ModelComparisonTester:
         
         # Initialize matrix
         matrix = {}
-        for model_name in MODELS_TO_TEST:
+        for model_name in self.models_to_test:
             matrix[model_name] = {}
-            for threshold in CONFIDENCE_THRESHOLDS:
+            for threshold in self.confidence_thresholds:
                 matrix[model_name][threshold] = 0
         
         # Populate matrix with calculated success rates
         for model_name, result in model_results.items():
             confidence_scores = result.get('confidence_scores', [])
             
-            for threshold in CONFIDENCE_THRESHOLDS:
+            for threshold in self.confidence_thresholds:
                 success_rate = self.calculate_success_rate_at_threshold(confidence_scores, threshold)
                 matrix[model_name][threshold] = success_rate
         
@@ -245,8 +247,8 @@ class ModelComparisonTester:
         return {
             'matrix': matrix,
             'statistics': stats,
-            'models': MODELS_TO_TEST,
-            'thresholds': CONFIDENCE_THRESHOLDS,
+            'models': self.models_to_test,
+            'thresholds': self.confidence_thresholds,
             'timestamp': self.timestamp,
             'model_results': model_results
         }
@@ -255,19 +257,19 @@ class ModelComparisonTester:
         """Calculate statistics from the comparison matrix"""
         stats = {}
         
-        for model_name in MODELS_TO_TEST:
-            model_scores = [matrix[model_name][t] for t in CONFIDENCE_THRESHOLDS]
+        for model_name in self.models_to_test:
+            model_scores = [matrix[model_name][t] for t in self.confidence_thresholds]
             stats[model_name] = {
                 'max_success_rate': max(model_scores),
                 'min_success_rate': min(model_scores),
                 'avg_success_rate': np.mean(model_scores),
                 'std_success_rate': np.std(model_scores),
-                'best_threshold': CONFIDENCE_THRESHOLDS[np.argmax(model_scores)],
-                'worst_threshold': CONFIDENCE_THRESHOLDS[np.argmin(model_scores)]
+                'best_threshold': self.confidence_thresholds[np.argmax(model_scores)],
+                'worst_threshold': self.confidence_thresholds[np.argmin(model_scores)]
             }
         
         # Overall statistics
-        all_scores = [matrix[model][threshold] for model in MODELS_TO_TEST for threshold in CONFIDENCE_THRESHOLDS]
+        all_scores = [matrix[model][threshold] for model in self.models_to_test for threshold in self.confidence_thresholds]
         stats['overall'] = {
             'max_success_rate': max(all_scores),
             'min_success_rate': min(all_scores),
@@ -307,12 +309,12 @@ class ModelComparisonTester:
             writer = csv.writer(f)
             
             # Header row
-            header = ['Model'] + [str(t) for t in CONFIDENCE_THRESHOLDS]
+            header = ['Model'] + [str(t) for t in self.confidence_thresholds]
             writer.writerow(header)
             
             # Data rows
-            for model_name in MODELS_TO_TEST:
-                row = [model_name] + [f"{matrix_data['matrix'][model_name][t]:.1f}%" for t in CONFIDENCE_THRESHOLDS]
+            for model_name in self.models_to_test:
+                row = [model_name] + [f"{matrix_data['matrix'][model_name][t]:.1f}%" for t in self.confidence_thresholds]
                 writer.writerow(row)
         
         print(f"📄 Matrix saved to: {filepath}")
@@ -338,21 +340,21 @@ class ModelComparisonTester:
             f.write("HEALTHCARE QUERY ROUTER - MODEL COMPARISON SUMMARY\n")
             f.write("=" * 60 + "\n\n")
             f.write(f"Test Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
-            f.write(f"Models Tested: {len(MODELS_TO_TEST)}\n")
-            f.write(f"Confidence Thresholds: {len(CONFIDENCE_THRESHOLDS)}\n")
-            f.write(f"Total Tests: {len(MODELS_TO_TEST) * len(CONFIDENCE_THRESHOLDS)}\n\n")
+            f.write(f"Models Tested: {len(self.models_to_test)}\n")
+            f.write(f"Confidence Thresholds: {len(self.confidence_thresholds)}\n")
+            f.write(f"Total Tests: {len(self.models_to_test) * len(self.confidence_thresholds)}\n\n")
             
             # Best performing model at each threshold
             f.write("BEST PERFORMING MODEL AT EACH THRESHOLD:\n")
             f.write("-" * 40 + "\n")
-            for threshold in CONFIDENCE_THRESHOLDS:
-                best_model = max(MODELS_TO_TEST, key=lambda m: matrix_data['matrix'][m][threshold])
+            for threshold in self.confidence_thresholds:
+                best_model = max(self.models_to_test, key=lambda m: matrix_data['matrix'][m][threshold])
                 best_score = matrix_data['matrix'][best_model][threshold]
                 f.write(f"Threshold {threshold}: {best_model} ({best_score:.1f}%)\n")
             
             f.write("\nMODEL STATISTICS:\n")
             f.write("-" * 20 + "\n")
-            for model_name in MODELS_TO_TEST:
+            for model_name in self.models_to_test:
                 stats = matrix_data['statistics'][model_name]
                 f.write(f"\n{model_name}:\n")
                 f.write(f"  Max Success Rate: {stats['max_success_rate']:.1f}%\n")

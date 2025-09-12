@@ -1,2 +1,4 @@
 sentence-transformers>=2.2.2
 faiss-cpu>=1.7.4
+nltk>=3.8.1
+google-generativeai>=0.3.0
