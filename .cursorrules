@@ -1,4 +1,10 @@
-# Cursor AI Rules for Semantic Search Project
+# Cursor AI Rules for Healthcare Search Project
+
+## Setup and Documentation Rule
+- ALWAYS use the existing `SETUP_INSTRUCTIONS.md` file for ALL setup, startup, and termination related instructions
+- NEVER create additional setup, startup, or termination documentation files
+- If setup instructions need updates, modify `SETUP_INSTRUCTIONS.md` directly
+- This prevents documentation fragmentation and maintains a single source of truth
 
 ## Virtual Environment Rule
 - ALWAYS activate the virtual environment before running any Python code or installing packages
@@ -11,3 +17,16 @@
 - Do NOT add additional capabilities or features beyond what is explicitly requested
 - Keep code simple, focused, and essential-only
 - Avoid over-engineering or adding unnecessary complexity
+
+## File Organization Rule
+- Keep the project structure clean and simple
+- Avoid creating redundant files
+- Use existing scripts (`start.sh`, `stop.sh`) for application control
+- Reference `SETUP_INSTRUCTIONS.md` for all setup-related guidance
+
+## Document Creation Rule
+- DO NOT create any new documents unless explicitly requested in the user prompt
+- Only create files when the user specifically asks for a document to be created
+- If documentation is needed, update existing relevant files instead of creating new ones
+- This prevents unnecessary file proliferation and keeps the project clean
+- When in doubt, ask the user if they want a document created before proceeding

@@ -8,6 +8,7 @@ import sys
 import os
 import json
 import asyncio
+import logging
 from pathlib import Path
 from typing import Dict, Any, Optional, List
 from datetime import datetime
@@ -19,6 +20,17 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 import uvicorn
 
+# Configure debug logging
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler(),
+        logging.FileHandler('debug.log')
+    ]
+)
+logger = logging.getLogger(__name__)
+
 # Add parent directory to path to import our modules
 project_root = str(Path(__file__).parent.parent.parent)
 sys.path.insert(0, project_root)
@@ -27,18 +39,24 @@ sys.path.insert(0, project_root)
 os.chdir(project_root)
 
 try:
-    from opensearch_query_executor import QueryExecutorFactory
-    from healthcare_query_processor import HealthcareQueryProcessor
-    from dsl_query_generator import DSLQueryGenerator
-    from embedding_generator import EmbeddingGenerator
-    from config_reader import config
+    from core.initialization import get_components, health_check
+    from core.api_handlers import search_healthcare_data, get_health_status, get_available_indexes
 except ImportError as e:
-    print(f"Warning: Could not import some modules: {e}")
-    QueryExecutorFactory = None
-    HealthcareQueryProcessor = None
-    DSLQueryGenerator = None
-    EmbeddingGenerator = None
-    config = None
+    print(f"Warning: Could not import production API modules: {e}")
+    # Fallback to legacy imports for backward compatibility
+    try:
+        from opensearch_query_executor import QueryExecutorFactory
+        from healthcare_query_processor import HealthcareQueryProcessor
+        from dsl_query_generator import DSLQueryGenerator
+        from embedding_generator import EmbeddingGenerator
+        from config_reader import config
+    except ImportError as e2:
+        print(f"Warning: Could not import legacy modules: {e2}")
+        QueryExecutorFactory = None
+        HealthcareQueryProcessor = None
+        DSLQueryGenerator = None
+        EmbeddingGenerator = None
+        config = None
 
 # FastAPI App
 app = FastAPI(
@@ -78,10 +96,7 @@ async def serve_js(filename: str):
         return FileResponse(file_path, media_type="application/javascript")
     raise HTTPException(status_code=404, detail="JavaScript file not found")
 
-# Global instances
-query_executor = None
-query_processor = None
-dsl_generator = None
+# Note: Using production APIs instead of direct component initialization
 
 # Pydantic Models
 class SearchRequest(BaseModel):
@@ -103,33 +118,9 @@ class HealthCheckResponse(BaseModel):
     timestamp: datetime
     version: str
     opensearch_status: str
-    components: Dict[str, str]
+    components: Dict[str, Any]
 
-# Dependency to get initialized components
-async def get_components():
-    """Initialize components if not already done"""
-    global query_executor, query_processor, dsl_generator
-    
-    if query_executor is None:
-        query_executor = QueryExecutorFactory.create_executor()
-    
-    if query_processor is None:
-        try:
-            query_processor = HealthcareQueryProcessor(EmbeddingGenerator())
-        except Exception as e:
-            print(f"Warning: Could not initialize query processor: {e}")
-    
-    if dsl_generator is None:
-        try:
-            dsl_generator = DSLQueryGenerator()
-        except Exception as e:
-            print(f"Warning: Could not initialize DSL generator: {e}")
-    
-    return {
-        "executor": query_executor,
-        "processor": query_processor,
-        "dsl_generator": dsl_generator
-    }
+# Note: Using production APIs instead of component dependencies
 
 # API Routes
 
@@ -144,83 +135,68 @@ async def serve_layout_test():
     return FileResponse(str(Path(__file__).parent.parent / "layout_test.html"))
 
 @app.get("/api/health", response_model=HealthCheckResponse)
-async def health_check(components: Dict[str, Any] = Depends(get_components)):
-    """Health check endpoint"""
+async def health_check():
+    """Health check endpoint using production API"""
     
-    # Check OpenSearch connection
-    opensearch_status = "unknown"
     try:
-        health_result = components["executor"].health_check()
-        opensearch_status = health_result.get("status", "unknown")
+        # Use production health check
+        health_result = await get_health_status()
+        
+        # Convert to legacy format for compatibility
+        opensearch_status = "green" if health_result.status == "healthy" else "degraded"
+        
+        return HealthCheckResponse(
+            status=health_result.status,
+            timestamp=datetime.now(),
+            version="1.0.0",
+            opensearch_status=opensearch_status,
+            components={
+                "is_initialized": str(health_result.components.get("is_initialized", False)),
+                "components": str(health_result.components.get("components", {})),
+                "errors": str(health_result.components.get("errors", []))
+            }
+        )
+        
     except Exception as e:
-        opensearch_status = f"error: {str(e)}"
-    
-    # Check component status
-    component_status = {}
-    for name, component in components.items():
-        if component is None:
-            component_status[name] = "not_available"
-        else:
-            component_status[name] = "available"
-    
-    return HealthCheckResponse(
-        status="healthy" if opensearch_status == "green" else "degraded",
-        timestamp=datetime.now(),
-        version="1.0.0",
-        opensearch_status=opensearch_status,
-        components=component_status
-    )
+        logger.error(f"Health check failed: {e}")
+        return HealthCheckResponse(
+            status="unhealthy",
+            timestamp=datetime.now(),
+            version="1.0.0",
+            opensearch_status="error",
+            components={"error": str(e)}
+        )
 
 @app.post("/api/search")
-async def search_healthcare(
-    request: SearchRequest,
-    components: Dict[str, Any] = Depends(get_components)
-):
-    """Search healthcare data using OpenSearch"""
+async def search_healthcare(request: SearchRequest):
+    """Search healthcare data using production API"""
     
     try:
-        # If no specific index provided, try to route the query
-        index_name = request.index_name
-        routing_result = None
+        # Use production search API
+        search_result = await search_healthcare_data(
+            query=request.query,
+            index_name=request.index_name,
+            max_results=request.max_results,
+            include_metadata=True
+        )
         
-        if not index_name and components["processor"]:
-            try:
-                routing_result = components["processor"].route_healthcare_query(request.query)
-                if routing_result.get("success", False):
-                    index_name = routing_result.get("routing_analysis", {}).get("index_name")
-            except Exception as e:
-                print(f"Routing failed: {e}")
-        
-        # Default to claims index if routing failed
-        if not index_name:
-            index_name = "healthcare_claims_index"
-        
-        # Generate DSL query if DSL generator is available
-        dsl_query = {"query": {"match_all": {}}, "size": request.max_results}
-        
-        if components["dsl_generator"]:
-            try:
-                index_info = {"index_name": index_name}
-                schema_info = {"fields": ["patient", "provider", "claim_id"]}
-                
-                dsl_result = components["dsl_generator"].generate_dsl_query(
-                    request.query, index_info, schema_info
-                )
-                
-                if dsl_result.get("success", False):
-                    dsl_query = dsl_result.get("dsl_query", dsl_query)
-            except Exception as e:
-                print(f"DSL generation failed: {e}")
-        
-        # Execute the query
-        result = components["executor"].execute_query(dsl_query, index_name)
-        
-        # Add metadata
-        result["metadata"] = {
-            "query": request.query,
-            "index_used": index_name,
-            "routing_result": routing_result,
-            "timestamp": datetime.now().isoformat()
+        # Convert to legacy format for compatibility
+        result = {
+            "success": search_result.success,
+            "index_name": search_result.index_used,
+            "total_hits": search_result.total_hits,
+            "documents": search_result.results,
+            "query_executed": {
+                "query": {"match": {"_all": request.query}},
+                "size": request.max_results
+            },
+            "execution_time_ms": search_result.execution_time_ms,
+            "metadata": {
+                "query": request.query,
+                "index_used": search_result.index_used,
+                "routing_result": search_result.routing_info,
+                "timestamp": search_result.timestamp
+            }
         }
         
         return result
@@ -229,39 +205,59 @@ async def search_healthcare(
         raise HTTPException(status_code=500, detail=f"Search failed: {str(e)}")
 
 @app.post("/api/chat")
-async def chat_with_assistant(
-    request: ChatRequest,
-    components: Dict[str, Any] = Depends(get_components)
-):
-    """Chat endpoint that processes user messages and returns responses"""
+async def chat_with_assistant(request: ChatRequest):
+    """Chat endpoint that processes user messages using production APIs"""
+    
+    logger.debug(f"🔍 Chat request received: {request.message}")
     
     try:
-        # Process the user message through the search pipeline
-        search_request = SearchRequest(query=request.message)
-        search_result = await search_healthcare(search_request, components)
+        # Use production API for search
+        logger.debug("🔍 Calling production search API...")
+        search_result = await search_healthcare_data(
+            query=request.message,
+            max_results=10,
+            include_metadata=True
+        )
+        logger.debug(f"📊 Search result: {search_result.success}, {search_result.total_hits} hits")
         
         # Generate a conversational response
-        response_message = generate_chat_response(request.message, search_result)
+        logger.debug("💬 Generating chat response...")
+        response_message = generate_chat_response(request.message, search_result.dict())
+        logger.debug(f"💬 Response message: {response_message}")
         
-        return {
+        result = {
             "response": response_message,
-            "search_results": search_result,
+            "search_results": search_result.dict(),
             "timestamp": datetime.now().isoformat()
         }
         
+        logger.debug(f"✅ Chat response generated successfully")
+        return result
+        
     except Exception as e:
+        logger.error(f"❌ Chat processing failed: {e}")
+        
+        # Return error response
         return {
-            "response": f"I'm sorry, I encountered an error processing your request: {str(e)}",
-            "search_results": None,
-            "timestamp": datetime.now().isoformat(),
-            "error": str(e)
+            "response": f"I apologize, but I encountered an error while processing your request: {str(e)}",
+            "search_results": {
+                "success": False,
+                "error": str(e),
+                "results": [],
+                "total_hits": 0
+            },
+            "timestamp": datetime.now().isoformat()
         }
 
 @app.get("/api/indices")
-async def list_indices(components: Dict[str, Any] = Depends(get_components)):
-    """List available OpenSearch indices"""
+async def list_indices():
+    """List available OpenSearch indices using production API"""
     
     try:
+        # Use production API to get indexes
+        indexes_result = await get_available_indexes()
+        
+        # Convert to legacy format for compatibility
         indices = [
             "healthcare_claims_index",
             "healthcare_providers_index", 
@@ -271,17 +267,10 @@ async def list_indices(components: Dict[str, Any] = Depends(get_components)):
         
         index_info = {}
         for index_name in indices:
-            try:
-                info = components["executor"].get_index_info(index_name)
-                index_info[index_name] = {
-                    "available": "error" not in info,
-                    "info": info if "error" not in info else None
-                }
-            except Exception as e:
-                index_info[index_name] = {
-                    "available": False,
-                    "error": str(e)
-                }
+            index_info[index_name] = {
+                "available": indexes_result.get("success", False),
+                "info": indexes_result.get("indexes", {})
+            }
         
         return {"indices": index_info}
         
@@ -395,8 +384,13 @@ async def startup_event():
     print("🚀 Starting Healthcare Search Assistant API...")
     print("📊 Initializing components...")
     
-    # Initialize components
-    await get_components()
+    # Initialize production components (not async)
+    try:
+        from core.initialization import get_components
+        components = get_components()
+        print(f"✅ Components initialized: {components.is_initialized}")
+    except Exception as e:
+        print(f"⚠️ Component initialization warning: {e}")
     
     print("✅ API ready! Visit http://localhost:8000 for the chat interface")
     print("📚 API documentation available at http://localhost:8000/api/docs")

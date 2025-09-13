@@ -44,19 +44,10 @@ export GEMINI_API_KEY="your_actual_api_key_here"
 source ~/.zshrc
 ```
 
-#### Option B: Environment File
+#### Option B: Direct Environment Variable
 ```bash
-# Copy the example file
-cp .env.example .env
-
-# Edit .env and add your API key
-GEMINI_API_KEY=your_actual_api_key_here
-```
-
-#### Option C: Setup Script
-```bash
-# Run the interactive setup script
-./setup_api_key.sh
+# Set the API key directly in your current session
+export GEMINI_API_KEY="your_actual_api_key_here"
 ```
 
 ### 3. Verify Configuration
@@ -68,3 +59,36 @@ echo $GEMINI_API_KEY
 # Test the configuration
 python -c "from config_reader import config; print('API Key Set:', config.is_api_key_set())"
 ```
+
+## 🚀 Running the Application
+
+### Quick Start
+```bash
+# Start the application
+./start.sh
+
+# Stop the application
+./stop.sh
+```
+
+### Manual Commands
+```bash
+# Start manually
+source venv/bin/activate
+python start.py
+
+# Stop manually
+Ctrl+C  # or pkill -f "python start.py"
+```
+
+## 📚 Complete Setup Instructions
+
+For detailed setup, startup, termination, and troubleshooting instructions, see:
+**[SETUP_INSTRUCTIONS.md](SETUP_INSTRUCTIONS.md)** - Complete setup documentation
+
+## 🌐 Access the Application
+
+Once started, you can access:
+- **Chat UI**: http://localhost:8000
+- **API Documentation**: http://localhost:8000/api/docs
+- **Health Check**: http://localhost:8000/api/health
