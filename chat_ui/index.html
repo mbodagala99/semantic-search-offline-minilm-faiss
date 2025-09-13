@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Search Assistant</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/simple.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css">
+</head>
+<body>
+    <!-- Main Application Container -->
+    <div class="app-container">
+        <!-- Simple Header -->
+        <header class="header">
+            <div class="header-title">
+                <h1>🏥 Healthcare Search Assistant</h1>
+            </div>
+            <div class="header-status">
+                <span class="status-dot"></span>
+                <span>Connected</span>
+            </div>
+        </header>
+
+        <!-- Main Content - Two Column Layout -->
+        <main class="main-layout">
+            <!-- Left Section - Results -->
+            <section class="left-section" id="leftSection">
+                <div class="section-header">
+                    <h2>📊 Search Results</h2>
+                    <div class="header-actions">
+                        <button class="btn-small" id="exportBtn">Export</button>
+                        <button class="btn-small" id="refreshBtn">Refresh</button>
+                    </div>
+                    <div class="resize-handle resize-handle-right" id="leftSectionResizeHandle"></div>
+                </div>
+
+                <!-- Query Info -->
+                <div class="query-info" id="queryInfo" style="display: none;">
+                    <div class="query-meta">
+                        <div class="query-text">
+                            <span class="label">Query:</span>
+                            <span class="value" id="currentQuery"></span>
+                        </div>
+                        <div class="query-stats">
+                            <span class="stat">
+                                <i data-lucide="file-text"></i>
+                                <span id="resultCount">0</span> results
+                            </span>
+                            <span class="stat">
+                                <i data-lucide="clock"></i>
+                                <span id="executionTime">0</span>ms
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Container -->
+                <div class="results-area" id="resultsContainer">
+                    <div class="empty-message">
+                        <h3>🔍 Start Your Search</h3>
+                        <p>Ask me anything about healthcare data. I can help you find claims, providers, procedures, and member information.</p>
+                    </div>
+                </div>
+
+                <!-- Detailed Logs Section -->
+                <div class="logs-section" id="logsSection" style="display: none;">
+                    <div class="logs-header">
+                        <h4>🔍 Detailed Logs & Trace</h4>
+                        <div class="logs-controls">
+                            <button class="btn-small" id="clearLogsBtn">Clear Logs</button>
+                            <button class="btn-small" id="toggleLogsBtn">Hide Logs</button>
+                        </div>
+                    </div>
+                    <div class="logs-content" id="logsContent">
+                        <div class="log-entry info">
+                            <span class="log-time">[09:17:21]</span>
+                            <span class="log-level">INFO</span>
+                            <span class="log-message">System initialized. Ready to process healthcare queries.</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Section - Chat -->
+            <section class="right-section" id="rightSection">
+                <div class="section-header">
+                    <h2>💬 Healthcare Assistant</h2>
+                    <div class="header-actions">
+                        <button class="btn-small" id="clearChatBtn">Clear Chat</button>
+                    </div>
+                    <div class="resize-handle resize-handle-left" id="rightSectionResizeHandle"></div>
+                </div>
+
+                <!-- Chat Messages -->
+                <div class="chat-messages" id="chatHistory">
+                    <div class="message bot-message">
+                        <div class="message-content">
+                            <p><strong>Welcome!</strong> I'm your Healthcare Search Assistant. I can help you search through:</p>
+                            <ul>
+                                <li>🏥 Healthcare Claims</li>
+                                <li>👨‍⚕️ Providers & Specialists</li>
+                                <li>🔬 Medical Procedures</li>
+                                <li>👤 Member Information</li>
+                            </ul>
+                            <p>What would you like to search for?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Query Selection -->
+                <div class="quick-queries" id="quickQueries">
+                    <div class="quick-queries-header">
+                        <h4>Quick Queries</h4>
+                        <div class="resize-handle" id="resizeHandle"></div>
+                    </div>
+                    <div class="query-list" id="queryList">
+                        <div class="query-option">
+                            <input type="radio" id="query1" name="quickQuery" value="Show me all claims submitted between January 1, 2022 and March 31, 2022">
+                            <label for="query1">Show me all claims submitted between January 1, 2022 and March 31, 2022</label>
+                        </div>
+                        <div class="query-option">
+                            <input type="radio" id="query2" name="quickQuery" value="Find all cardiology providers in California">
+                            <label for="query2">Find all cardiology providers in California</label>
+                        </div>
+                        <div class="query-option">
+                            <input type="radio" id="query3" name="quickQuery" value="Find all members with diabetes in California">
+                            <label for="query3">Find all members with diabetes in California</label>
+                        </div>
+                        <div class="query-option">
+                            <input type="radio" id="query4" name="quickQuery" value="Find all procedures that require prior authorization">
+                            <label for="query4">Find all procedures that require prior authorization</label>
+                        </div>
+                        <div class="query-option">
+                            <input type="radio" id="query5" name="quickQuery" value="Find denied claims for provider ID 12345 in 2021">
+                            <label for="query5">Find denied claims for provider ID 12345 in 2021</label>
+                        </div>
+                        <div class="query-option">
+                            <input type="radio" id="query6" name="quickQuery" value="Find providers with quality ratings above 4.0">
+                            <label for="query6">Find providers with quality ratings above 4.0</label>
+                        </div>
+                        <div class="query-option">
+                            <input type="radio" id="query7" name="quickQuery" value="Find members aged 65 and older with Medicare plans">
+                            <label for="query7">Find members aged 65 and older with Medicare plans</label>
+                        </div>
+                        <div class="query-option">
+                            <input type="radio" id="query8" name="quickQuery" value="Show procedures with RVU greater than 5.0">
+                            <label for="query8">Show procedures with RVU greater than 5.0</label>
+                        </div>
+                        <div class="query-option">
+                            <input type="radio" id="query9" name="quickQuery" value="Find high-cost claims over $50,000 submitted in 2023">
+                            <label for="query9">Find high-cost claims over $50,000 submitted in 2023</label>
+                        </div>
+                        <div class="query-option">
+                            <input type="radio" id="query10" name="quickQuery" value="Find providers with telehealth capabilities">
+                            <label for="query10">Find providers with telehealth capabilities</label>
+                        </div>
+                        <div class="query-option">
+                            <input type="radio" id="query11" name="quickQuery" value="Get members with risk scores above 2.0">
+                            <label for="query11">Get members with risk scores above 2.0</label>
+                        </div>
+                        <div class="query-option">
+                            <input type="radio" id="query12" name="quickQuery" value="Show procedures with high allowed amounts over $1000">
+                            <label for="query12">Show procedures with high allowed amounts over $1000</label>
+                        </div>
+                        <div class="query-option">
+                            <input type="radio" id="query13" name="quickQuery" value="Find claims with procedure code 99213 and their status">
+                            <label for="query13">Find claims with procedure code 99213 and their status</label>
+                        </div>
+                        <div class="query-option">
+                            <input type="radio" id="query14" name="quickQuery" value="Find members who haven't used services in 12 months">
+                            <label for="query14">Find members who haven't used services in 12 months</label>
+                        </div>
+                        <div class="query-option">
+                            <input type="radio" id="query15" name="quickQuery" value="Get procedures in the cardiology specialty">
+                            <label for="query15">Get procedures in the cardiology specialty</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Input -->
+                <div class="chat-input">
+                    <div class="input-row">
+                        <textarea 
+                            class="message-input" 
+                            id="messageInput"
+                            placeholder="Ask me anything about healthcare data..."
+                            rows="2"
+                            maxlength="500"
+                        ></textarea>
+                        <button class="send-btn" id="sendBtn">Send</button>
+                    </div>
+                    <div class="input-info">
+                        <span id="charCount">0/500</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal for Settings -->
+    <div class="modal" id="settingsModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Settings</h3>
+                <button class="btn-icon modal-close" id="closeSettingsBtn">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <label for="themeSelect">Theme</label>
+                    <select id="themeSelect" class="form-select">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </div>
+                <div class="setting-group">
+                    <label for="resultsPerPage">Results per page</label>
+                    <select id="resultsPerPage" class="form-select">
+                        <option value="10">10</option>
+                        <option value="20" selected>20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancelSettingsBtn">Cancel</button>
+                <button class="btn-primary" id="saveSettingsBtn">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="scripts/working.js"></script>
+</body>
+</html>
